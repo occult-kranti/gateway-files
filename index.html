@@ -1,0 +1,1575 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Gateway Files — A Field Guide to the Declassified Record</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&family=Courier+Prime:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+<style>
+:root{
+  --paper:#b0c6b3;
+  --paper-hi:#c3d4c5;
+  --paper-lo:#9fb6a2;
+  --ink:#111511;
+  --ink-soft:#2c332c;
+  --crimson:#db3356;
+  --line:rgba(17,21,17,.55);
+  --line-soft:rgba(17,21,17,.22);
+  --sidebar-w:30.1%;
+  --mono:'Courier Prime',ui-monospace,'Courier New',monospace;
+  --disp:'Archivo',-apple-system,'Helvetica Neue',sans-serif;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  background:var(--paper);
+  color:var(--ink);
+  font-family:var(--mono);
+  font-size:17px;
+  line-height:1.55;
+  -webkit-font-smoothing:antialiased;
+}
+::selection{background:var(--crimson);color:var(--paper-hi)}
+::-webkit-scrollbar{width:6px;height:6px}
+::-webkit-scrollbar-track{background:transparent}
+::-webkit-scrollbar-thumb{background:rgba(17,21,17,.35);border-radius:10px}
+a{color:inherit}
+
+/* ============ SIDEBAR ============ */
+.sidebar{
+  position:fixed;left:0;top:0;bottom:0;width:var(--sidebar-w);
+  border-right:2px solid var(--ink);
+  padding:2.2rem 2rem 2rem 2.4rem;
+  display:flex;flex-direction:column;
+  background:
+    repeating-linear-gradient(0deg,transparent 0 46px,rgba(17,21,17,.05) 46px 47px),
+    var(--paper);
+  z-index:10;overflow-y:auto;
+}
+.binder-holes{position:absolute;left:.7rem;top:0;bottom:0;width:10px;display:flex;flex-direction:column;justify-content:space-evenly}
+.binder-holes i{width:10px;height:10px;border-radius:50%;background:var(--ink);display:block}
+.doc-no{font-size:.72rem;letter-spacing:.08em;opacity:.85}
+.doc-no b{display:block;font-size:.78rem}
+.cover-rule{height:2px;background:var(--ink);margin:.9rem 0}
+.cover-kicker{font-family:var(--disp);font-weight:800;font-size:.68rem;letter-spacing:.32em;text-transform:uppercase}
+h1.cover-title{
+  font-family:var(--disp);font-weight:900;font-stretch:75%;
+  font-size:clamp(2.2rem,3.4vw,3.3rem);line-height:.92;letter-spacing:-.02em;
+  text-transform:uppercase;margin:.6rem 0 .2rem;
+}
+.cover-sub{font-size:.8rem;font-style:italic;opacity:.9;max-width:34ch}
+.stamp{
+  display:inline-block;font-family:var(--disp);font-weight:900;text-transform:uppercase;
+  color:var(--crimson);border:3px solid var(--crimson);border-radius:4px;
+  padding:.18em .5em;font-size:.95rem;letter-spacing:.18em;
+  transform:rotate(-6deg);margin:1.1rem 0 .4rem;
+  mask-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='40'%3E%3Cfilter id='n'%3E%3CfeTurbulence baseFrequency='.9' numOctaves='2'/%3E%3CfeColorMatrix values='0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 .9 0'/%3E%3C/filter%3E%3Crect width='120' height='40' filter='url(%23n)'/%3E%3C/svg%3E");
+  mask-size:120px 40px;
+}
+.cover-meta{margin-top:.8rem;font-size:.72rem;line-height:1.9}
+.cover-meta .k{display:inline-block;min-width:7.2em;font-family:var(--disp);font-weight:700;font-size:.62rem;letter-spacing:.14em;text-transform:uppercase;opacity:.75}
+nav.index{margin-top:1.6rem;border-top:2px solid var(--ink)}
+nav.index .idx-h{font-family:var(--disp);font-weight:800;font-size:.62rem;letter-spacing:.3em;text-transform:uppercase;padding:.7rem 0 .3rem;opacity:.7}
+nav.index a{
+  display:flex;gap:.7em;align-items:baseline;text-decoration:none;
+  padding:.42rem 0 .42rem .1rem;border-bottom:1px solid var(--line-soft);
+  font-size:.82rem;transition:padding-left .25s ease;
+}
+nav.index a .n{font-family:var(--disp);font-weight:800;font-size:.66rem;letter-spacing:.05em}
+nav.index a .arr{opacity:0;transform:translateX(-6px);transition:all .25s ease;margin-left:auto;font-family:var(--disp)}
+nav.index a:hover{padding-left:.9rem}
+nav.index a:hover .arr{opacity:1;transform:translateX(0)}
+nav.index a.active{background:rgba(17,21,17,.08)}
+.side-foot{margin-top:auto;padding-top:1.4rem;font-size:.66rem;opacity:.75;line-height:1.7}
+
+/* ============ MAIN ============ */
+.main{
+  margin-left:var(--sidebar-w);
+  background:
+    linear-gradient(rgba(17,21,17,.06) 1px,transparent 1px) 0 0/100% 196px,
+    linear-gradient(90deg,rgba(17,21,17,.05) 1px,transparent 1px) 0 0/196px 100%,
+    var(--paper);
+  min-height:100vh;
+}
+.sheet{max-width:980px;padding:4.2rem 3.2rem 5rem 3.4rem}
+.chapter{margin-bottom:6.5rem;scroll-margin-top:2rem}
+.ch-head{display:flex;align-items:baseline;gap:1rem;border-bottom:4px solid var(--ink);padding-bottom:.55rem;margin-bottom:2rem}
+.ch-num{font-family:var(--disp);font-weight:900;font-stretch:72%;font-size:clamp(2.4rem,4vw,3.6rem);line-height:.85;color:var(--crimson)}
+.ch-title{font-family:var(--disp);font-weight:900;font-stretch:78%;font-size:clamp(1.6rem,2.6vw,2.4rem);text-transform:uppercase;letter-spacing:-.01em;line-height:.95}
+.ch-tag{margin-left:auto;font-size:.66rem;letter-spacing:.2em;text-transform:uppercase;opacity:.7;text-align:right}
+h3.sec{
+  font-family:var(--disp);font-weight:800;text-transform:uppercase;letter-spacing:.04em;
+  font-size:1.02rem;margin:2.6rem 0 .9rem;display:flex;align-items:center;gap:.6em;
+}
+h3.sec::before{content:"";width:1.6em;height:2px;background:var(--ink);flex:none}
+p{margin-bottom:1.05rem;max-width:72ch}
+p.lede{font-size:1.12rem;line-height:1.65}
+.small{font-size:.78rem}
+.dim{opacity:.72}
+strong{font-weight:700}
+em{font-style:italic}
+
+/* quotes from the record */
+blockquote.doc{
+  border:2px solid var(--ink);background:var(--paper-hi);
+  padding:1.15rem 1.3rem;margin:1.4rem 0;position:relative;
+  font-size:.92rem;box-shadow:5px 5px 0 rgba(17,21,17,.25);
+}
+blockquote.doc::before{
+  content:"FROM THE RECORD";position:absolute;top:-.62em;left:.9em;
+  background:var(--paper);padding:0 .55em;font-family:var(--disp);font-weight:800;
+  font-size:.58rem;letter-spacing:.28em;
+}
+blockquote.doc p{margin-bottom:.6rem}
+blockquote.doc p:last-child{margin-bottom:0}
+.cite{display:block;margin-top:.5rem;font-size:.68rem;letter-spacing:.06em;opacity:.75}
+
+/* page reference chips */
+.pg{
+  display:inline-flex;align-items:center;gap:.35em;text-decoration:none;
+  border:1.5px solid var(--ink);border-radius:3px;padding:.02em .45em;
+  font-size:.68rem;font-family:var(--disp);font-weight:700;letter-spacing:.04em;
+  white-space:nowrap;transition:all .18s ease;vertical-align:baseline;
+}
+.pg:hover{background:var(--ink);color:var(--paper)}
+.pg.ext{border-style:dashed}
+.pg.local::before{content:"▼";font-size:.55rem;color:var(--crimson)}
+
+/* callout — analyst note */
+.note{
+  border-left:4px solid var(--crimson);background:rgba(219,51,86,.08);
+  padding:.85rem 1.1rem;margin:1.3rem 0;font-size:.82rem;max-width:74ch;
+}
+.note .nh{font-family:var(--disp);font-weight:800;font-size:.6rem;letter-spacing:.26em;text-transform:uppercase;color:var(--crimson);display:block;margin-bottom:.3rem}
+
+/* exhibits */
+.exhibit{border:2px solid var(--ink);background:var(--paper-hi);margin:1.8rem 0;box-shadow:6px 6px 0 rgba(17,21,17,.22)}
+.exhibit svg{display:block;width:100%;height:auto}
+.exhibit .cap{
+  border-top:2px solid var(--ink);padding:.55rem .9rem;
+  font-size:.72rem;display:flex;gap:1em;align-items:baseline;flex-wrap:wrap;
+}
+.exhibit .cap .xh{font-family:var(--disp);font-weight:900;letter-spacing:.18em;font-size:.66rem;text-transform:uppercase}
+.exhibit .cap .src{margin-left:auto;opacity:.75}
+
+/* redaction */
+.redact{background:var(--ink);color:var(--ink);border-radius:1px;cursor:default;transition:all .25s}
+.redact:hover{color:var(--paper-hi)}
+
+/* timeline */
+.timeline{border-left:3px solid var(--ink);margin:1.6rem 0 1.6rem .4rem;padding-left:1.6rem}
+.tl{position:relative;margin-bottom:1.25rem;max-width:70ch}
+.tl::before{content:"";position:absolute;left:calc(-1.6rem - 7px);top:.35em;width:11px;height:11px;background:var(--paper);border:3px solid var(--ink);border-radius:50%}
+.tl.hot::before{background:var(--crimson);border-color:var(--crimson)}
+.tl .d{font-family:var(--disp);font-weight:900;font-size:.8rem;letter-spacing:.06em}
+.tl p{margin:.15rem 0 0;font-size:.85rem}
+
+/* tables */
+table.map{width:100%;border-collapse:collapse;font-size:.76rem;margin:1.2rem 0}
+table.map th{font-family:var(--disp);font-weight:800;text-transform:uppercase;letter-spacing:.12em;font-size:.6rem;text-align:left;border-bottom:2px solid var(--ink);padding:.35rem .5rem}
+table.map td{border-bottom:1px solid var(--line-soft);padding:.38rem .5rem;vertical-align:top}
+table.map tr:hover td{background:rgba(17,21,17,.05)}
+
+/* protocol cards */
+.protocol{border:2px solid var(--ink);background:var(--paper-hi);margin:1.5rem 0;box-shadow:5px 5px 0 rgba(17,21,17,.22)}
+.protocol .ph{display:flex;align-items:baseline;gap:.8em;border-bottom:2px solid var(--ink);padding:.6rem 1rem;flex-wrap:wrap}
+.protocol .pnum{font-family:var(--disp);font-weight:900;font-stretch:70%;font-size:1.5rem;color:var(--crimson);line-height:1}
+.protocol .pname{font-family:var(--disp);font-weight:900;text-transform:uppercase;font-size:1rem;letter-spacing:.02em}
+.protocol .plvl{margin-left:auto;font-size:.62rem;letter-spacing:.18em;text-transform:uppercase;font-family:var(--disp);font-weight:700;border:1.5px solid var(--ink);padding:.15em .5em;border-radius:2px}
+.protocol .pb{padding:1rem 1.1rem;font-size:.86rem}
+.protocol .pb p{max-width:none;margin-bottom:.7rem}
+.steps{counter-reset:st;margin:.6rem 0}
+.steps li{list-style:none;counter-increment:st;position:relative;padding-left:2.5em;margin-bottom:.55rem}
+.steps li::before{
+  content:counter(st,decimal-leading-zero);position:absolute;left:0;top:.05em;
+  font-family:var(--disp);font-weight:900;color:var(--crimson);font-size:.95rem;
+}
+.protocol .refs{border-top:1px dashed var(--line);padding:.5rem 1rem;font-size:.7rem;display:flex;gap:.6em;flex-wrap:wrap;align-items:center}
+
+/* freq table chips */
+.freqs{display:flex;flex-wrap:wrap;gap:.6rem;margin:1rem 0}
+.freq{border:1.5px solid var(--ink);border-radius:3px;padding:.4rem .7rem;font-size:.74rem;background:var(--paper-hi)}
+.freq b{font-family:var(--disp);font-weight:900;font-size:.95rem;display:block}
+
+/* dark interlude for page 25 */
+.dark{
+  background:var(--ink);color:var(--paper);border:2px solid var(--ink);
+  padding:2.2rem 2.4rem;margin:2rem 0;position:relative;
+}
+.dark .stamp{margin-top:0}
+.dark blockquote.doc{background:transparent;color:var(--paper);border-color:var(--paper);box-shadow:5px 5px 0 rgba(176,198,179,.25)}
+.dark blockquote.doc::before{background:var(--ink);color:var(--paper)}
+.dark .cite{opacity:.7}
+.restored{border-left:4px solid var(--crimson);padding-left:1.1rem;margin:1.2rem 0;font-size:.9rem}
+.restored p{max-width:none}
+
+/* file cards */
+.filecard{border:2px solid var(--ink);background:var(--paper-hi);margin:1.2rem 0;display:flex;flex-wrap:wrap}
+.filecard .fn{padding:.9rem 1.1rem;flex:1 1 55%}
+.filecard .fn .t{font-family:var(--disp);font-weight:900;font-size:.95rem;text-transform:uppercase}
+.filecard .fn .d{font-size:.78rem;margin-top:.3rem}
+.filecard .fa{border-left:2px solid var(--ink);display:flex;flex-direction:column;flex:0 0 240px}
+.filecard .fa a{flex:1;display:flex;align-items:center;justify-content:space-between;padding:.55rem 1rem;text-decoration:none;font-family:var(--disp);font-weight:800;font-size:.68rem;letter-spacing:.14em;text-transform:uppercase;border-bottom:1px solid var(--line-soft);transition:all .18s}
+.filecard .fa a:last-child{border-bottom:none}
+.filecard .fa a:hover{background:var(--ink);color:var(--paper)}
+
+.bookgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(270px,1fr));gap:1.1rem;margin:1.4rem 0}
+.book{border:2px solid var(--ink);background:var(--paper-hi);padding:1rem 1.1rem;font-size:.8rem;box-shadow:4px 4px 0 rgba(17,21,17,.2)}
+.book .bt{font-family:var(--disp);font-weight:900;font-size:.92rem;text-transform:uppercase;line-height:1.15}
+.book .ba{font-style:italic;margin:.2rem 0 .5rem}
+.book .tag{display:inline-block;border:1.5px solid var(--crimson);color:var(--crimson);font-family:var(--disp);font-weight:800;font-size:.56rem;letter-spacing:.16em;text-transform:uppercase;padding:.15em .5em;border-radius:2px;margin-bottom:.5rem}
+
+footer.colophon{border-top:4px solid var(--ink);padding-top:1.4rem;font-size:.72rem;opacity:.85;max-width:72ch}
+
+/* progress bar + floating controls */
+#progress{position:fixed;top:0;left:0;height:4px;background:var(--crimson);width:0;z-index:60;transition:width .1s linear}
+#toTop{position:fixed;right:1.4rem;bottom:1.4rem;width:46px;height:46px;border:2px solid var(--ink);background:var(--paper-hi);font-family:var(--disp);font-weight:900;font-size:1.1rem;cursor:pointer;z-index:55;opacity:0;pointer-events:none;transition:opacity .3s,transform .3s;transform:translateY(8px);box-shadow:3px 3px 0 rgba(17,21,17,.3)}
+#toTop.show{opacity:1;pointer-events:auto;transform:none}
+#toTop:hover{background:var(--ink);color:var(--paper)}
+#quickNavBtn{position:fixed;right:1.4rem;bottom:5rem;border:2px solid var(--ink);background:var(--ink);color:var(--paper);font-family:var(--disp);font-weight:800;font-size:.62rem;letter-spacing:.22em;padding:.75rem 1rem;cursor:pointer;z-index:55;box-shadow:3px 3px 0 rgba(17,21,17,.3)}
+#quickNavBtn:hover{background:var(--crimson);border-color:var(--crimson)}
+#quickNav{position:fixed;inset:0;background:rgba(17,21,17,.92);z-index:70;display:none;align-items:center;justify-content:center}
+#quickNav.open{display:flex}
+#quickNav .qn-inner{background:var(--paper);border:3px solid var(--ink);padding:2.2rem 2.6rem;max-width:440px;width:90%;max-height:82vh;overflow-y:auto;box-shadow:8px 8px 0 rgba(219,51,86,.5)}
+#quickNav .qn-inner h4{font-family:var(--disp);font-weight:900;text-transform:uppercase;letter-spacing:.2em;font-size:.8rem;border-bottom:3px solid var(--ink);padding-bottom:.5rem;margin-bottom:.8rem}
+#quickNav a{display:flex;gap:.8em;align-items:baseline;padding:.5rem 0;border-bottom:1px solid var(--line-soft);text-decoration:none;font-size:.9rem}
+#quickNav a .n{font-family:var(--disp);font-weight:900;color:var(--crimson);font-size:.75rem}
+#quickNav a:hover{background:rgba(17,21,17,.06)}
+#qnClose{margin-top:1rem;width:100%;border:2px solid var(--ink);background:none;font-family:var(--disp);font-weight:800;font-size:.66rem;letter-spacing:.24em;padding:.6rem;cursor:pointer}
+#qnClose:hover{background:var(--ink);color:var(--paper)}
+
+/* grade badges */
+.grade{display:inline-block;font-family:var(--disp);font-weight:900;font-size:.62rem;letter-spacing:.1em;border:2px solid;padding:.12em .5em;border-radius:2px;vertical-align:middle}
+.g-a{color:#1c6b3c;border-color:#1c6b3c}
+.g-b{color:#7a6410;border-color:#7a6410}
+.g-c{color:#a34d12;border-color:#a34d12}
+.g-d{color:var(--crimson);border-color:var(--crimson)}
+
+/* ============ FREQUENCY LAB ============ */
+.lab{background:var(--ink);color:var(--paper);border:3px solid var(--ink);margin:2rem 0;box-shadow:8px 8px 0 rgba(17,21,17,.35)}
+.lab .lab-head{display:flex;align-items:center;gap:1em;padding:.8rem 1.2rem;border-bottom:2px solid var(--paper);flex-wrap:wrap}
+.lab .lab-head .lt{font-family:var(--disp);font-weight:900;text-transform:uppercase;letter-spacing:.18em;font-size:.8rem}
+.lab .lab-head .hp{margin-left:auto;font-size:.62rem;letter-spacing:.14em;border:1.5px solid var(--crimson);color:var(--crimson);padding:.2em .6em;font-family:var(--disp);font-weight:800}
+.lab .lab-grid{display:grid;grid-template-columns:230px 1fr;min-height:380px}
+.lab .presets{border-right:2px solid var(--paper);display:flex;flex-direction:column}
+.lab .preset{padding:.7rem 1rem;border-bottom:1px solid rgba(176,198,179,.25);cursor:pointer;transition:background .15s;position:relative}
+.lab .preset:hover{background:rgba(176,198,179,.1)}
+.lab .preset.on{background:rgba(219,51,86,.16);border-left:4px solid var(--crimson)}
+.lab .preset .pn{font-family:var(--disp);font-weight:800;font-size:.78rem}
+.lab .preset .pc{font-size:.62rem;opacity:.65;margin-top:.1rem}
+.lab .preset .pb{position:absolute;right:.7rem;top:.7rem}
+.lab .deck{padding:1.2rem 1.4rem;display:flex;flex-direction:column;gap:1rem}
+.lab .readouts{display:flex;gap:1.4rem;flex-wrap:wrap}
+.lab .ro .rl{font-size:.58rem;letter-spacing:.22em;font-family:var(--disp);font-weight:800;opacity:.6}
+.lab .ro .rv{font-family:var(--disp);font-weight:900;font-size:1.5rem;line-height:1.1;font-stretch:75%}
+.lab .ro .rv small{font-size:.7rem;font-weight:700;opacity:.6}
+.lab .ro.beat .rv{color:var(--crimson)}
+#scope{width:100%;height:110px;background:rgba(176,198,179,.07);border:1.5px solid rgba(176,198,179,.35)}
+.lab .controls{display:flex;gap:1.6rem;flex-wrap:wrap;align-items:flex-end}
+.lab .ctl{flex:1;min-width:150px}
+.lab .ctl label{display:block;font-size:.58rem;letter-spacing:.22em;font-family:var(--disp);font-weight:800;opacity:.6;margin-bottom:.35rem}
+.lab .ctl .cv{font-size:.72rem;opacity:.85}
+.lab input[type=range]{width:100%;-webkit-appearance:none;height:4px;background:rgba(176,198,179,.4);outline:none}
+.lab input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:16px;height:16px;background:var(--crimson);border:2px solid var(--paper);border-radius:50%;cursor:pointer}
+.lab input[type=range]::-moz-range-thumb{width:14px;height:14px;background:var(--crimson);border:2px solid var(--paper);border-radius:50%;cursor:pointer}
+#playBtn{align-self:flex-end;border:2.5px solid var(--paper);background:transparent;color:var(--paper);font-family:var(--disp);font-weight:900;font-size:.8rem;letter-spacing:.26em;padding:.85rem 2.2rem;cursor:pointer;transition:all .18s}
+#playBtn:hover{background:var(--crimson);border-color:var(--crimson)}
+#playBtn.live{background:var(--crimson);border-color:var(--crimson);animation:pulse 1.6s ease-in-out infinite}
+@keyframes pulse{50%{box-shadow:0 0 0 9px rgba(219,51,86,.14)}}
+.lab .lab-foot{border-top:1px solid rgba(176,198,179,.25);padding:.65rem 1.2rem;font-size:.62rem;opacity:.75;display:flex;gap:1.5em;flex-wrap:wrap}
+.lab .dl{color:var(--paper);font-size:.62rem;letter-spacing:.1em;text-decoration:none;border-bottom:1px dashed var(--crimson)}
+.lab .dl:hover{color:var(--crimson)}
+@media (max-width:760px){.lab .lab-grid{grid-template-columns:1fr}.lab .presets{border-right:none;border-bottom:2px solid var(--paper)}}
+
+/* KG diagram */
+.kg-note{font-size:.68rem;opacity:.75;margin-top:.4rem}
+
+@media (max-width:900px){
+  .sidebar{position:static;width:100%;border-right:none;border-bottom:4px solid var(--ink);padding-bottom:1.2rem}
+  .main{margin-left:0}
+  .sheet{padding:2.4rem 1.2rem}
+  .filecard .fa{border-left:none;border-top:2px solid var(--ink);flex:1 1 100%}
+}
+</style>
+</head>
+<body>
+
+<!-- ================= SIDEBAR / DOSSIER COVER ================= -->
+<aside class="sidebar">
+  <div class="binder-holes"><i></i><i></i><i></i><i></i></div>
+  <div class="doc-no">DOCUMENT NO. (FOIA) / ESDN (CREST)<b>CIA-RDP96-00788R001700210016-5</b></div>
+  <div class="cover-rule"></div>
+  <div class="cover-kicker">Analysis &amp; Assessment · Field Guide</div>
+  <h1 class="cover-title">The<br>Gateway<br>Files</h1>
+  <p class="cover-sub">Every experiment, method and frequency in the declassified Gateway record — explained, diagrammed, and linked back to the original pages.</p>
+  <div><span class="stamp">Approved for release 2003/09/10</span></div>
+  <div class="cover-meta">
+    <div><span class="k">Subject</span> Analysis and Assessment of Gateway Process</div>
+    <div><span class="k">Author</span> LTC Wayne M. McDonnell, MI</div>
+    <div><span class="k">Date</span> 9 June 1983</div>
+    <div><span class="k">Companion</span> Gateway Intermediate Workbook (1977)</div>
+    <div><span class="k">Collection</span> STARGATE / CREST</div>
+  </div>
+  <nav class="index">
+    <div class="idx-h">Index of Chapters</div>
+    <a href="#ch1"><span class="n">01</span> The Dossier <span class="arr">→</span></a>
+    <a href="#ch2"><span class="n">02</span> The Model of Reality <span class="arr">→</span></a>
+    <a href="#ch3"><span class="n">03</span> The Focus Ladder <span class="arr">→</span></a>
+    <a href="#ch4"><span class="n">04</span> The Protocols <span class="arr">→</span></a>
+    <a href="#ch5"><span class="n">05</span> Remote Viewing &amp; the Army <span class="arr">→</span></a>
+    <a href="#ch6"><span class="n">06</span> The Missing Page 25 <span class="arr">→</span></a>
+    <a href="#ch7"><span class="n">07</span> The Archive <span class="arr">→</span></a>
+    <a href="#ch8"><span class="n">08</span> Books &amp; Tapes <span class="arr">→</span></a>
+    <a href="#ch9"><span class="n">09</span> Reading It Critically <span class="arr">→</span></a>
+    <a href="#ch10"><span class="n">10</span> The Frequency Evidence <span class="arr">→</span></a>
+    <a href="#ch11"><span class="n">11</span> The Frequency Lab <span class="arr">→</span></a>
+    <a href="#ch12"><span class="n">12</span> The Practice Program <span class="arr">→</span></a>
+  </nav>
+  <div class="side-foot">
+    This guide quotes and paraphrases declassified U.S. government documents.
+    It explains what the record claims — it does not certify the claims.
+  </div>
+</aside>
+
+<div id="progress"></div>
+<button id="toTop" title="Back to top">↑</button>
+<button id="quickNavBtn">INDEX</button>
+<div id="quickNav">
+  <div class="qn-inner">
+    <h4>Jump to chapter</h4>
+    <a href="#ch1"><span class="n">01</span> The Dossier</a>
+    <a href="#ch2"><span class="n">02</span> The Model of Reality</a>
+    <a href="#ch3"><span class="n">03</span> The Focus Ladder</a>
+    <a href="#ch4"><span class="n">04</span> The Protocols</a>
+    <a href="#ch5"><span class="n">05</span> Remote Viewing &amp; the Army</a>
+    <a href="#ch6"><span class="n">06</span> The Missing Page 25</a>
+    <a href="#ch7"><span class="n">07</span> The Archive</a>
+    <a href="#ch8"><span class="n">08</span> Books &amp; Tapes</a>
+    <a href="#ch9"><span class="n">09</span> Reading It Critically</a>
+    <a href="#ch10"><span class="n">10</span> The Frequency Evidence</a>
+    <a href="#ch11"><span class="n">11</span> The Frequency Lab</a>
+    <a href="#ch12"><span class="n">12</span> The Practice Program</a>
+    <button id="qnClose">CLOSE</button>
+  </div>
+</div>
+
+<!-- ================= MAIN ================= -->
+<main class="main">
+<div class="sheet">
+
+<!-- ================= CH 1 — THE DOSSIER ================= -->
+<section class="chapter" id="ch1">
+  <div class="ch-head">
+    <span class="ch-num">01</span>
+    <span class="ch-title">The Dossier</span>
+    <span class="ch-tag">What these files are<br>and where they came from</span>
+  </div>
+
+  <p class="lede">In June 1983, a U.S. Army intelligence officer sat down at Fort Meade and wrote a 29-page memo to his commander. Its subject was not a weapon system or a Soviet unit. It was a consciousness-training program run by a small institute in the Virginia foothills — a program built on headphones, humming, and the claim that the human mind can leave the body, see distant places, and slip outside of time. The memo became the most famous document in the CIA's FOIA Reading Room.</p>
+
+  <p>Three documents make up the core "Gateway files." Everything on this site is built from them, and every claim carries a page reference back to the scans:</p>
+
+  <table class="map">
+    <tr><th style="width:9em">Document</th><th>What it contains</th><th style="width:14em">Original</th></tr>
+    <tr>
+      <td><b>Analysis and Assessment of Gateway Process</b> (1983)</td>
+      <td>LTC Wayne McDonnell's theoretical assessment for U.S. Army INSCOM: hypnosis, meditation and biofeedback mechanics; Hemi-Sync; a holographic-universe model of consciousness; the full Gateway method; out-of-body protocols; and a proposed 12-step Army exploitation plan.</td>
+      <td><a class="pg ext" href="https://www.cia.gov/readingroom/docs/CIA-RDP96-00788R001700210016-5.pdf" target="_blank" rel="noopener">CIA scan ↗</a></td>
+    </tr>
+    <tr>
+      <td><b>Gateway Intermediate Workbook</b> (1977)</td>
+      <td>The Monroe Institute's actual exercise manual given to Gateway participants: the affirmations, the Energy Bar Tool, the Living Body Map, resonant energy balloon, remote viewing procedure, Focus 10/12 drills, and waking-life "daily tools."</td>
+      <td><a class="pg ext" href="https://www.cia.gov/readingroom/docs/CIA-RDP96-00788R001700210023-7.pdf" target="_blank" rel="noopener">CIA scan ↗</a></td>
+    </tr>
+    <tr>
+      <td><b>STAR GATE Project: An Overview</b> (1993)</td>
+      <td>The parent context: the government's two-decade psychic-spying effort (remote viewing, telepathy, psychokinesis) of which Army interest in Gateway formed one strand.</td>
+      <td><a class="pg ext" href="https://www.cia.gov/readingroom/docs/CIA-RDP96-00789R002800180001-2.pdf" target="_blank" rel="noopener">CIA scan ↗</a></td>
+    </tr>
+  </table>
+
+  <h3 class="sec">The record, in order</h3>
+  <div class="timeline">
+    <div class="tl"><span class="d">1958</span><p>Robert Monroe, a Virginia radio executive, begins reporting involuntary out-of-body experiences; he spends the next decade audio-engineering ways to reproduce them.</p></div>
+    <div class="tl"><span class="d">1971</span><p>Monroe publishes <em>Journeys Out of the Body</em> — later cited as reference #5 in the Army report's own bibliography.</p></div>
+    <div class="tl"><span class="d">1972</span><p>Physicists Hal Puthoff and Russell Targ begin remote-viewing research at SRI under intelligence-community funding — the start of what becomes GRILL FLAME, CENTER LANE, SUN STREAK and finally STAR GATE.</p></div>
+    <div class="tl"><span class="d">1970s</span><p>Monroe founds the Monroe Institute of Applied Sciences (Faber/Afton, VA) and patents "Hemi-Sync" — binaural-beat audio for synchronizing the brain's hemispheres.</p></div>
+    <div class="tl"><span class="d">1977</span><p>The <em>Gateway Intermediate Workbook</em> is printed for participants of the Gateway Program's first session — the document the CIA later releases as RDP96-00788R001700210023-7.</p></div>
+    <div class="tl hot"><span class="d">9 June 1983</span><p>LTC Wayne M. McDonnell, Commander of Detachment O, US Army Operational Group, INSCOM, signs the <em>Analysis and Assessment of Gateway Process</em> after taking the Gateway training himself.</p></div>
+    <div class="tl"><span class="d">1991–1995</span><p>The remote-viewing effort, renamed STAR GATE, comes under DIA and then CIA review.</p></div>
+    <div class="tl"><span class="d">1995</span><p>The American Institutes for Research evaluation (statistician Jessica Utts vs. skeptic Ray Hyman) delivers a split verdict; Congress defunds the program; the CIA begins declassifying the files.</p></div>
+    <div class="tl"><span class="d">10 Sept 2003</span><p>The Gateway report and workbook are approved for release. The report circulates for years before anyone notices its pagination jumps from 24 to 26.</p></div>
+    <div class="tl hot"><span class="d">April 2021</span><p>Vice publishes the missing page 25, traced through the Monroe Institute's copy of the same report.</p></div>
+    <div class="tl"><span class="d">Dec 2022</span><p>A complete 30-page scan with the restored page is posted to Wikimedia Commons; the text is fully transcribed on Wikisource.</p></div>
+  </div>
+
+  <div class="note"><span class="nh">Analyst's note</span>
+  The 1983 report is an <em>assessment written by a believer-in-progress</em>: McDonnell took the course, read the physics popularizations of his day, and built the best rational scaffold he could. It is a primary historical source — not a peer-reviewed validation. Chapter 09 separates the report's claims from what mainstream science supports.</div>
+</section>
+
+<!-- ================= CH 2 — THE MODEL ================= -->
+<section class="chapter" id="ch2">
+  <div class="ch-head">
+    <span class="ch-num">02</span>
+    <span class="ch-title">The Model of Reality</span>
+    <span class="ch-tag">§5–§27 · the physics<br>the report builds</span>
+  </div>
+
+  <p class="lede">Before teaching a single technique, McDonnell spends twenty pages building a machine in words: a model in which consciousness is energy, the universe is a hologram, and the Gateway tapes are a tuning device. This chapter walks that machine piece by piece — in the report's own terms.</p>
+
+  <h3 class="sec">2.1 — Hemi-Sync and the frequency following response</h3>
+  <p>Monroe Institute trainer Melissa Jager defines Hemi-Sync as <em>"a state of consciousness defined when the EEG patterns of both hemispheres are simultaneously equal in amplitude and frequency."</em> The engineering trick that produces it is the <b>frequency following response (FFR)</b>: play two slightly different audible tones, one per ear, and the brain "hears" neither — it entrains to the <em>difference</em>, the beat frequency. Feed it a 4 Hz beat and the brain begins producing coherent 4 Hz-band output, at marginal, almost subliminal volume.
+  <a class="pg ext" href="https://www.cia.gov/readingroom/docs/CIA-RDP96-00788R001700210016-5.pdf#page=7" target="_blank" rel="noopener">§5–6 · CIA p.7</a>
+  <a class="pg ext" href="https://www.cia.gov/readingroom/docs/CIA-RDP96-00788R001700210016-5.pdf#page=8" target="_blank" rel="noopener">§7 · p.8</a></p>
+
+  <div class="exhibit">
+    <svg viewBox="0 0 760 300" role="img" aria-label="Binaural beat diagram: left ear 100 Hz, right ear 104 Hz, brain perceives 4 Hz beat">
+      <rect x="0" y="0" width="760" height="300" fill="none"/>
+      <text x="30" y="40" font-family="Courier Prime" font-size="14" fill="#111511">LEFT EAR</text>
+      <text x="30" y="60" font-family="Archivo" font-weight="900" font-size="22" fill="#111511">100 Hz</text>
+      <path d="M30 90 q 10 -28 20 0 t 20 0 t 20 0 t 20 0 t 20 0 t 20 0 t 20 0 t 20 0 t 20 0 t 20 0 t 20 0 t 20 0 t 20 0 t 20 0 t 20 0 t 20 0 t 20 0 t 20 0" stroke="#111511" stroke-width="2" fill="none"/>
+      <text x="30" y="160" font-family="Courier Prime" font-size="14" fill="#111511">RIGHT EAR</text>
+      <text x="30" y="180" font-family="Archivo" font-weight="900" font-size="22" fill="#111511">104 Hz</text>
+      <path d="M30 210 q 9.2 -28 18.4 0 t 18.4 0 t 18.4 0 t 18.4 0 t 18.4 0 t 18.4 0 t 18.4 0 t 18.4 0 t 18.4 0 t 18.4 0 t 18.4 0 t 18.4 0 t 18.4 0 t 18.4 0 t 18.4 0 t 18.4 0 t 18.4 0 t 18.4 0 t 18.4 0" stroke="#111511" stroke-width="2" fill="none"/>
+      <g>
+        <circle cx="560" cy="90" r="46" fill="none" stroke="#111511" stroke-width="2"/>
+        <circle cx="656" cy="90" r="46" fill="none" stroke="#111511" stroke-width="2" stroke-dasharray="5 4"/>
+        <text x="560" y="160" text-anchor="middle" font-family="Courier Prime" font-size="11" fill="#111511">LEFT HEMI.</text>
+        <text x="656" y="160" text-anchor="middle" font-family="Courier Prime" font-size="11" fill="#111511">RIGHT HEMI.</text>
+        <line x1="470" y1="90" x2="505" y2="90" stroke="#111511" stroke-width="2" marker-end="url(#arr)"/>
+        <line x1="300" y1="210" x2="690" y2="130" stroke="#111511" stroke-width="1.5" stroke-dasharray="3 4"/>
+        <line x1="300" y1="90" x2="505" y2="86" stroke="#111511" stroke-width="1.5" stroke-dasharray="3 4"/>
+      </g>
+      <rect x="440" y="200" width="290" height="70" fill="none" stroke="#db3356" stroke-width="3"/>
+      <text x="585" y="230" text-anchor="middle" font-family="Archivo" font-weight="900" font-size="26" fill="#db3356">BEAT = 4 Hz</text>
+      <text x="585" y="255" text-anchor="middle" font-family="Courier Prime" font-size="12" fill="#111511">the brain entrains to the difference</text>
+      <defs><marker id="arr" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8 z" fill="#111511"/></marker></defs>
+    </svg>
+    <div class="cap"><span class="xh">Exhibit A — Frequency Following Response</span><span>after report §7; values illustrative</span><span class="src">SOURCE: CIA SCAN <a href="https://www.cia.gov/readingroom/docs/CIA-RDP96-00788R001700210016-5.pdf#page=8" target="_blank" rel="noopener">p.8 ↗</a></span></div>
+  </div>
+
+  <p>Jager's metaphor, quoted at length in the report: the ordinary mind is a <b>lamp</b> — energy radiated chaotically in all directions. Under Hemi-Sync it becomes a <b>laser</b> — the same energy, coherent in frequency and amplitude, "billions of times" more concentrated per unit area. Gateway's wager is that once brain output is coherent, it can be <em>accelerated</em> to "ever higher vibrational levels" and synchronized with "more sophisticated and rarified energy levels in the universe."
+  <a class="pg ext" href="https://www.cia.gov/readingroom/docs/CIA-RDP96-00788R001700210016-5.pdf#page=7" target="_blank" rel="noopener">§6 · CIA p.7</a></p>
+
+  <h3 class="sec">2.2 — The body as a 7 Hz oscillator</h3>
+  <p>From inventor-mystic Itzhak Bentov's biomedical model, the report takes its central physiological claim. Deep relaxation (whether by meditation, the tapes, or biofeedback) slows and softens the heartbeat until the "bifurcation echo" — the pressure pulse that normally rebounds where the aorta forks toward the legs and collides with the next pulse — dies away. The body's fluid systems then fall into a single standing wave: the whole organism vibrating coherently at about <b>7–7.5 cycles per second</b>, roughly three times the heart's normal sound amplitude, propagating "in consonance with the electrostatic field of the earth."
+  <a class="pg ext" href="https://www.cia.gov/readingroom/docs/CIA-RDP96-00788R001700210016-5.pdf#page=9" target="_blank" rel="noopener">§8–10 · CIA p.9</a></p>
+
+  <div class="exhibit">
+    <svg viewBox="0 0 760 340" role="img" aria-label="Bifurcation echo fading into coherent resonance">
+      <text x="30" y="36" font-family="Archivo" font-weight="900" font-size="15" fill="#111511">STATE 1 — NORMAL: COLLIDING PRESSURE PULSES</text>
+      <path d="M40 110 C 90 40, 130 170, 180 95 S 270 60, 320 130 S 420 150, 470 80 S 560 120, 620 90 S 700 140, 730 100" stroke="#111511" stroke-width="2" fill="none" stroke-dasharray="4 3"/>
+      <path d="M40 100 C 100 160, 160 50, 230 140 S 330 40, 390 120 S 480 170, 540 70 S 640 130, 730 95" stroke="#db3356" stroke-width="2" fill="none" opacity=".85"/>
+      <text x="40" y="150" font-family="Courier Prime" font-size="11" fill="#111511">descending pulse</text>
+      <text x="500" y="150" font-family="Courier Prime" font-size="11" fill="#db3356">bifurcation echo (rebound)</text>
+      <text x="30" y="205" font-family="Archivo" font-weight="900" font-size="15" fill="#111511">STATE 2 — GATEWAY DEPTH: COHERENT STANDING WAVE ≈ 7–7.5 Hz</text>
+      <path d="M40 275 q 43 -55 86 0 t 86 0 t 86 0 t 86 0 t 86 0 t 86 0 t 86 0 t 86 0" stroke="#111511" stroke-width="2.5" fill="none"/>
+      <text x="40" y="320" font-family="Courier Prime" font-size="12" fill="#111511">λ ≈ 40,000 km — "just about the perimeter of the planet" (§8)</text>
+      <text x="560" y="320" font-family="Courier Prime" font-size="12" fill="#db3356">→ circles Earth in ~1/7 s</text>
+    </svg>
+    <div class="cap"><span class="xh">Exhibit B — Bifurcation echo → planetary-scale resonance</span><span>Bentov's model as quoted in the report</span><span class="src">SOURCE: CIA SCAN <a href="https://www.cia.gov/readingroom/docs/CIA-RDP96-00788R001700210016-5.pdf#page=9" target="_blank" rel="noopener">p.9 ↗</a></span></div>
+  </div>
+
+  <blockquote class="doc">
+    <p>"This is occurring at a very long wavelength of about 40,000 Km, or just about the perimeter of the planet. In other words, the signal from the movement of our bodies will travel around the world in about one seventh of a second through the electrostatic field in which we are imbedded. Such a long wavelength knows no obstacles… It is the ideal medium for conveying a telepathic signal."</p>
+    <span class="cite">— Bentov, quoted in §8, Role of Resonance (CIA scan p.9) · note: 7 Hz at light speed ≈ 43,000 km, matching the Schumann resonance band (~7.83 Hz) — the real physics the model leans on</span>
+  </blockquote>
+
+  <p>The report then chains three consequences. <b>Brain stimulation (§9):</b> the sustained resonance rising up into the head is equated with the Kundalini phenomenon of yoga, per Lee Sannella's <em>Kundalini — Psychosis or Transcendence?</em> <b>Energy entrainment (§10):</b> resonating with Earth's field homogenizes the body's own field with its surroundings, so "the seat of consciousness" can begin to move into the environment — and the body becomes "a surprisingly powerful carrier wave" for mind-to-mind signaling. <b>Consciousness and energy (§11):</b> consciousness is recast as organized energy interacting with the universal field.
+  <a class="pg ext" href="https://www.cia.gov/readingroom/docs/CIA-RDP96-00788R001700210016-5.pdf#page=9" target="_blank" rel="noopener">§9–10 · p.9</a>
+  <a class="pg ext" href="https://www.cia.gov/readingroom/docs/CIA-RDP96-00788R001700210016-5.pdf#page=10" target="_blank" rel="noopener">§11 · p.10</a></p>
+
+  <h3 class="sec">2.3 — The holographic mind</h3>
+  <p>The next layer borrows neuroscientist Karl Pribram and physicist David Bohm: the universe is "one gigantic hologram of unbelievable complexity," and the human mind is <em>also</em> a hologram that reads the universal one by energy exchange. Because a hologram's every fragment encodes the whole image, "the part encodes the whole" — mind can in principle access the totality. What you can read depends on your frequency and amplitude: change them and the mind projects a different "holographic energy matrix" to intercept meaning directly from the universe's transmissions.
+  <a class="pg ext" href="https://www.cia.gov/readingroom/docs/CIA-RDP96-00788R001700210016-5.pdf#page=10" target="_blank" rel="noopener">§12–13 · p.10–11</a>
+  <a class="pg ext" href="https://www.cia.gov/readingroom/docs/CIA-RDP96-00788R001700210016-5.pdf#page=11" target="_blank" rel="noopener">§14 · p.11</a></p>
+
+  <div class="exhibit">
+    <svg viewBox="0 0 760 260" role="img" aria-label="Hologram: every fragment contains the whole">
+      <rect x="60" y="40" width="200" height="140" fill="none" stroke="#111511" stroke-width="2.5"/>
+      <circle cx="160" cy="110" r="42" fill="none" stroke="#111511" stroke-width="2"/>
+      <path d="M160 68 L160 152 M118 110 L202 110 M132 82 L188 138 M188 82 L132 138" stroke="#111511" stroke-width="1.4"/>
+      <text x="160" y="215" text-anchor="middle" font-family="Courier Prime" font-size="12" fill="#111511">HOLOGRAPHIC PLATE</text>
+      <path d="M300 110 L 340 110" stroke="#db3356" stroke-width="3" marker-end="url(#arr2)"/>
+      <g transform="translate(370,30)">
+        <rect x="0" y="0" width="70" height="55" fill="none" stroke="#111511" stroke-width="2"/>
+        <circle cx="35" cy="27" r="15" fill="none" stroke="#db3356" stroke-width="1.6"/>
+        <rect x="90" y="0" width="70" height="55" fill="none" stroke="#111511" stroke-width="2"/>
+        <circle cx="125" cy="27" r="15" fill="none" stroke="#db3356" stroke-width="1.6"/>
+        <rect x="0" y="75" width="70" height="55" fill="none" stroke="#111511" stroke-width="2"/>
+        <circle cx="35" cy="102" r="15" fill="none" stroke="#db3356" stroke-width="1.6"/>
+        <rect x="90" y="75" width="70" height="55" fill="none" stroke="#111511" stroke-width="2"/>
+        <circle cx="125" cy="102" r="15" fill="none" stroke="#db3356" stroke-width="1.6"/>
+        <text x="80" y="165" text-anchor="middle" font-family="Courier Prime" font-size="12" fill="#111511">EVERY FRAGMENT</text>
+      </g>
+      <text x="620" y="100" font-family="Archivo" font-weight="900" font-size="17" fill="#111511" text-anchor="middle">THE PART</text>
+      <text x="620" y="122" font-family="Archivo" font-weight="900" font-size="17" fill="#111511" text-anchor="middle">ENCODES</text>
+      <text x="620" y="144" font-family="Archivo" font-weight="900" font-size="17" fill="#111511" text-anchor="middle">THE WHOLE</text>
+      <text x="620" y="170" font-family="Courier Prime" font-size="11" fill="#111511" text-anchor="middle">(report §13)</text>
+      <defs><marker id="arr2" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8 z" fill="#db3356"/></marker></defs>
+    </svg>
+    <div class="cap"><span class="xh">Exhibit C — Holographic encoding</span><span>recreation of the report's §12–13 argument</span><span class="src">SOURCE: CIA SCAN <a href="https://www.cia.gov/readingroom/docs/CIA-RDP96-00788R001700210016-5.pdf#page=11" target="_blank" rel="noopener">p.11 ↗</a></span></div>
+  </div>
+
+  <p>Two further pieces complete the cognitive machine. <b>Brain in phase (§15):</b> consciousness arises when the mind's hologram and the universal hologram resonate in phase; Exhibit 2 of the report assigns the <em>left</em> hemisphere the role of software that reduces right-hemisphere input to "verbal symbols and concepts," and the <em>right</em> hemisphere the reduction of "three dimensional holographic image to two dimensional go/no go focus." <b>Self cognition (§17):</b> humans know that they know because the mind duplicates part of its own hologram, projects it, perceives the projection, and measures the difference against memory.
+  <a class="pg ext" href="https://www.cia.gov/readingroom/docs/CIA-RDP96-00788R001700210016-5.pdf#page=12" target="_blank" rel="noopener">§15–17 · p.12</a>
+  <a class="pg ext" href="https://www.cia.gov/readingroom/docs/CIA-RDP96-00788R001700210016-5.pdf#page=13" target="_blank" rel="noopener">Exhibit 2 · p.13</a></p>
+
+  <h3 class="sec">2.4 — Time-space, Planck "click-outs," and the Absolute</h3>
+  <p>Now "the fun begins" (McDonnell's words). Time is a measure of energy in motion; energy confined in a vibratory pattern gets location — space. Unconfined energy is infinite, unmoving, outside both: the <b>Absolute</b>. An oscillating wave must pass through points of rest to reverse direction — and in that infinitesimal instant, when its speed drops below Planck's distance (10⁻³³ cm per instant), energy "clicks out" of time-space and joins infinity. Human consciousness, driven to sufficiently high frequency by Hemi-Sync, clicks out so often that the click-outs approach continuity: a portion of consciousness takes up station "between time-space and the Absolute."
+  <a class="pg ext" href="https://www.cia.gov/readingroom/docs/CIA-RDP96-00788R001700210016-5.pdf#page=14" target="_blank" rel="noopener">§18–20 · p.14</a>
+  <a class="pg ext" href="https://www.cia.gov/readingroom/docs/CIA-RDP96-00788R001700210016-5.pdf#page=15" target="_blank" rel="noopener">§21 · p.15</a>
+  <a class="pg ext" href="https://www.cia.gov/readingroom/docs/CIA-RDP96-00788R001700210016-5.pdf#page=16" target="_blank" rel="noopener">Exhibit 3 · p.16</a></p>
+
+  <div class="exhibit">
+    <svg viewBox="0 0 760 300" role="img" aria-label="Click-out diagram: oscillation with rest points joining infinity">
+      <line x1="40" y1="60" x2="720" y2="60" stroke="#111511" stroke-width="1.5" stroke-dasharray="6 5"/>
+      <text x="40" y="45" font-family="Courier Prime" font-size="12" fill="#111511">INFINITY — THE ABSOLUTE (energy at rest, outside time-space)</text>
+      <path d="M60 60 C 60 160, 130 160, 130 230 S 200 300, 200 230 S 270 160, 270 230 S 340 300, 340 230 S 410 160, 410 230 S 480 300, 480 230 S 550 160, 550 230 S 620 300, 620 230 S 690 160, 690 230" stroke="#111511" stroke-width="2.5" fill="none" transform="translate(0,-15) scale(1,0.82)"/>
+      <g fill="#db3356">
+        <circle cx="95" cy="173" r="5"/><circle cx="235" cy="173" r="5"/><circle cx="375" cy="173" r="5"/><circle cx="515" cy="173" r="5"/><circle cx="655" cy="173" r="5"/>
+      </g>
+      <text x="95" y="200" text-anchor="middle" font-family="Courier Prime" font-size="10.5" fill="#db3356">REST POINT</text>
+      <text x="235" y="200" text-anchor="middle" font-family="Courier Prime" font-size="10.5" fill="#db3356">"CLICK-OUT"</text>
+      <text x="375" y="200" text-anchor="middle" font-family="Courier Prime" font-size="10.5" fill="#db3356">&lt; 10⁻³³ cm/s</text>
+      <text x="40" y="275" font-family="Courier Prime" font-size="12" fill="#111511">as frequency ↑, click-outs merge toward virtual continuity → consciousness stations itself between time-space and the Absolute</text>
+    </svg>
+    <div class="cap"><span class="xh">Exhibit D — The "click-out" (recreation of report Exhibit 3)</span><span>Bentov via §18–21</span><span class="src">SOURCE: CIA SCAN <a href="https://www.cia.gov/readingroom/docs/CIA-RDP96-00788R001700210016-5.pdf#page=16" target="_blank" rel="noopener">p.16 ↗</a></span></div>
+  </div>
+
+  <h3 class="sec">2.5 — From Big Bang to torus</h3>
+  <p>The cosmology is pure Bentov: the universe as an immense self-contained spiral — a <b>torus</b> or "cosmic egg." Matter jets from a compressed nucleus through a <b>white hole</b>, evolves as it travels around the ovoid shell (this movement <em>is</em> time), and re-enters through a <b>black hole</b> to be reabsorbed. Our galaxy sits near the top of the egg, where the stream turns back on itself — offered as an explanation for why northern galaxies recede faster. Layered over the egg: the Absolute, sustaining the radiating nucleus. Consciousness that reaches the Absolute's "rest" state perceives the whole pattern — past, present, future — at once: the theoretical license for Focus 15 and Focus 21.
+  <a class="pg ext" href="https://www.cia.gov/readingroom/docs/CIA-RDP96-00788R001700210016-5.pdf#page=18" target="_blank" rel="noopener">§24 · p.18</a>
+  <a class="pg ext" href="https://www.cia.gov/readingroom/docs/CIA-RDP96-00788R001700210016-5.pdf#page=20" target="_blank" rel="noopener">§25–27 · p.20</a></p>
+
+  <div class="exhibit">
+    <svg viewBox="0 0 760 380" role="img" aria-label="Cosmic egg torus: white hole at top, black hole at bottom">
+      <ellipse cx="380" cy="195" rx="180" ry="150" fill="none" stroke="#111511" stroke-width="2.5"/>
+      <ellipse cx="380" cy="195" rx="180" ry="150" fill="none" stroke="#111511" stroke-width="1" stroke-dasharray="2 6" transform="rotate(35 380 195)"/>
+      <circle cx="380" cy="195" r="26" fill="none" stroke="#111511" stroke-width="2"/>
+      <circle cx="380" cy="195" r="8" fill="#db3356"/>
+      <text x="420" y="200" font-family="Courier Prime" font-size="11" fill="#111511">RADIATING NUCLEUS</text>
+      <path d="M380 169 C 340 120, 330 90, 380 52 C 430 90, 420 120, 380 169" fill="none" stroke="#111511" stroke-width="2"/>
+      <path d="M380 221 C 340 270, 330 300, 380 338 C 430 300, 420 270, 380 221" fill="none" stroke="#111511" stroke-width="2" stroke-dasharray="5 4"/>
+      <text x="452" y="60" font-family="Archivo" font-weight="900" font-size="14" fill="#111511">WHITE HOLE</text>
+      <text x="452" y="345" font-family="Archivo" font-weight="900" font-size="14" fill="#111511">BLACK HOLE</text>
+      <path d="M556 195 a 176 150 0 0 1 -60 116" fill="none" stroke="#db3356" stroke-width="2.5" marker-end="url(#arr3)"/>
+      <text x="620" y="260" font-family="Courier Prime" font-size="11" fill="#db3356">evolution = time</text>
+      <circle cx="498" cy="90" r="7" fill="#111511"/>
+      <text x="512" y="85" font-family="Courier Prime" font-size="11" fill="#111511">OUR GALAXY (approx., §25)</text>
+      <rect x="30" y="20" width="150" height="58" fill="none" stroke="#111511" stroke-width="1.5" stroke-dasharray="4 3"/>
+      <text x="105" y="44" text-anchor="middle" font-family="Courier Prime" font-size="11" fill="#111511">THE ABSOLUTE</text>
+      <text x="105" y="62" text-anchor="middle" font-family="Courier Prime" font-size="11" fill="#111511">overlays all</text>
+      <defs><marker id="arr3" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8 z" fill="#db3356"/></marker></defs>
+    </svg>
+    <div class="cap"><span class="xh">Exhibit E — The cosmic egg / torus (recreation of report Exhibit 4–5)</span><span>Bentov, <em>Stalking the Wild Pendulum</em>; torus after Purce, <em>The Mystic Spiral</em></span><span class="src">SOURCE: CIA SCAN <a href="https://www.cia.gov/readingroom/docs/CIA-RDP96-00788R001700210016-5.pdf#page=19" target="_blank" rel="noopener">p.19 ↗</a> · <a href="https://www.cia.gov/readingroom/docs/CIA-RDP96-00788R001700210016-5.pdf#page=21" target="_blank" rel="noopener">p.21 ↗</a></span></div>
+  </div>
+
+  <div class="note"><span class="nh">Analyst's note</span>
+  Pieces of this chapter gesture at real science — binaural beats and the FFR exist; ~7.83 Hz is the Schumann fundamental; Pribram and Bohm seriously proposed holographic models; Planck length is real. But the report welds them into claims (telepathic carrier waves, consciousness leaving time-space) that no experiment in the declassified record validates. Treat the model as the report's <em>working hypothesis</em>, exactly as McDonnell framed it.</div>
+</section>
+
+<!-- ================= CH 3 — FOCUS LADDER ================= -->
+<section class="chapter" id="ch3">
+  <div class="ch-head">
+    <span class="ch-num">03</span>
+    <span class="ch-title">The Focus Ladder</span>
+    <span class="ch-tag">C-1 → Focus 21<br>the map of states</span>
+  </div>
+
+  <p class="lede">Every Gateway exercise happens at a labeled altitude of consciousness. The tapes and workbook never use EEG band names for these states — they use "Focus levels," Monroe's private cartography. Here is the ladder as the documents define it.</p>
+
+  <div class="exhibit">
+    <svg viewBox="0 0 760 470" role="img" aria-label="Focus level ladder from C-1 to Focus 21 and beyond">
+      <line x1="120" y1="430" x2="120" y2="30" stroke="#111511" stroke-width="2.5"/>
+      <g font-family="Courier Prime" font-size="12" fill="#111511">
+        <line x1="112" y1="420" x2="128" y2="420" stroke="#111511" stroke-width="2.5"/>
+        <rect x="140" y="400" width="500" height="38" fill="none" stroke="#111511" stroke-width="2"/>
+        <text x="154" y="424">C-1 — ordinary waking consciousness ("Consciousness One")</text>
+        <line x1="112" y1="368" x2="128" y2="368" stroke="#111511" stroke-width="2.5"/>
+        <rect x="140" y="348" width="500" height="38" fill="none" stroke="#111511" stroke-width="2"/>
+        <text x="154" y="372">FOCUS 3 — first Hemi-Sync tapes; basic synchronization (Jager, §5)</text>
+        <line x1="112" y1="316" x2="128" y2="316" stroke="#111511" stroke-width="2.5"/>
+        <rect x="140" y="296" width="560" height="38" fill="none" stroke="#111511" stroke-width="3"/>
+        <text x="154" y="320"><tspan font-weight="bold">FOCUS 10 — "mind awake, body asleep"</tspan> · THE KEY TO THE WHOLE SYSTEM</text>
+        <line x1="112" y1="264" x2="128" y2="264" stroke="#111511" stroke-width="2.5"/>
+        <rect x="140" y="244" width="540" height="38" fill="none" stroke="#111511" stroke-width="2"/>
+        <text x="154" y="268">FOCUS 12 — expanded awareness; the workshop of all the tools (§30)</text>
+        <line x1="112" y1="212" x2="128" y2="212" stroke="#111511" stroke-width="2.5"/>
+        <rect x="140" y="192" width="520" height="38" fill="none" stroke="#111511" stroke-width="2"/>
+        <text x="154" y="216">FOCUS 15 — "no time": the past · &lt;5% reach it in a week (§30G)</text>
+        <line x1="112" y1="160" x2="128" y2="160" stroke="#111511" stroke-width="2.5"/>
+        <rect x="140" y="140" width="500" height="38" fill="none" stroke="#111511" stroke-width="2"/>
+        <text x="154" y="164">FOCUS 21 — the edge of time-space; the future; other energy systems</text>
+      </g>
+      <g stroke="#db3356" stroke-width="2" stroke-dasharray="5 4">
+        <line x1="140" y1="112" x2="640" y2="112"/>
+      </g>
+      <text x="154" y="100" font-family="Courier Prime" font-size="12" fill="#db3356">beyond the documents: later Monroe waves add Focus 23–27 ("the afterlife levels")</text>
+      <text x="154" y="76" font-family="Courier Prime" font-size="12" fill="#111511">…and above the ladder entirely: THE ABSOLUTE — energy at rest in infinity (§23)</text>
+      <path d="M700 400 C 730 330, 730 220, 700 150" fill="none" stroke="#111511" stroke-width="1.6" marker-end="url(#arr4)"/>
+      <defs><marker id="arr4" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8 z" fill="#111511"/></marker></defs>
+    </svg>
+    <div class="cap"><span class="xh">Exhibit F — The Focus ladder</span><span>compiled from §29–31 and the 1977 Workbook</span><span class="src">SOURCES: <a href="https://www.cia.gov/readingroom/docs/CIA-RDP96-00788R001700210016-5.pdf#page=22" target="_blank" rel="noopener">REPORT p.22–26 ↗</a> · <a href="https://www.cia.gov/readingroom/docs/CIA-RDP96-00788R001700210023-7.pdf" target="_blank" rel="noopener">WORKBOOK ↗</a></span></div>
+  </div>
+
+  <table class="map">
+    <tr><th style="width:8em">Level</th><th>Defined in the record as</th><th>What you do there</th></tr>
+    <tr><td><b>C-1</b></td><td>Full ordinary waking consciousness.</td><td>Set objectives; frame problems; use the waking "daily tools."</td></tr>
+    <tr><td><b>Focus 3</b></td><td>The entry tape state; Jager cites Monroe's Focus 3 tapes as able to "induce and sustain Hemi-Sync."</td><td>Learn the feel of synchronization itself.</td></tr>
+    <tr><td><b>Focus 10</b></td><td>Body at the virtual threshold of sleep; left hemisphere calmed; right hemisphere attent. "Focus 10 is the key to the whole system" (Workbook).</td><td>Affirmations, REBAL, Energy Bar Tool, Living Body Map, the five exit drills, remote viewing.</td></tr>
+    <tr><td><b>Focus 12</b></td><td>"A state of sufficiently expanded awareness to begin actually interacting with dimensions beyond… physical reality," entered as "pink and white noise" layers join the tape (§30).</td><td>Problem solving, patterning, color breathing, clock-orientation drills, free-flow reception.</td></tr>
+    <tr><td><b>Focus 15</b></td><td>State of "no time." Time visualized as a huge wheel whose spokes access different parts of one's past. "Extremely difficult"; under 5% of a 7-day class fully reach it (§30G).</td><td>Examine one's own past; reportedly other pasts one has no connection to.</td></tr>
+    <tr><td><b>Focus 21</b></td><td>The furthest reach of the tapes: the boundary of time-space, "the equivalent of escape velocity" for consciousness (§30H).</td><td>Observe the immediate future; contact "other energy systems"; the launch point for full out-of-body exploration.</td></tr>
+  </table>
+
+  <h3 class="sec">The frequencies named in the record</h3>
+  <p>The documents speak in Hz only occasionally. Every number that actually appears:</p>
+  <div class="freqs">
+    <div class="freq"><b>7–7.5 Hz</b>coherent body/brain resonance at Gateway depth (§8)</div>
+    <div class="freq"><b>≈ 40,000 km</b>wavelength of that signal — Earth's perimeter (§8)</div>
+    <div class="freq"><b>~1/7 second</b>for the signal to circle the globe (§8)</div>
+    <div class="freq"><b>10 Hz (e.g.)</b>a sample binaural offset: one ear 10 Hz below the other (§7)</div>
+    <div class="freq"><b>2,877.3 CPS</b>beta-range carrier on the out-of-body tape, per Monroe (§31)</div>
+    <div class="freq"><b>10⁻³³ cm</b>Planck distance — the "click-out" threshold (§18)</div>
+    <div class="freq"><b>55515</b>the "pain reduction number" repeated mentally (Workbook, daily tools)</div>
+  </div>
+  <div class="note"><span class="nh">Analyst's note</span>
+  The report never maps Focus levels onto the clinical EEG bands (delta/theta/alpha/beta). Any chart online that shows "Focus 10 = theta" is later inference, not document. What the tapes concretely deliver are binaural <em>offsets</em> at subliminal volume, surf-noise masking, and Monroe's verbal guidance.</div>
+</section>
+
+<!-- ================= CH 4 — THE PROTOCOLS ================= -->
+<section class="chapter" id="ch4">
+  <div class="ch-head">
+    <span class="ch-num">04</span>
+    <span class="ch-title">The Protocols</span>
+    <span class="ch-tag">§28–§33 + Workbook<br>every method, step by step</span>
+  </div>
+
+  <p class="lede">This is the operational heart of the files: every exercise the documents teach, reconstructed as protocols. The sequence matters — Gateway is a ladder, and each rung is drilled before the next is introduced. Section §28 of the report gives the induction order; the 1977 Workbook gives the field procedures.</p>
+
+  <h3 class="sec">Phase 0 — Induction (every session opens this way)</h3>
+
+  <div class="protocol">
+    <div class="ph"><span class="pnum">P-01</span><span class="pname">Energy Conversion Box</span><span class="plvl">Prep · C-1</span></div>
+    <div class="pb">
+      <p>The first device taught. Visualize a box with a heavy lid; mentally place inside it every worry, distraction, and "extraneous concern" of the day; close the lid and set the box aside. Its function is isolation — quarantining the noise of ordinary life before the descent begins.</p>
+    </div>
+    <div class="refs"><span>SOURCE:</span><a class="pg ext" href="https://www.cia.gov/readingroom/docs/CIA-RDP96-00788R001700210016-5.pdf#page=22" target="_blank" rel="noopener">§28 · CIA p.22</a></div>
+  </div>
+
+  <div class="protocol">
+    <div class="ph"><span class="pnum">P-02</span><span class="pname">Resonant Tuning</span><span class="plvl">Prep · C-1</span></div>
+    <div class="pb">
+      <p>A long, monotonous hum, voiced with the chorus on the tape — "a single tone… that sets up a feeling of vibration particularly in the head." The hum is not ritual; in the report's mechanics it is the first physical push toward bodily resonance (see Exhibit B).</p>
+    </div>
+    <div class="refs"><span>SOURCE:</span><a class="pg ext" href="https://www.cia.gov/readingroom/docs/CIA-RDP96-00788R001700210016-5.pdf#page=22" target="_blank" rel="noopener">§28 · CIA p.22</a></div>
+  </div>
+
+  <div class="protocol">
+    <div class="ph"><span class="pnum">P-03</span><span class="pname">The Gateway Affirmation</span><span class="plvl">Prep · C-1</span></div>
+    <div class="pb">
+      <p>Repeated silently with the tape. The Workbook prints two forms; the first begins: <em>"I am more than my physical body. Because I am more than physical matter, I can perceive that which is greater than the Physical world…"</em> and ends by rejecting any influence that would restrain the stated desires. The second affirmation gates all contact: "only to those whose knowledge, wisdom, development and experience is equal or greater than my own… at all other times, it will remain closed."</p>
+    </div>
+    <div class="refs"><span>SOURCES:</span><a class="pg ext" href="https://www.cia.gov/readingroom/docs/CIA-RDP96-00788R001700210016-5.pdf#page=22" target="_blank" rel="noopener">§28 · p.22</a><a class="pg ext" href="https://www.cia.gov/readingroom/docs/CIA-RDP96-00788R001700210023-7.pdf" target="_blank" rel="noopener">Workbook ↗</a><a class="pg local" href="files/03_Gateway-Intermediate-Workbook_1977_transcript.md" target="_blank" rel="noopener">local transcript</a></div>
+  </div>
+
+  <div class="protocol">
+    <div class="ph"><span class="pnum">P-04</span><span class="pname">Hemi-Sync Exposure → Focus 10</span><span class="plvl">Descent</span></div>
+    <div class="pb">
+      <p>First contact with the binaural frequencies, then progressive whole-body relaxation as the tape adds "pink and white noise" layers to push the body to the threshold of sleep while the right hemisphere stays alert. The Workbook's drill for doing it unaided:</p>
+      <ol class="steps">
+        <li>Lie or sit; relax as deeply as you can, "drifting down."</li>
+        <li>When you can drift no further, exhale and say "two." Wait for a further sink.</li>
+        <li>Continue "three," "four"… to "ten." Each number should deepen the state.</li>
+        <li>Dissatisfied with the depth at ten? Restart from five, or two.</li>
+        <li>To return: count slowly 10 → 1. <b>Emergency return:</b> move any physical body part (finger, foot, tongue).</li>
+      </ol>
+    </div>
+    <div class="refs"><span>SOURCES:</span><a class="pg ext" href="https://www.cia.gov/readingroom/docs/CIA-RDP96-00788R001700210016-5.pdf#page=22" target="_blank" rel="noopener">§29 · p.22</a><a class="pg local" href="files/03_Gateway-Intermediate-Workbook_1977_transcript.md" target="_blank" rel="noopener">Workbook · local</a></div>
+  </div>
+
+  <div class="protocol">
+    <div class="ph"><span class="pnum">P-05</span><span class="pname">Resonant Energy Balloon (REBAL)</span><span class="plvl">Focus 10</span></div>
+    <div class="pb">
+      <p>The signature Gateway device: an energy flow blown out with the breath until it encloses you in a floating, luminous sphere. The report notes it mirrors the cosmic egg — and assigns it a protective function "against conscious entities possessing lower energy levels."</p>
+      <ol class="steps">
+        <li>In Focus 10, inhale deeply, drawing Energy up from all parts of the body; hold ~10 counts.</li>
+        <li>Exhale down to the toes, "as though softly blowing out a candle." Repeat 8–10 times, rounding the flow's angle each time to build the balloon.</li>
+        <li>Switch direction: inhale from the right, exhale left, letting the flow go "rounder" until a ball forms.</li>
+        <li>Fill the sphere's spaces with bright light so it grows lighter and floats.</li>
+        <li>To close: let the REBAL move inward and reabsorb into you.</li>
+      </ol>
+    </div>
+    <div class="refs"><span>SOURCES:</span><a class="pg ext" href="https://www.cia.gov/readingroom/docs/CIA-RDP96-00788R001700210016-5.pdf#page=22" target="_blank" rel="noopener">§29 · p.22</a><a class="pg local" href="files/03_Gateway-Intermediate-Workbook_1977_transcript.md" target="_blank" rel="noopener">Workbook · local</a></div>
+  </div>
+
+  <div class="exhibit">
+    <svg viewBox="0 0 760 330" role="img" aria-label="REBAL: energy balloon around the body, exhaled flow circulating">
+      <ellipse cx="380" cy="170" rx="150" ry="140" fill="none" stroke="#111511" stroke-width="2.5"/>
+      <ellipse cx="380" cy="170" rx="150" ry="140" fill="none" stroke="#db3356" stroke-width="1.4" stroke-dasharray="3 7" transform="rotate(30 380 170)"/>
+      <g stroke="#111511" stroke-width="2.2" fill="none">
+        <circle cx="380" cy="98" r="13"/>
+        <path d="M380 111 L380 190 M380 128 L352 165 M380 128 L408 165 M380 190 L358 250 M380 190 L402 250"/>
+      </g>
+      <path d="M380 60 C 460 60, 520 110, 528 165" fill="none" stroke="#db3356" stroke-width="2.2" marker-end="url(#arr5)"/>
+      <path d="M380 280 C 300 280, 240 230, 232 175" fill="none" stroke="#db3356" stroke-width="2.2" marker-end="url(#arr5)"/>
+      <text x="560" y="110" font-family="Courier Prime" font-size="12" fill="#111511">exhale down &amp; around,</text>
+      <text x="560" y="128" font-family="Courier Prime" font-size="12" fill="#111511">rounder each breath (×8–10)</text>
+      <text x="70" y="270" font-family="Courier Prime" font-size="12" fill="#111511">sphere fills with light,</text>
+      <text x="70" y="288" font-family="Courier Prime" font-size="12" fill="#111511">grows lighter, floats</text>
+      <text x="380" y="320" text-anchor="middle" font-family="Courier Prime" font-size="12" fill="#db3356">REBAL — resonant energy balloon (Workbook, 1977)</text>
+      <defs><marker id="arr5" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8 z" fill="#db3356"/></marker></defs>
+    </svg>
+    <div class="cap"><span class="xh">Exhibit G — Building the REBAL</span><span>after the Workbook procedure</span><span class="src">SOURCE: <a href="https://www.cia.gov/readingroom/docs/CIA-RDP96-00788R001700210023-7.pdf" target="_blank" rel="noopener">WORKBOOK SCAN ↗</a></span></div>
+  </div>
+
+  <h3 class="sec">Phase 1 — The Focus 10 toolkit</h3>
+
+  <div class="protocol">
+    <div class="ph"><span class="pnum">P-06</span><span class="pname">Energy Bar Tool (EBT)</span><span class="plvl">Focus 10</span></div>
+    <div class="pb">
+      <p>The universal implement — the report calls it the tool for concentrating and directing one's energy; the Workbook makes it the first thing you build.</p>
+      <ol class="steps">
+        <li>Visualize a small, intensely bright dot of light.</li>
+        <li>Will it to expand into a bar or cylinder, charging it with brilliant white energy.</li>
+        <li>Practice: change its colors; make it flash on and off at different speeds.</li>
+        <li>Store it "behind you" in Focus 10 for later sessions — it persists there.</li>
+      </ol>
+      <p class="small dim">Used by: Living Body Map (P-07), Emotional Body Map (P-08), remote viewing (P-10), and the color-charging drills.</p>
+    </div>
+    <div class="refs"><span>SOURCES:</span><a class="pg ext" href="https://www.cia.gov/readingroom/docs/CIA-RDP96-00788R001700210016-5.pdf#page=23" target="_blank" rel="noopener">§30D · CIA p.23</a><a class="pg local" href="files/03_Gateway-Intermediate-Workbook_1977_transcript.md" target="_blank" rel="noopener">Workbook · local</a></div>
+  </div>
+
+  <div class="protocol">
+    <div class="ph"><span class="pnum">P-07</span><span class="pname">Living Body Map (LBM) — "healing" protocol</span><span class="plvl">Focus 10</span></div>
+    <div class="pb">
+      <p>The documents' core self-healing method: externalize an image of your body, read its brightness as a diagnostic, then repaint it with the Energy Bar Tool.</p>
+      <ol class="steps">
+        <li>In Focus 10, charge the EBT. Produce a two-dimensional white silhouette of your body (paper cut-out, movie screen, or glowing 3-D statue — three sanctioned variants).</li>
+        <li>Stand your physical body behind it; your light shines through. Scan for <b>dim or flickering areas</b> — read as imbalance or weakness.</li>
+        <li>Aim <b>green</b> energy at each weak area to balance; then an ultra-violet <b>purple</b> to charge and strengthen.</li>
+        <li>Re-run the scan in system colors: <b>red</b> circulatory · <b>blue</b> nervous · <b>orange</b> muscle &amp; bone · <b>yellow</b> organs &amp; glands · <b>white</b> all systems.</li>
+        <li>Finish: flood the whole white silhouette with purple until it glows brighter. (Advanced: run the map for a friend — with permission.)</li>
+      </ol>
+    </div>
+    <div class="refs"><span>SOURCES:</span><a class="pg ext" href="https://www.cia.gov/readingroom/docs/CIA-RDP96-00788R001700210016-5.pdf#page=23" target="_blank" rel="noopener">§30F · CIA p.23</a><a class="pg local" href="files/03_Gateway-Intermediate-Workbook_1977_transcript.md" target="_blank" rel="noopener">Workbook · local</a></div>
+  </div>
+
+  <div class="protocol">
+    <div class="ph"><span class="pnum">P-08</span><span class="pname">Emotional Body Map (EBM)</span><span class="plvl">Focus 10</span></div>
+    <div class="pb">
+      <p>Stored <em>behind</em> the LBM, cut from "finer and thinner material": a silhouette of the emotional body. Same reading logic — dim spots get green, then purple; <em>unusually bright</em> spots (overcharge) are smoothed back to even. Finish by sweeping the whole map head-to-foot with high-energy purple until "evenly bright, calm, strong and serene."</p>
+    </div>
+    <div class="refs"><span>SOURCE:</span><a class="pg local" href="files/03_Gateway-Intermediate-Workbook_1977_transcript.md" target="_blank" rel="noopener">Workbook · local</a></div>
+  </div>
+
+  <div class="protocol">
+    <div class="ph"><span class="pnum">P-09</span><span class="pname">Color Breathing</span><span class="plvl">Focus 12</span></div>
+    <div class="pb">
+      <p>At Focus 12, imagine the required color "vividly and intensely," then inhale it — visualizing the body's energy fields absorbing that color's specific energy. The report lists it as a healing method whose effects are designed to persist after the session. The Workbook's waking-life versions fix the assignments: <b>red</b> for speed and strength, <b>green</b> for flushing emotional charge, <b>white</b> for fresh total-system energy, <b>purple</b> for healing and balance.</p>
+    </div>
+    <div class="refs"><span>SOURCES:</span><a class="pg ext" href="https://www.cia.gov/readingroom/docs/CIA-RDP96-00788R001700210016-5.pdf#page=23" target="_blank" rel="noopener">§30C · CIA p.23</a><a class="pg local" href="files/03_Gateway-Intermediate-Workbook_1977_transcript.md" target="_blank" rel="noopener">Workbook · local</a></div>
+  </div>
+
+  <h3 class="sec">Phase 2 — Perception beyond the room</h3>
+
+  <div class="protocol">
+    <div class="ph"><span class="pnum">P-10</span><span class="pname">Remote Viewing (the Gateway method)</span><span class="plvl">Focus 10–12</span></div>
+    <div class="pb">
+      <p>No coordinates, no monitor — the Gateway version is instrumented entirely with the EBT:</p>
+      <ol class="steps">
+        <li>Go to Focus 10; charge the EBT with "bright, fresh new energy."</li>
+        <li>Hold one end of the bar at your center of consciousness.</li>
+        <li>Stretch the bar out until its far end rests at the person, place or event you wish to perceive.</li>
+        <li>Let energy from the far end flow back through the bar into conscious awareness. Receive: images, words, sensations, thought forms.</li>
+      </ol>
+      <p class="small">Report §30E describes the same mechanic and adds: with practice it serves both "distant viewing" and "sending messages." Compare the Army's structured CRV in Chapter 05.</p>
+    </div>
+    <div class="refs"><span>SOURCES:</span><a class="pg ext" href="https://www.cia.gov/readingroom/docs/CIA-RDP96-00788R001700210016-5.pdf#page=23" target="_blank" rel="noopener">§30E · CIA p.23</a><a class="pg local" href="files/03_Gateway-Intermediate-Workbook_1977_transcript.md" target="_blank" rel="noopener">Workbook · local</a></div>
+  </div>
+
+  <div class="protocol">
+    <div class="ph"><span class="pnum">P-11</span><span class="pname">Focus 12 Clock Exercise</span><span class="plvl">Focus 12</span></div>
+    <div class="pb">
+      <p>Spatial-orientation training for a consciousness no longer bounded by the skull: imagine a clock face with yourself at center — 3 to the right, 9 to the left. Send consciousness to each numeral and note what is perceived. Then swivel the whole clock 90° (3 ahead, 9 behind) and sweep again. The Workbook ships a one-page "CLOCK ORIENTATION" diagram for exactly this drill.</p>
+    </div>
+    <div class="refs"><span>SOURCE:</span><a class="pg local" href="files/03_Gateway-Intermediate-Workbook_1977_transcript.md" target="_blank" rel="noopener">Workbook · local</a></div>
+  </div>
+
+  <div class="protocol">
+    <div class="ph"><span class="pnum">P-12</span><span class="pname">Problem Solving / Q&amp;A</span><span class="plvl">Focus 12</span></div>
+    <div class="pb">
+      <ol class="steps">
+        <li>In C-1, frame one specific problem or question — "the more specific… the better."</li>
+        <li>Rise to Focus 12; concentrate on the question <em>and your desire for an answer</em>.</li>
+        <li>Release the concentration. Do not chase.</li>
+        <li>Note what arrives unbidden: visual images, words, sensations, thought forms.</li>
+      </ol>
+      <p class="small">Report §30A adds that the answer may arrive as "flashes of holistic intuition" rather than literal statement.</p>
+    </div>
+    <div class="refs"><span>SOURCES:</span><a class="pg ext" href="https://www.cia.gov/readingroom/docs/CIA-RDP96-00788R001700210016-5.pdf#page=23" target="_blank" rel="noopener">§30A · CIA p.23</a><a class="pg local" href="files/03_Gateway-Intermediate-Workbook_1977_transcript.md" target="_blank" rel="noopener">Workbook · local</a></div>
+  </div>
+
+  <div class="protocol">
+    <div class="ph"><span class="pnum">P-13</span><span class="pname">Patterning (the "manifestation" protocol)</span><span class="plvl">Focus 12</span></div>
+    <div class="pb">
+      <p>The report's most quoted method. Consciousness is energy; thought patterns are energy patterns; energy patterns are, in the model's logic, seeds of reality.</p>
+      <ol class="steps">
+        <li>At Focus 12, build a detailed pattern of the desired objective — an event, a capability, a change in your own behavior.</li>
+        <li>Charge it with emotional energy: the report stresses <em>desire</em> as the fuel.</li>
+        <li>"Become" the pattern briefly — merge with it rather than observing it.</li>
+        <li>Release it into the universe "with confidence," then let it go. Attached, anxious re-checking is treated as interference.</li>
+      </ol>
+      <p class="small dim">The report's caution: patterning tends to work, so "exercise care" in what you pattern for — McDonnell flags the ethic explicitly in §30B.</p>
+    </div>
+    <div class="refs"><span>SOURCE:</span><a class="pg ext" href="https://www.cia.gov/readingroom/docs/CIA-RDP96-00788R001700210016-5.pdf#page=23" target="_blank" rel="noopener">§30B · CIA p.23</a></div>
+  </div>
+
+  <h3 class="sec">Phase 3 — Time and separation</h3>
+
+  <div class="protocol">
+    <div class="ph"><span class="pnum">P-14</span><span class="pname">Focus 15 — Travel into the Past</span><span class="plvl">Focus 15</span></div>
+    <div class="pb">
+      <p>Additional sound layers on the tapes — intensified Hemi-Sync plus near-subliminal steering cues — carry the participant from Focus 12 to 15. The guidance is deliberately symbolic: time as a vast wheel in space, each spoke opening onto a different part of one's past. The report is candid about difficulty: probably under five percent of a seven-day class fully attains it, though trainers hold it is attainable with practice — and say its reach extends beyond one's own history.</p>
+    </div>
+    <div class="refs"><span>SOURCE:</span><a class="pg ext" href="https://www.cia.gov/readingroom/docs/CIA-RDP96-00788R001700210016-5.pdf#page=24" target="_blank" rel="noopener">§30G · CIA p.24</a></div>
+  </div>
+
+  <div class="protocol">
+    <div class="ph"><span class="pnum">P-15</span><span class="pname">Focus 21 — The Edge of Time-Space</span><span class="plvl">Focus 21</span></div>
+    <div class="pb">
+      <p>The final tape level and the report's "escape velocity" point: from here, consciousness is deemed able to observe the immediate future as the present's energy patterns "slip" downstream — and to interact with dimensions beyond time-space. It is also the launch point McDonnell chooses for serious out-of-body work and for the three-viewer triangulation in Chapter 05.</p>
+    </div>
+    <div class="refs"><span>SOURCES:</span><a class="pg ext" href="https://www.cia.gov/readingroom/docs/CIA-RDP96-00788R001700210016-5.pdf#page=24" target="_blank" rel="noopener">§30H · CIA p.24</a><a class="pg ext" href="https://www.cia.gov/readingroom/docs/CIA-RDP96-00788R001700210016-5.pdf#page=29" target="_blank" rel="noopener">Conclusion H · p.29</a></div>
+  </div>
+
+  <div class="protocol">
+    <div class="ph"><span class="pnum">P-16</span><span class="pname">The Out-of-Body Movement</span><span class="plvl">Focus 10→21</span></div>
+    <div class="pb">
+      <p>The report's most-read section, and its most hedged: the Institute "stresses that the Gateway program was not established solely" for OBEs and guarantees nothing. One tape of many addresses it, using beta-range signals of "around 2877.3 CPS" per Monroe. When separation feels imminent, the Workbook's five sanctioned exit drills, performed inside REBAL:</p>
+      <ol class="steps">
+        <li>Roll out — like a log rolling in water.</li>
+        <li>Rise rigid — going up like a stiff pole.</li>
+        <li>Back away from the body.</li>
+        <li>Go out through the head "like a gas."</li>
+        <li>Float up above the physical body.</li>
+      </ol>
+      <p class="small"><b>The REM shortcut (§32):</b> an ex-trainer in Charlottesville reportedly "guaranteed" separations by bringing participants into REM sleep and then running the tape — plausibly because most people naturally exit during REM, when the motor cortex disconnects from the neck down and the left hemisphere goes quiet. The report's three preconditions for voluntary OBE: (1) profound bodily quiet with the bifurcation echo faded and ~7 Hz resonance established; (2) hemispheric synchronization; (3) subsequent right-hemisphere stimulation to heightened alertness.</p>
+    </div>
+    <div class="refs"><span>SOURCES:</span><a class="pg ext" href="https://www.cia.gov/readingroom/docs/CIA-RDP96-00788R001700210016-5.pdf#page=25" target="_blank" rel="noopener">§31 · CIA p.25</a><a class="pg ext" href="https://www.cia.gov/readingroom/docs/CIA-RDP96-00788R001700210016-5.pdf#page=26" target="_blank" rel="noopener">§32–33 · p.26</a><a class="pg local" href="files/03_Gateway-Intermediate-Workbook_1977_transcript.md" target="_blank" rel="noopener">Workbook · local</a></div>
+  </div>
+
+  <div class="protocol">
+    <div class="ph"><span class="pnum">P-17</span><span class="pname">Second-State Floats (REBAL ascent drill)</span><span class="plvl">Focus 10</span></div>
+    <div class="pb">
+      <p>The bridge between imagination and claimed separation: build REBAL in Focus 10, let it grow light, and allow it to carry you upward "naturally into a lighter, expanded state of being" — horizontal or vertical as you prefer. Float a short distance, stop, <em>observe and perceive</em>, descend. Repeat five times, higher each pass, then reabsorb the balloon.</p>
+    </div>
+    <div class="refs"><span>SOURCE:</span><a class="pg local" href="files/03_Gateway-Intermediate-Workbook_1977_transcript.md" target="_blank" rel="noopener">Workbook · local</a></div>
+  </div>
+
+  <h3 class="sec">Phase 4 — Daily tools (no tapes, waking life)</h3>
+  <table class="map">
+    <tr><th style="width:15em">Tool</th><th>Procedure (Workbook, verbatim logic)</th></tr>
+    <tr><td><b>Sleep</b></td><td>Lie down, breathe deeply 5 times, count 1 → 20. Sleep arrives before twenty.</td></tr>
+    <tr><td><b>Remember</b></td><td>Eyes closed, touch fingers of right hand to center of forehead; recall "immediately that which you consciously desire."</td></tr>
+    <tr><td><b>Reduce pain signals</b></td><td>Look with closed eyes at the source; repeat the number <b>55515</b> until signals "are no longer important."</td></tr>
+    <tr><td><b>Reduce emotional charge</b></td><td>Inhale, hold, think <b>green</b>; exhale and push the charge down and out through the soles of the feet.</td></tr>
+    <tr><td><b>Speed &amp; strength</b></td><td>Eyes closed, inhale, hold the act in mind with the energy of <b>red</b>; exhale, open eyes, perform.</td></tr>
+    <tr><td><b>Fresh energy</b></td><td>Palms up, inhale and hold; radiant <b>white</b> energy pours onto the palms, up the arms, through the whole system. Exhale.</td></tr>
+    <tr><td><b>Balance a body part</b></td><td>Inhale, hold; think cool <b>purple</b>, look inwardly at the part, send the flow saying "Heal, Balance." Exhale, open eyes.</td></tr>
+  </table>
+
+  <div class="note"><span class="nh">Analyst's note</span>
+  These protocols are presented as the documents teach them — they are historical artifacts of a training system, not medical or psychological advice. Nothing in the declassified record constitutes evidence that the LBM diagnoses illness or that color breathing treats it. Anyone with pain or emotional distress should see a clinician; the Army itself never adopted these as procedures.</div>
+</section>
+
+<!-- ================= CH 5 — REMOTE VIEWING & THE ARMY ================= -->
+<section class="chapter" id="ch5">
+  <div class="ch-head">
+    <span class="ch-num">05</span>
+    <span class="ch-title">Remote Viewing &amp; the Army</span>
+    <span class="ch-tag">§33, §38 · why an<br>intelligence officer cared</span>
+  </div>
+
+  <p class="lede">McDonnell did not write a spirituality manual. His tasking was "mechanics and ultimate practicality" — could INSCOM use this? The report's final third turns from cosmology to tradecraft: how information collection actually works in altered states, why it distorts, and a twelve-step plan to operationalize it.</p>
+
+  <h3 class="sec">5.1 — Two different remote viewings</h3>
+  <p>The files contain two distinct RV traditions, often conflated online:</p>
+  <table class="map">
+    <tr><th style="width:12em"></th><th>Gateway method</th><th>Coordinate Remote Viewing (CRV)</th></tr>
+    <tr><td><b>Origin</b></td><td>Monroe Institute; 1977 Workbook</td><td>SRI → Army INSCOM unit (Swann, Puthoff; Ft. Meade)</td></tr>
+    <tr><td><b>Trigger</b></td><td>Self-selected target; EBT "stretched" to it (P-10)</td><td>Blind alphanumeric coordinates assigned by a monitor</td></tr>
+    <tr><td><b>State</b></td><td>Focus 10/12 via Hemi-Sync tapes</td><td>Quiet alertness; structured stage protocol (ideograms → senses → sketches → analysis)</td></tr>
+    <tr><td><b>Output</b></td><td>Images, words, sensations, "thought forms"</td><td>Written session transcripts, staged and debriefed</td></tr>
+    <tr><td><b>Role in the files</b></td><td>§30E; Workbook</td><td>STAR GATE program's operational workhorse</td></tr>
+  </table>
+
+  <h3 class="sec">5.2 — Why the data distorts (§33)</h3>
+  <p>The report is unusually sober about failure modes. In an out-of-body information-gathering state, the viewer may receive not only the target's present pattern but also (1) residual energy patterns of <em>past</em> people and events at the same site; (2) pure <em>thought forms</em> — since thoughts are energy patterns too, they "mingle with physical reality and are not easily differentiated"; and (3) <em>pseudoscopic</em> inversions, the hologram viewed inside-out or backwards.
+  <a class="pg ext" href="https://www.cia.gov/readingroom/docs/CIA-RDP96-00788R001700210016-5.pdf#page=26" target="_blank" rel="noopener">§33 · CIA p.26</a></p>
+
+  <h3 class="sec">5.3 — The fix: three viewers, three time-streams (Conclusion, step H)</h3>
+  <p>McDonnell's engineering answer is triangulation across dimensions. Send three people out-of-body <em>together</em>: one views the target here in time-space; one at Focus 15 as it slips into the immediate past; one at Focus 21 as it slips from the immediate future. Debrief all three, compare. If they separate together in the same environment, "their consciousness energy systems should resonate in sympathetic oscillation."
+  <a class="pg ext" href="https://www.cia.gov/readingroom/docs/CIA-RDP96-00788R001700210016-5.pdf#page=29" target="_blank" rel="noopener">Conclusion H · CIA p.29</a></p>
+
+  <div class="exhibit">
+    <svg viewBox="0 0 760 320" role="img" aria-label="Triangulation: three out-of-body viewers observe one target across present, past and future">
+      <circle cx="380" cy="170" r="34" fill="none" stroke="#db3356" stroke-width="3"/>
+      <text x="380" y="175" text-anchor="middle" font-family="Archivo" font-weight="900" font-size="13" fill="#db3356">TARGET</text>
+      <g stroke="#111511" stroke-width="2" fill="none">
+        <circle cx="120" cy="70" r="11"/><path d="M120 81 L120 115 M120 92 L102 108 M120 92 L138 108"/>
+        <circle cx="120" cy="270" r="11"/><path d="M120 281 L120 315 M120 292 L102 308 M120 292 L138 308"/>
+        <circle cx="640" cy="70" r="11"/><path d="M640 81 L640 115 M640 92 L622 108 M640 92 L658 108"/>
+      </g>
+      <text x="120" y="140" text-anchor="middle" font-family="Courier Prime" font-size="12" fill="#111511">VIEWER 1 · time-space</text>
+      <text x="120" y="157" text-anchor="middle" font-family="Courier Prime" font-size="11" fill="#111511">(present)</text>
+      <text x="120" y="245" text-anchor="middle" font-family="Courier Prime" font-size="12" fill="#111511">VIEWER 2 · Focus 15</text>
+      <text x="120" y="228" text-anchor="middle" font-family="Courier Prime" font-size="11" fill="#111511">(immediate past)</text>
+      <text x="640" y="140" text-anchor="middle" font-family="Courier Prime" font-size="12" fill="#111511">VIEWER 3 · Focus 21</text>
+      <text x="640" y="157" text-anchor="middle" font-family="Courier Prime" font-size="11" fill="#111511">(immediate future)</text>
+      <g stroke="#111511" stroke-width="1.8" stroke-dasharray="6 4" marker-end="url(#arr6)">
+        <line x1="155" y1="90" x2="340" y2="155"/>
+        <line x1="155" y1="255" x2="340" y2="188"/>
+        <line x1="605" y1="90" x2="425" y2="155"/>
+      </g>
+      <text x="380" y="280" text-anchor="middle" font-family="Courier Prime" font-size="12" fill="#111511">debrief · compare · intersect → distortion cancels</text>
+      <defs><marker id="arr6" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8 z" fill="#111511"/></marker></defs>
+    </svg>
+    <div class="cap"><span class="xh">Exhibit H — Multi-focus triangulation</span><span>after Conclusion step H</span><span class="src">SOURCE: CIA SCAN <a href="https://www.cia.gov/readingroom/docs/CIA-RDP96-00788R001700210016-5.pdf#page=29" target="_blank" rel="noopener">p.29 ↗</a></span></div>
+  </div>
+
+  <h3 class="sec">5.4 — The accelerated exploitation plan (Conclusion A–L)</h3>
+  <p>The report's final page is a twelve-step program for making Gateway usable "within more manageable limits" across an organization. Abridged verbatim:</p>
+  <ol class="steps">
+    <li><b>A.</b> Hemi-Sync tapes for enhanced brain focus and hemisphere synchronization.</li>
+    <li><b>B.</b> Add strong REM-sleep frequencies for left-brain quiescence and deep physical relaxation.</li>
+    <li><b>C.</b> Hypnotic suggestion enabling a deep autohypnotic state at will.</li>
+    <li><b>D.</b> Autohypnotic suggestion for accelerated progress through the Focus 12 exercises.</li>
+    <li><b>E.</b> Repeat A–B under suggestion that an out-of-body movement <em>will occur and be remembered</em>.</li>
+    <li><b>F.</b> Repeat E toward voluntary, controlled OBE sustained beyond REM.</li>
+    <li><b>G.</b> Approach Focus 15 and 21 objectives from the out-of-body perspective.</li>
+    <li><b>H.</b> Multi-focus triangulation (above) against terrestrial information targets.</li>
+    <li><b>I.</b> Pursue full self-knowledge in all participants to keep observation objective and remove energy blockages.</li>
+    <li><b>J.</b> Be intellectually prepared for "possible encounters with intelligent, non-corporal energy forms" beyond time-space.</li>
+    <li><b>K.</b> Groups in Focus 12 unite altered consciousness to build holographic patterns shielding sensitive areas "to repulse possible unwanted out-of-body presences."</li>
+    <li><b>L.</b> Advanced participants build "holographic patterns of successful attainment" to pull colleagues up the ladder faster.</li>
+  </ol>
+  <p class="small"><a class="pg ext" href="https://www.cia.gov/readingroom/docs/CIA-RDP96-00788R001700210016-5.pdf#page=28" target="_blank" rel="noopener">§38 · CIA p.28</a> <a class="pg ext" href="https://www.cia.gov/readingroom/docs/CIA-RDP96-00788R001700210016-5.pdf#page=29" target="_blank" rel="noopener">p.29</a> <a class="pg ext" href="https://en.wikisource.org/wiki/Page:Analysis_and_Assessment_of_Gateway_Process.pdf/29" target="_blank" rel="noopener">Wikisource transcript ↗</a></p>
+
+  <h3 class="sec">5.5 — How the story ends in the official record</h3>
+  <p>Steps K and J never got their field trial as written. The parent program — by then STAR GATE — was referred in 1995 to the American Institutes for Research. Statistician Jessica Utts judged the lab evidence for anomalous cognition statistically significant; psychologist Ray Hyman judged the database methodologically flawed and the effects non-replicable as intelligence. The review's practical conclusion: remote viewing had not produced actionable intelligence, and the program was terminated and declassified.
+  <a class="pg ext" href="https://www.cia.gov/readingroom/collection/stargate" target="_blank" rel="noopener">CIA STAR GATE collection ↗</a>
+  <a class="pg ext" href="https://www.cia.gov/readingroom/docs/CIA-RDP96-00789R002800180001-2.pdf" target="_blank" rel="noopener">1993 overview ↗</a></p>
+</section>
+
+<!-- ================= CH 6 — PAGE 25 ================= -->
+<section class="chapter" id="ch6">
+  <div class="ch-head">
+    <span class="ch-num">06</span>
+    <span class="ch-title">The Missing Page 25</span>
+    <span class="ch-tag">restored 2021<br>read it here</span>
+  </div>
+
+  <p class="lede">For eighteen years the CIA's public copy of the report jumped from printed page 24 straight to 26. The gap fell mid-sentence in §34, "Belief System Considerations." Absence bred legend: the page was said to contain the real secret — the simulation, the escape instructions, the thing they didn't want you to see.</p>
+
+  <p>In April 2021, Vice published the page, located in the Monroe Institute's own copy of the report. The scan now circulates in complete form (Wikimedia Commons, 30 pages), and the local archive includes an annotated transcript with the page restored. The reveal: no redacted smoking gun — instead, the report's most openly mystical page, where an Army lieutenant colonel maps his holographic cosmology onto Buddhism, Hinduism, Kabbalah and Christian trinitarian theology, then explains why that matters for intelligence work.</p>
+
+  <div class="dark">
+    <span class="stamp">Restored · Printed page 25</span>
+    <div class="restored">
+      <p>…That thought model, which perfectly reflects the essence or "spirit" of the Absolute fits the Christian metaphysical description of the Holy Spirit. Finally, our description of the universal hologram, the Torus of creation and evolution is neither new nor original. Its use as the figure of the universe, of creation developing in evolution is found in various stylized representations in virtually every religious system of antiquity… Whether its the stylized labyrinth once popular in the Helenic world, the spiralized version of the Hebrew Tree of Life or its Hindu counterpart, or the Chinese Spiral Through The Fourfold Powers, the ultimate meaning is the same. Mystics the world over, it seems, have perceived the universal hologram in the same spiral form…</p>
+      <p><b>35. Left Brain Limitations.</b> Twentieth Century physics would seem to be revisiting insights belonging to mankind as far back as written records can take us: The only difference is that Twentieth Century physics is using a left brain, linear, quantitative style of reasoning to approach the same knowledge which the mystics of old apparently acquired in a holistic, intuitional, right brain style. As a tool in the hands of our left brain culture, Gateway would seem to be a promising method for achieving the intuitive, holistic type of interface with the universal hologram needed to provide the context that thinkers like Einstein have sought in their labors to discover a unified field theory in physics… To the extent that we come to perceive ourselves fully in the context of that portion of the universal hologram which is the reflection of ourselves, to that extent we release ourselves from the prison of subjectivity.</p>
+      <p><b>36. Self Knowledge.</b> It was axiomatic to the mystic philosophers of old that the first step in personal maturity could be expressed in the aphorism: "Know thyself." To them, the education of a man undertook, as its primary step, achievement of an introverted focus so that he learned what was within himself before attempting to approach the outside world… But no personality test, or series of tests, will ever replace the depth and fullness of the perception of self which can be achieved when the mind alters its state of consciousness sufficiently to perceive the very hologram of itself which it has projected into the universe in its proper context as part of the universal hologram in a totally holistic and intuitional way. This would seem to be one of the real promise of the Gateway Experience…</p>
+      <span class="cite">— full restored text of printed page 25 (end of §34, §35, §36), per the Monroe Institute copy · transcript: <a href="https://en.wikisource.org/wiki/Page:Analysis_and_Assessment_of_Gateway_Process.pdf/27" target="_blank" rel="noopener" style="text-decoration:underline">Wikisource ↗</a> · annotated local copy: <a href="files/02_Analysis-and-Assessment_ANNOTATED-with-page-25_clearhat.pdf" target="_blank" rel="noopener" style="text-decoration:underline">files/02 ↓</a></span>
+    </div>
+  </div>
+
+  <p>Read in context, the page completes an argument McDonnell flagged in his cover letter: that Gateway "does not [do] any violence to the fundamental mainstream of either eastern or western belief systems" — a pre-emptive defense, not a hidden payload. The legend of page 25 is itself a small lesson in how redaction shapes mythology.</p>
+</section>
+
+<!-- ================= CH 7 — THE ARCHIVE ================= -->
+<section class="chapter" id="ch7">
+  <div class="ch-head">
+    <span class="ch-num">07</span>
+    <span class="ch-title">The Archive</span>
+    <span class="ch-tag">local copies<br>+ deep links</span>
+  </div>
+
+  <p class="lede">Local backups ship with this site (folder <b>files/</b> below; master copy in <b>gateway-archive/</b>). The audio tapes are deliberately not copied — they are many hours of commercial Hemi-Sync recordings; Chapter 08 lists the official sources.</p>
+
+  <div class="filecard">
+    <div class="fn"><div class="t">01 · Analysis &amp; Assessment (1983), CIA FOIA scan</div>
+      <div class="d">The declassified original: 29 pages, McDonnell to Commander, 9 June 1983. Printed page 25 absent, exactly as released. 3.0 MB PDF.</div></div>
+    <div class="fa">
+      <a href="files/01_Analysis-and-Assessment-of-Gateway-Process_1983_CIA-FOIA.pdf" download>Download <span>↓</span></a>
+      <a href="https://www.cia.gov/readingroom/docs/CIA-RDP96-00788R001700210016-5.pdf" target="_blank" rel="noopener">CIA original <span>↗</span></a>
+    </div>
+  </div>
+
+  <div class="filecard">
+    <div class="fn"><div class="t">02 · Same report, annotated, page 25 restored</div>
+      <div class="d">Searchable re-typeset transcript; the recovered page prints in blue italics. Includes the restored §§34–36 and full bibliography. 4.2 MB PDF.</div></div>
+    <div class="fa">
+      <a href="files/02_Analysis-and-Assessment_ANNOTATED-with-page-25_clearhat.pdf" download>Download <span>↓</span></a>
+      <a href="https://en.wikisource.org/wiki/Analysis_and_Assessment_of_Gateway_Process" target="_blank" rel="noopener">Wikisource text <span>↗</span></a>
+    </div>
+  </div>
+
+  <div class="filecard">
+    <div class="fn"><div class="t">03 · Gateway Intermediate Workbook (1977), transcript</div>
+      <div class="d">Full text of the participant exercise manual — affirmations, EBT, LBM/EBM, REBAL, remote viewing, exit drills, daily tools. Markdown.</div></div>
+    <div class="fa">
+      <a href="files/03_Gateway-Intermediate-Workbook_1977_transcript.md" download>Download <span>↓</span></a>
+      <a href="https://www.cia.gov/readingroom/docs/CIA-RDP96-00788R001700210023-7.pdf" target="_blank" rel="noopener">CIA scan <span>↗</span></a>
+    </div>
+  </div>
+
+  <div class="filecard">
+    <div class="fn"><div class="t">04 · Frequency &amp; Healing research dossier (2026)</div>
+      <div class="d">The companion research file behind Chapters 10–11: graded SOTA papers, the government sound-program record, and the preset specifications. Markdown.</div></div>
+    <div class="fa">
+      <a href="files/FREQUENCY-RESEARCH.md" download>Dossier <span>↓</span></a>
+      <a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC10198548/" target="_blank" rel="noopener">2023 entrainment review <span>↗</span></a>
+    </div>
+  </div>
+
+  <div class="filecard">
+    <div class="fn"><div class="t">05 · Audio presets — 7 synthesized loops (MP3)</div>
+      <div class="d">Gateway Theta 4 Hz · Alpha 10 Hz · Deep Theta 6 Hz · Delta 2 Hz · GENUS-style 40 Hz clicks · Schumann 7.83 Hz beat · pink-noise bed. Synthesized locally, evidence-graded, also playable live in Chapter 11.</div></div>
+    <div class="fa">
+      <a href="#ch11">Open the lab <span>→</span></a>
+      <a href="files/audio/gateway-theta-4hz.mp3" download>First preset <span>↓</span></a>
+    </div>
+  </div>
+
+  <h3 class="sec">Deep-link page map — report 0016-5 (use CIA scan + #page=)</h3>
+  <table class="map">
+    <tr><th style="width:6em">PDF p.</th><th>Contents</th><th style="width:8em">Open</th></tr>
+    <tr><td>1–3</td><td>Cover letter: tasking, method, the Bohr epigraph, McDonnell's signature</td><td><a class="pg ext" href="https://www.cia.gov/readingroom/docs/CIA-RDP96-00788R001700210016-5.pdf#page=1" target="_blank" rel="noopener">p.1 ↗</a></td></tr>
+    <tr><td>4</td><td>§1 Introduction · §2 Hypnosis · §3 Transcendental Meditation</td><td><a class="pg ext" href="https://www.cia.gov/readingroom/docs/CIA-RDP96-00788R001700210016-5.pdf#page=4" target="_blank" rel="noopener">p.4 ↗</a></td></tr>
+    <tr><td>5</td><td>Exhibit 1 — cortex &amp; homunculus (after Bentov)</td><td><a class="pg ext" href="https://www.cia.gov/readingroom/docs/CIA-RDP96-00788R001700210016-5.pdf#page=5" target="_blank" rel="noopener">p.5 ↗</a></td></tr>
+    <tr><td>6</td><td>§4 Biofeedback</td><td><a class="pg ext" href="https://www.cia.gov/readingroom/docs/CIA-RDP96-00788R001700210016-5.pdf#page=6" target="_blank" rel="noopener">p.6 ↗</a></td></tr>
+    <tr><td>7</td><td>§5 Gateway &amp; Hemi-Sync · §6 Lamp vs Laser</td><td><a class="pg ext" href="https://www.cia.gov/readingroom/docs/CIA-RDP96-00788R001700210016-5.pdf#page=7" target="_blank" rel="noopener">p.7 ↗</a></td></tr>
+    <tr><td>8</td><td>§7 Frequency Following Response · §8 Role of Resonance</td><td><a class="pg ext" href="https://www.cia.gov/readingroom/docs/CIA-RDP96-00788R001700210016-5.pdf#page=8" target="_blank" rel="noopener">p.8 ↗</a></td></tr>
+    <tr><td>9</td><td>§9 Brain Stimulation · §10 Energy Entrainment</td><td><a class="pg ext" href="https://www.cia.gov/readingroom/docs/CIA-RDP96-00788R001700210016-5.pdf#page=9" target="_blank" rel="noopener">p.9 ↗</a></td></tr>
+    <tr><td>10</td><td>§11 Consciousness &amp; Energy · §12 Holograms</td><td><a class="pg ext" href="https://www.cia.gov/readingroom/docs/CIA-RDP96-00788R001700210016-5.pdf#page=10" target="_blank" rel="noopener">p.10 ↗</a></td></tr>
+    <tr><td>11</td><td>§13 The Part Encodes the Whole · §14 The Consciousness Matrix</td><td><a class="pg ext" href="https://www.cia.gov/readingroom/docs/CIA-RDP96-00788R001700210016-5.pdf#page=11" target="_blank" rel="noopener">p.11 ↗</a></td></tr>
+    <tr><td>12</td><td>§15 Brain in Phase · §16 Evaluation · §17 Self Cognition</td><td><a class="pg ext" href="https://www.cia.gov/readingroom/docs/CIA-RDP96-00788R001700210016-5.pdf#page=12" target="_blank" rel="noopener">p.12 ↗</a></td></tr>
+    <tr><td>13</td><td>Exhibit 2 — hemisphere consciousness grids</td><td><a class="pg ext" href="https://www.cia.gov/readingroom/docs/CIA-RDP96-00788R001700210016-5.pdf#page=13" target="_blank" rel="noopener">p.13 ↗</a></td></tr>
+    <tr><td>14</td><td>§18 Time-Space Dimension · §19 Intervening Dimensions · §20 Subatomic Particles</td><td><a class="pg ext" href="https://www.cia.gov/readingroom/docs/CIA-RDP96-00788R001700210016-5.pdf#page=14" target="_blank" rel="noopener">p.14 ↗</a></td></tr>
+    <tr><td>15</td><td>§21 Dimensions In-between</td><td><a class="pg ext" href="https://www.cia.gov/readingroom/docs/CIA-RDP96-00788R001700210016-5.pdf#page=15" target="_blank" rel="noopener">p.15 ↗</a></td></tr>
+    <tr><td>16</td><td>Exhibit 3 — the Planck "click-out" diagram</td><td><a class="pg ext" href="https://www.cia.gov/readingroom/docs/CIA-RDP96-00788R001700210016-5.pdf#page=16" target="_blank" rel="noopener">p.16 ↗</a></td></tr>
+    <tr><td>17</td><td>§22 Special Status, Out-of-Body Experience · §23 Absolute in Perspective</td><td><a class="pg ext" href="https://www.cia.gov/readingroom/docs/CIA-RDP96-00788R001700210016-5.pdf#page=17" target="_blank" rel="noopener">p.17 ↗</a></td></tr>
+    <tr><td>18</td><td>§24 From Big Bang to Torus</td><td><a class="pg ext" href="https://www.cia.gov/readingroom/docs/CIA-RDP96-00788R001700210016-5.pdf#page=18" target="_blank" rel="noopener">p.18 ↗</a></td></tr>
+    <tr><td>19</td><td>Exhibit 4 — quasar jet, cosmic egg, torus</td><td><a class="pg ext" href="https://www.cia.gov/readingroom/docs/CIA-RDP96-00788R001700210016-5.pdf#page=19" target="_blank" rel="noopener">p.19 ↗</a></td></tr>
+    <tr><td>20</td><td>§25 Our Place in Time · §26 Quality of Consciousness · §27 Consciousness in Perspective</td><td><a class="pg ext" href="https://www.cia.gov/readingroom/docs/CIA-RDP96-00788R001700210016-5.pdf#page=20" target="_blank" rel="noopener">p.20 ↗</a></td></tr>
+    <tr><td>21</td><td>Exhibit 5 — our galaxy's position</td><td><a class="pg ext" href="https://www.cia.gov/readingroom/docs/CIA-RDP96-00788R001700210016-5.pdf#page=21" target="_blank" rel="noopener">p.21 ↗</a></td></tr>
+    <tr><td>22</td><td>§28 Gateway Method (box, tuning, affirmation) · §29 Hemi-Sync Introduced</td><td><a class="pg ext" href="https://www.cia.gov/readingroom/docs/CIA-RDP96-00788R001700210016-5.pdf#page=22" target="_blank" rel="noopener">p.22 ↗</a></td></tr>
+    <tr><td>23</td><td>§30 Advanced Techniques A–F: problem solving, patterning, color breathing, EBT, remote viewing, living body map</td><td><a class="pg ext" href="https://www.cia.gov/readingroom/docs/CIA-RDP96-00788R001700210016-5.pdf#page=23" target="_blank" rel="noopener">p.23 ↗</a></td></tr>
+    <tr><td>24</td><td>§30 G Focus 15 (past) · H Focus 21 (future)</td><td><a class="pg ext" href="https://www.cia.gov/readingroom/docs/CIA-RDP96-00788R001700210016-5.pdf#page=24" target="_blank" rel="noopener">p.24 ↗</a></td></tr>
+    <tr><td>25</td><td>§31 The Out-of-Body Movement (2877.3 CPS; exit drills)</td><td><a class="pg ext" href="https://www.cia.gov/readingroom/docs/CIA-RDP96-00788R001700210016-5.pdf#page=25" target="_blank" rel="noopener">p.25 ↗</a></td></tr>
+    <tr><td>26</td><td>§32 Role of REM Sleep · §33 Information Collection Potential</td><td><a class="pg ext" href="https://www.cia.gov/readingroom/docs/CIA-RDP96-00788R001700210016-5.pdf#page=26" target="_blank" rel="noopener">p.26 ↗</a></td></tr>
+    <tr><td>27</td><td>§34 Belief System Considerations — printed p.24; <b>printed p.25 MISSING here</b></td><td><a class="pg ext" href="https://www.cia.gov/readingroom/docs/CIA-RDP96-00788R001700210016-5.pdf#page=27" target="_blank" rel="noopener">p.27 ↗</a></td></tr>
+    <tr><td>28</td><td>§37 Motivational Aspect · §38 Conclusion</td><td><a class="pg ext" href="https://www.cia.gov/readingroom/docs/CIA-RDP96-00788R001700210016-5.pdf#page=28" target="_blank" rel="noopener">p.28 ↗</a></td></tr>
+    <tr><td>29</td><td>Conclusion steps A–L</td><td><a class="pg ext" href="https://www.cia.gov/readingroom/docs/CIA-RDP96-00788R001700210016-5.pdf#page=29" target="_blank" rel="noopener">p.29 ↗</a></td></tr>
+  </table>
+
+  <h3 class="sec">Collections too large to mirror</h3>
+  <table class="map">
+    <tr><th>What</th><th>Where it lives</th></tr>
+    <tr><td><b>STAR GATE full collection</b> (~12,000+ declassified PDFs: GRILL FLAME, CENTER LANE, SUN STREAK, STAR GATE)</td><td><a class="pg ext" href="https://www.cia.gov/readingroom/collection/stargate" target="_blank" rel="noopener">CIA Reading Room ↗</a> <a class="pg ext" href="https://huggingface.co/datasets/GotThatData/STARGATE" target="_blank" rel="noopener">HF mirror ↗</a></td></tr>
+    <tr><td><b>Gateway Experience tapes</b> — Waves I–VIII (Discovery · Threshold · Freedom · Adventure · Exploring · Prospecting · Voyager · Union)</td><td><a class="pg ext" href="https://hemi-sync.com" target="_blank" rel="noopener">hemi-sync.com ↗</a> <a class="pg ext" href="https://www.monroeinstitute.org" target="_blank" rel="noopener">monroeinstitute.org ↗</a></td></tr>
+    <tr><td><b>Restored 30-page scan</b> (page 25 inserted, corrected order)</td><td><a class="pg ext" href="https://commons.wikimedia.org/wiki/File:Analysis_and_Assessment_of_Gateway_Process.pdf" target="_blank" rel="noopener">Wikimedia Commons ↗</a></td></tr>
+  </table>
+</section>
+
+<!-- ================= CH 8 — BOOKS & TAPES ================= -->
+<section class="chapter" id="ch8">
+  <div class="ch-head">
+    <span class="ch-num">08</span>
+    <span class="ch-title">Books &amp; Tapes</span>
+    <span class="ch-tag">the working<br>library</span>
+  </div>
+
+  <p class="lede">The report is a node in a network. Its own bibliography is nine items; the wider Gateway/remote-viewing shelf is larger. Books are linked, not copied — they remain in copyright.</p>
+
+  <h3 class="sec">Cited inside the report itself</h3>
+  <div class="bookgrid">
+    <div class="book"><span class="tag">Biblio №1</span><div class="bt">Stalking the Wild Pendulum</div><div class="ba">Itzhak Bentov · 1977</div>The spine of the whole model: body-as-oscillator, cosmic egg, click-outs.</div>
+    <div class="book"><span class="tag">Biblio №4</span><div class="bt">"The Lamp Turned Laser"</div><div class="ba">Melissa Jager · Monroe Institute monograph</div>Source of the coherence metaphor; never commercially published.</div>
+    <div class="book"><span class="tag">Biblio №5</span><div class="bt">Journeys Out of the Body</div><div class="ba">Robert A. Monroe · 1971</div>The founder's OBE account that started everything. Borrowable via Internet Archive lending.</div>
+    <div class="book"><span class="tag">Biblio №6</span><div class="bt">The Mystic Spiral</div><div class="ba">Jill Purce · 1980</div>Source of the torus figure in Exhibit 4.</div>
+    <div class="book"><span class="tag">Biblio №7</span><div class="bt">Kundalini — Psychosis or Transcendence?</div><div class="ba">Lee Sannella, M.D. · 1976</div>Behind §9's "brain stimulation" passage.</div>
+    <div class="book"><span class="tag">Biblio №2·3·8·9</span><div class="bt">Ferguson · Gliedman · Stone · Tart</div><div class="ba">1978–83 articles &amp; Tart's 1969 Altered States</div>The Pribram popularization, the quantum-debate piece, the Mother Earth News Monroe interview (source of "2877.3 CPS"), and the academic altered-states canon.</div>
+  </div>
+
+  <h3 class="sec">The wider shelf</h3>
+  <div class="bookgrid">
+    <div class="book"><span class="tag">Monroe II</span><div class="bt">Far Journeys</div><div class="ba">Robert A. Monroe · 1985</div>Locales I–III, Focus 15/21/23+, the "Gathering." Written after the report.</div>
+    <div class="book"><span class="tag">Monroe III</span><div class="bt">Ultimate Journey</div><div class="ba">Robert A. Monroe · 1994</div>The final map of the Monroe cosmology.</div>
+    <div class="book"><span class="tag">SRI research</span><div class="bt">Mind-Reach</div><div class="ba">Puthoff &amp; Targ · 1977</div>The remote-viewing lab evidence as its authors saw it.</div>
+    <div class="book"><span class="tag">Viewer №001</span><div class="bt">Mind Trek / Remote Viewing Secrets</div><div class="ba">Joseph McMoneagle · 1993/2000</div>Method notes from the Army unit's most decorated viewer.</div>
+    <div class="book"><span class="tag">Trainer</span><div class="bt">The Seventh Sense</div><div class="ba">Lyn Buchanan · 2003</div>CRV from the inside; the database critique too.</div>
+    <div class="book"><span class="tag">Historian</span><div class="bt">Phenomena</div><div class="ba">Annie Jacobsen · 2017</div>The documented history of U.S. government psychic research.</div>
+    <div class="book"><span class="tag">The 1995 verdict</span><div class="bt">AIR Evaluation (Utts vs. Hyman)</div><div class="ba">American Institutes for Research · 1995</div>The review that ended STAR GATE; both essays are in the CIA collection.</div>
+    <div class="book"><span class="tag">Physics, unabridged</span><div class="bt">Wholeness and the Implicate Order</div><div class="ba">David Bohm · 1980</div>What the holographic-universe idea actually says, by its author.</div>
+  </div>
+
+  <div class="note"><span class="nh">The tapes</span>
+  The <b>Gateway Experience</b> audio series (Waves I–VIII) is the practical companion to every protocol in Chapter 04 — hours of guided Hemi-Sync audio, still sold by the Monroe Institute and Hemi-Sync.com. Size and copyright keep them out of this archive; the written procedures above are the complete documentary trail of what the tapes instruct.</div>
+</section>
+
+<!-- ================= CH 9 — CRITICAL READING ================= -->
+<section class="chapter" id="ch9">
+  <div class="ch-head">
+    <span class="ch-num">09</span>
+    <span class="ch-title">Reading It Critically</span>
+    <span class="ch-tag">what holds,<br>what doesn't</span>
+  </div>
+
+  <p class="lede">The Gateway report sits at a strange three-way junction: a genuine military artifact, a sincere summary of 1970s consciousness speculation, and a modern internet scripture. A disciplined reading keeps the three separate.</p>
+
+  <table class="map">
+    <tr><th style="width:16em">Claim in the files</th><th>Status outside the files</th></tr>
+    <tr><td>Binaural beats entrain brain activity (FFR)</td><td><b>Real but modest.</b> Measurable, weak, variable EEG entrainment; relaxation effects are robust, "doorway" effects are not.</td></tr>
+    <tr><td>Hemispheric synchronization as a trainable state</td><td><b>Plausible framing of coherence training</b>; the Menninger Zen finding the report cites was a small early biofeedback result.</td></tr>
+    <tr><td>~7–7.5 Hz whole-body resonance; Schumann coupling; telepathic carrier wave</td><td><b>Speculative.</b> Schumann resonance is real geophysics; the coupling and carrier-wave conclusions do not follow from accepted physiology.</td></tr>
+    <tr><td>Holographic mind/universe (Pribram, Bohm)</td><td><b>Serious but unproven frameworks</b> — philosophy-of-physics positions, not established fact, then or now.</td></tr>
+    <tr><td>Remote viewing produces useful intelligence</td><td><b>Rejected as actionable.</b> The 1995 AIR review closed the program; small-lab statistical claims remain disputed between Utts and Hyman.</td></tr>
+    <tr><td>Out-of-body travel, Focus 15/21, the Absolute</td><td><b>Phenomenology, not physics.</b> OBEs are well-documented subjective experiences (temporoparietal research, sleep paralysis literature); the cosmology is belief, not measurement.</td></tr>
+    <tr><td>LBM diagnosis, color healing, 55515 analgesia</td><td><b>No clinical evidence.</b> Ritualized relaxation/self-suggestion at best; not medicine.</td></tr>
+  </table>
+
+  <p>What the document <em>is</em> good evidence <em>of</em>: how Cold War institutions actually evaluated fringe claims — seriously, structurally, and with a shocking amount of theoretical ambition. McDonnell's memo fails as physics and succeeds as what it was tasked to be: a lucid internal assessment, complete with failure modes (§33), motivational analysis (§37), and an honest statement that "this study is certainly not designed to be the last word."</p>
+
+  <blockquote class="doc">
+    <p>"You are not thinking, you are merely being logical." — Niels Bohr (quoted in the cover letter)</p>
+    <p>"…parts of this paper will require not only logic but a touch of right brain intuitive insight to achieve a complete comfortable grasp of the concepts involved." — LTC W. McDonnell, cover letter, para. 3</p>
+    <span class="cite">CIA scan p.1–3</span>
+  </blockquote>
+
+  <footer class="colophon">
+    <p><b>COLOPHON / PROVENANCE.</b> Compiled 14 Oct 2026 from CIA FOIA Reading Room documents CIA-RDP96-00788R001700210016-5 (1983), CIA-RDP96-00788R001700210023-7 (1977), and CIA-RDP96-00789R002800180001-2 (1993); the 2021 Monroe Institute page-25 copy as published by Vice; Wikisource/Wikimedia restorations; and the 1977 Workbook transcript archived alongside this site. Local copies in <b>files/</b> and <b>gateway-archive/</b>. Quotations remain as in the declassified scans, including original typographical errors. This site is a study guide to historical documents, not an endorsement of their claims and not medical advice.</p>
+  </footer>
+</section>
+
+
+<!-- ================= CH 10 — FREQUENCY EVIDENCE ================= -->
+<section class="chapter" id="ch10">
+  <div class="ch-head">
+    <span class="ch-num">10</span>
+    <span class="ch-title">The Frequency Evidence</span>
+    <span class="ch-tag">SOTA papers + the<br>government sound record</span>
+  </div>
+
+  <p class="lede">The Gateway files claim that specific frequencies change the brain and heal the body. Forty years on, what does the peer-reviewed record actually say — and what else did governments build with sound? This chapter grades every claim: <b>A</b> replicated evidence · <b>B</b> human/animal RCT evidence · <b>C</b> plausible but contested · <b>D</b> folklore. Every number carries its source.</p>
+
+  <h3 class="sec">10.1 — What the labs found, graded</h3>
+  <table class="map">
+    <tr><th style="width:15em">Claim</th><th style="width:3.4em">Grade</th><th>The numbers and the source</th></tr>
+    <tr><td>Binaural beats entrain EEG (the report's core mechanism)</td><td><span class="grade g-c">C</span></td><td>14 EEG studies reviewed: <b>5 positive, 8 negative, 1 mixed</b>; beats embedded in pink noise never entrained. "The research question cannot be settled at this point." — Ingendoh, Posny &amp; Heine, <em>PLoS ONE</em> 2023 <a class="pg ext" href="https://pmc.ncbi.nlm.nih.gov/articles/PMC10198548/" target="_blank" rel="noopener">PMC ↗</a></td></tr>
+    <tr><td>Binaural beats ease acute pain</td><td><span class="grade g-b">B−</span></td><td>16 RCTs reviewed; alpha <b>10 Hz ≥ 10 min</b> reduced procedural pain in several trials; medium surgical-pain effect in Garcia-Argibay 2019 meta — but most trials high risk-of-bias. <em>BMC Complement Med</em> 2024 <a class="pg ext" href="https://link.springer.com/article/10.1186/s12906-024-04339-y" target="_blank" rel="noopener">journal ↗</a> · Xiong 2025 meta, <em>Complement Ther Med</em></td></tr>
+    <tr><td><b>40 Hz gamma stimulation (GENUS)</b> slows Alzheimer's decline</td><td><span class="grade g-b">B</span></td><td>The strongest frequency-medicine program alive. 1 hr/day light+sound: daily-function scores held vs <b>−3 points</b> in controls (p&lt;0.001, Cimenser 2021); 2-year open-label: late-onset patients above matched controls, tau biomarker pTau217 <b>−47% / −19.4%</b> in two donors (Chan 2025). Phase III (Cognito GS120, <b>≈530 patients, 68 sites</b>) completed 2025, results pending; FDA Breakthrough status since 2021. <a class="pg ext" href="https://news.mit.edu/2025/study-suggests-40hz-sensory-stimulation-may-benefit-some-alzheimers-patients-1114" target="_blank" rel="noopener">MIT News ↗</a> <a class="pg ext" href="https://www.alzforum.org/therapeutics/sensory-stimulation-systems" target="_blank" rel="noopener">Alzforum ↗</a></td></tr>
+    <tr><td>Vibroacoustic low-frequency therapy (40 Hz felt sound)</td><td><span class="grade g-c">C+</span></td><td>Fibromyalgia pilot n=19, 10×23-min sessions, symptom improvement, uncontrolled (Naghdi 2015); n=54 pilot RCT: HRV shift toward rest-and-recover, self-report equal between groups (Kantor &amp; Vilímek 2022).</td></tr>
+    <tr><td>Music improves sleep</td><td><span class="grade g-b">B</span></td><td>Cochrane 2022: listening to music probably improves <em>subjective</em> sleep quality in insomnia; objective measures weaker.</td></tr>
+    <tr><td>"Healing tunings" — 432 Hz, 528 Hz, Solfeggio</td><td><span class="grade g-d">D</span></td><td>Best papers: n=33 pilot (432 vs 440 Hz, small heart-rate effect, later correction) and n=9 (528 Hz cortisol). DNA-repair claims: zero reliable clinical evidence.</td></tr>
+    <tr><td>"Frequencies destroy pathogens/tumors" (Rife-style)</td><td><span class="grade g-d">D</span></td><td>Falsified by arithmetic: audible photons carry 10⁻¹³–10⁻¹⁰ eV vs 1–10 eV of chemistry, and tissue is a damped resonator (Q≈1). Weak sound cannot selectively shatter anything. Contrast: therapeutic <em>ultrasound</em> (0.7–3 MHz, HIFU, lithotripsy) is real precisely because it delivers serious mechanical energy. <b>Grade A.</b></td></tr>
+  </table>
+
+  <div class="note"><span class="nh">Physics honesty box</span>
+  Sound is a pressure wave, not photons. It can legitimately: <b>mask</b> (sleep), <b>pace</b> arousal and attention (relaxation, meditation depth), <b>drive</b> rhythmic neural responses when periodic and sustained (ASSR, the GENUS 40 Hz protocol), and <b>push tissue mechanically</b> (ultrasound, vibroacoustics). What it cannot do is selective molecular destruction or "resonant healing" at wellness volumes — the energy arithmetic is ~10 orders of magnitude short.</div>
+
+  <h3 class="sec">10.2 — The mechanism map (knowledge graph)</h3>
+  <div class="exhibit">
+    <svg viewBox="0 0 760 400" role="img" aria-label="Knowledge graph from physical constants to claims">
+      <g font-family="Courier Prime" font-size="11" fill="#111511">
+        <text x="30" y="30" font-family="Archivo" font-weight="900" font-size="13">ORIGINS</text>
+        <rect x="20" y="45" width="130" height="46" fill="none" stroke="#1c6b3c" stroke-width="2"/>
+        <text x="30" y="64">E = hf (Planck)</text><text x="30" y="80" fill="#1c6b3c">A · constant</text>
+        <rect x="20" y="100" width="130" height="46" fill="none" stroke="#1c6b3c" stroke-width="2"/>
+        <text x="30" y="119">Schumann 7.83 Hz</text><text x="30" y="135" fill="#1c6b3c">A · geophysics</text>
+        <rect x="20" y="155" width="130" height="46" fill="none" stroke="#1c6b3c" stroke-width="2"/>
+        <text x="30" y="174">tissue Q ≈ 1</text><text x="30" y="190" fill="#1c6b3c">A · damping</text>
+
+        <text x="195" y="30" font-family="Archivo" font-weight="900" font-size="13">MECHANISMS</text>
+        <rect x="185" y="45" width="130" height="46" fill="none" stroke="#111511" stroke-width="2"/>
+        <text x="195" y="64">binaural beat / FFR</text><text x="195" y="80">auditory illusion, real</text>
+        <rect x="185" y="100" width="130" height="46" fill="none" stroke="#111511" stroke-width="2"/>
+        <text x="195" y="119">ASSR (40 Hz driving)</text><text x="195" y="135">steady-state response</text>
+        <rect x="185" y="155" width="130" height="46" fill="none" stroke="#111511" stroke-width="2"/>
+        <text x="195" y="174">masking / pacing</text><text x="195" y="190">sleep, relaxation</text>
+
+        <text x="360" y="30" font-family="Archivo" font-weight="900" font-size="13">MEASUREMENTS</text>
+        <rect x="350" y="45" width="140" height="46" fill="none" stroke="#7a6410" stroke-width="2"/>
+        <text x="360" y="64">GENUS trials (MIT)</text><text x="360" y="80" fill="#7a6410">B · phase III pending</text>
+        <rect x="350" y="100" width="140" height="46" fill="none" stroke="#a34d12" stroke-width="2"/>
+        <text x="360" y="119">14-study EEG review</text><text x="360" y="135" fill="#a34d12">C · 5+/8− entrainment</text>
+        <rect x="350" y="155" width="140" height="46" fill="none" stroke="#7a6410" stroke-width="2"/>
+        <text x="360" y="174">pain RCTs (16)</text><text x="360" y="190" fill="#7a6410">B− · high bias risk</text>
+
+        <text x="545" y="30" font-family="Archivo" font-weight="900" font-size="13">DEVICES</text>
+        <rect x="530" y="45" width="110" height="46" fill="none" stroke="#111511" stroke-width="2"/>
+        <text x="540" y="64">Cognito GS120</text><text x="540" y="80">FDA breakthrough</text>
+        <rect x="530" y="100" width="110" height="46" fill="none" stroke="#111511" stroke-width="2"/>
+        <text x="540" y="119">LRAD 160 dB</text><text x="540" y="135">hailing/weapon</text>
+        <rect x="530" y="155" width="110" height="46" fill="none" stroke="#db3356" stroke-width="2"/>
+        <text x="540" y="174">MEDUSA (RF)</text><text x="540" y="190" fill="#db3356">falsified, shelved</text>
+
+        <text x="678" y="30" font-family="Archivo" font-weight="900" font-size="13">CLAIMS</text>
+        <rect x="655" y="45" width="95" height="46" fill="none" stroke="#db3356" stroke-width="2"/>
+        <text x="662" y="64">528 Hz heals</text><text x="662" y="80" fill="#db3356">D · n=9</text>
+        <rect x="655" y="100" width="95" height="46" fill="none" stroke="#db3356" stroke-width="2"/>
+        <text x="662" y="119">Rife resonance</text><text x="662" y="135" fill="#db3356">D · falsified</text>
+        <rect x="655" y="155" width="95" height="60" fill="none" stroke="#db3356" stroke-width="2"/>
+        <text x="662" y="174">Gateway OBE</text><text x="662" y="190" fill="#db3356">D physics</text><text x="662" y="205" fill="#db3356">B phenomen.</text>
+      </g>
+      <g stroke-width="1.6" fill="none">
+        <path d="M150 68 C 165 68, 170 68, 185 68" stroke="#111511"/>
+        <path d="M315 68 C 330 68, 335 68, 350 68" stroke="#111511"/>
+        <path d="M490 68 C 508 68, 514 68, 530 68" stroke="#111511"/>
+        <path d="M150 178 C 230 250, 480 250, 655 130" stroke="#db3356" stroke-dasharray="5 4"/>
+        <path d="M150 122 C 350 60, 500 60, 655 68" stroke="#db3356" stroke-dasharray="5 4"/>
+        <path d="M315 123 C 330 123, 335 123, 350 123" stroke="#111511"/>
+        <path d="M490 123 C 508 123, 514 180, 530 178" stroke="#111511"/>
+      </g>
+      <text x="30" y="250" font-family="Courier Prime" font-size="11" fill="#db3356">dashed crimson = "contradicts / misreads" edges — every claim is judged by a physics node</text>
+      <text x="30" y="285" font-family="Archivo" font-weight="900" font-size="13" fill="#111511">READ: constants → mechanisms → measurements → devices → claims. A claim never outranks its judge.</text>
+    </svg>
+    <div class="cap"><span class="xh">Exhibit I — The honesty graph</span><span>grading convention of this chapter</span><span class="src">SOURCES: SEE TABLE 10.1</span></div>
+  </div>
+
+  <h3 class="sec">10.3 — The government sound record, expanded</h3>
+  <p>The 1983 Gateway assessment was one line in a much larger ledger. The same state that explored sound for consciousness also engineered it for coercion — the full documented arc:</p>
+  <div class="timeline">
+    <div class="tl"><span class="d">1950s–60s</span><p>CIA <b>KUBARK</b> research into sensory deprivation and overload — continuous noise and silence as identity-breaking tools; absorbed into SERE resistance training.</p></div>
+    <div class="tl"><span class="d">1978</span><p>European Court of Human Rights rules the UK's "five techniques" — including noise exposure — inhuman and degrading treatment.</p></div>
+    <div class="tl hot"><span class="d">1983</span><p>INSCOM's Gateway assessment (this archive): sound as a technology of consciousness.</p></div>
+    <div class="tl"><span class="d">1997–99</span><p>The Joint Non-Lethal Weapons Task Force devotes roughly a third of its FY98–99 budget to acoustic weapons: a Synetics <b>infrasound beam</b> contract (Nov 1998, effects "disabling or lethal"), Maxwell's HyperSonic Sound, Primex's 165 dB "Acoustic Blaster."</p></div>
+    <div class="tl"><span class="d">2000–03</span><p>After the USS Cole bombing (17 sailors killed), the Navy funds what becomes the <b>LRAD</b>: directional voice at 3–5 km plus 137–160 dB alert tones. Adopted by 25+ navies and 250+ U.S. police departments; the ACLU and Physicians for Human Rights urge suspension of police use.</p></div>
+    <div class="tl"><span class="d">2003–08</span><p><b>MEDUSA</b> (Navy SBIR, WaveBand → Sierra Nevada): crowd-control via the microwave auditory effect — sound perceived <em>inside</em> the skull. Biophysicist Kenneth Foster's verdict: any nonfatal exposure is inaudible; the device "would burn you to a crisp" before it annoyed you. Shelved, never fielded.</p></div>
+    <div class="tl"><span class="d">2003–04</span><p>Loud music enters official interrogation doctrine (Sanchez memo, 14 Sep 2003). Gitmo, Bagram, Abu Ghraib, black sites: strobe + loops of metal, rap and children's songs for days; the UN names it torture; artists (Morello, Reznor, R.E.M., Pearl Jam) demand FOIA disclosure of the playlists.</p></div>
+    <div class="tl"><span class="d">2000s–10s</span><p>Navy mid-frequency <b>sonar</b> implicated in beaked-whale strandings; ONR-funded Behavioral Response Studies; regulation and litigation under the Marine Mammal Protection Act (Winter v. NRDC, 2008).</p></div>
+    <div class="tl hot"><span class="d">2016–2024</span><p><b>"Havana syndrome"</b> (AHIs): 2020 National Academies — pulsed RF "plausible"; 2022 IC Experts Panel — symptoms genuine, pulsed RF explains core characteristics; Mar 2023 ODNI — "very unlikely" a foreign adversary; <b>Dec 2024 updated assessment</b>: five components still "very unlikely" a foreign capability exists, but one now judges it "<b>likely</b>" a foreign actor has an RF antipersonnel capability, one "roughly even chance." NIH's 2024 clinical studies find no consistent MRI or biomarker injuries.</p></div>
+    <div class="tl"><span class="d">2017–</span><p>The healing side of the ledger: NIH's <b>Sound Health</b> initiative (with the Kennedy Center) and <b>Creative Forces</b> (NEA + DoD + VA) — music and art therapy for TBI/PTSD at Walter Reed's NICoE and beyond, with $1.3M in pilot RCTs on music therapy for chronic pain (FY2021–23).</p></div>
+  </div>
+
+  <blockquote class="doc">
+    <p>"Any kind of exposure you could give to someone that wouldn't burn them to a crisp would produce a sound too weak to have any effect." — Kenneth Foster, University of Pennsylvania, on MEDUSA (IEEE Spectrum, 2008)</p>
+    <span class="cite">The falsification style this chapter tries to practice: arithmetic first, story second.</span>
+  </blockquote>
+</section>
+
+<!-- ================= CH 11 — FREQUENCY LAB ================= -->
+<section class="chapter" id="ch11">
+  <div class="ch-head">
+    <span class="ch-num">11</span>
+    <span class="ch-title">The Frequency Lab</span>
+    <span class="ch-tag">test the tones<br>yourself</span>
+  </div>
+
+  <p class="lede">Every preset below is synthesized locally in this archive — exact sine pairs and pulse trains, graded by the evidence standard of Chapter 10. Pick a cartridge, press play, and run your own n=1. The lab synthesizes live in your browser (Web Audio), so the tones are mathematically exact and gapless; MP3 loops are provided for download.</p>
+
+  <div class="lab">
+    <div class="lab-head">
+      <span class="lt">FFR SYNTHESIZER · MODEL G-83</span>
+      <span class="hp">HEADPHONES REQUIRED</span>
+      <span class="hp" style="border-color:var(--paper);color:var(--paper)">KEEP VOLUME LOW</span>
+    </div>
+    <div class="lab-grid">
+      <div class="presets" id="presetList"></div>
+      <div class="deck">
+        <div class="readouts">
+          <div class="ro"><div class="rl">LEFT CARRIER</div><div class="rv" id="roL">200.0<small> Hz</small></div></div>
+          <div class="ro"><div class="rl">RIGHT CARRIER</div><div class="rv" id="roR">204.0<small> Hz</small></div></div>
+          <div class="ro beat"><div class="rl">BEAT / RATE</div><div class="rv" id="roB">4.0<small> Hz</small></div></div>
+          <div class="ro"><div class="rl">SESSION</div><div class="rv" id="roT">00:00</div></div>
+        </div>
+        <canvas id="scope"></canvas>
+        <div class="controls">
+          <div class="ctl">
+            <label>BEAT FREQUENCY — <span class="cv" id="beatVal">4.0 Hz</span></label>
+            <input type="range" id="beatSlider" min="1" max="45" step="0.1" value="4">
+          </div>
+          <div class="ctl">
+            <label>VOLUME — <span class="cv" id="volVal">40%</span></label>
+            <input type="range" id="volSlider" min="0" max="100" step="1" value="40">
+          </div>
+          <button id="playBtn">PLAY</button>
+        </div>
+      </div>
+    </div>
+    <div class="lab-foot">
+      <span>SAFETY: binaural beats need stereo headphones; the 40 Hz preset is a rapid click train — lower volume first. Nothing here treats any disease. Stop if uncomfortable.</span>
+      <span style="margin-left:auto">MP3 LOOPS ↓ <span id="dlRow"></span></span>
+    </div>
+  </div>
+
+  <h3 class="sec">What each cartridge is — and isn't</h3>
+  <table class="map" id="presetTable">
+    <tr><th style="width:11em">Preset</th><th style="width:8em">Construction</th><th style="width:3.4em">Grade</th><th>Honest status</th><th style="width:5em">Loop</th></tr>
+  </table>
+
+  <div class="note"><span class="nh">Experimenter's protocol</span>
+  Borrowed from the documents' own discipline: same time daily, 10–20 minutes, eyes closed, volume at the edge of audibility. Log subjective state before/after for two weeks before drawing any conclusion — and remember the 2023 review's trap: expectancy and ritual produce most of the reported benefit. That doesn't make the relaxation fake; it makes it yours, not the frequency's.</div>
+
+  <div class="note"><span class="nh">Analyst's note — the Schumann cartridge</span>
+  The 7.83 Hz beat is labeled <span class="grade g-d">A/D</span>: grade-A arithmetic (the Earth–ionosphere cavity resonance is real, measured geophysics) paired with grade-D meaning (hearing it as a binaural beat does not "couple" you to the planet — the report's 7–7.5 Hz resonance claim, §8, sits in the same dual category). Included because Gateway lore demands it; labeled so the physics stays honest.</div>
+</section>
+
+<!-- ================= CH 12 — PRACTICE PROGRAM ================= -->
+<section class="chapter" id="ch12">
+  <div class="ch-head">
+    <span class="ch-num">12</span>
+    <span class="ch-title">The Practice Program</span>
+    <span class="ch-tag">purposes · steps ·<br>durations · timetable</span>
+  </div>
+
+  <p class="lede">The tapes are a curriculum, not a jukebox. The Institute's own guidance manual is strict about order, equipment and finishing every track; the Workbook supplies the techniques; the report supplies the map. This chapter assembles all three into purpose-specific protocols with durations — and a weekly timetable. <a class="pg local" href="files/PRACTICE-PROGRAM.md" download>Download the program sheet</a></p>
+
+  <h3 class="sec">12.1 — The tape series, in mandatory order</h3>
+  <table class="map">
+    <tr><th style="width:7em">Wave</th><th>Focus reached</th><th>Key exercises (each ≈30–45 min)</th></tr>
+    <tr><td><b>I · Discovery</b></td><td>C1 → <b>Focus 10</b></td><td>Orientation · Intro to Focus 10 · Advanced Focus 10 · Exploration, Sleep · Release &amp; Recharge · Free Flow 10</td></tr>
+    <tr><td><b>II · Threshold</b></td><td>→ <b>Focus 12</b></td><td>Intro to Focus 12 · Problem Solving · Patterning · Color Breathing · Energy Bar Tool · Living Body Map</td></tr>
+    <tr><td><b>III · Freedom</b></td><td>F10/F12 applied</td><td>Lift Off · <b>Remote Viewing</b> · Vectors · Five Questions · Energy Food · <b>First Stage Separation</b></td></tr>
+    <tr><td><b>IV · Adventure</b></td><td>F12 advanced</td><td>One Year Patterning · Five Messages · Free Flow 12 · NVC 1–2 · Compoint 12</td></tr>
+    <tr><td><b>V · Exploring</b></td><td>→ <b>Focus 15</b></td><td>Intro to Focus 15 · Mission 10/12/Day/Night · Horizons · Pathways</td></tr>
+    <tr><td><b>VI · Prospecting</b></td><td>→ <b>Focus 21</b></td><td>Bio-Body · Free Flow Journey in F21 · Expansion in Locale 1</td></tr>
+    <tr><td><b>VII–VIII</b></td><td>F23 → F27+</td><td>Voyager · Union — retrievals and beyond-time-space territory</td></tr>
+  </table>
+  <p class="small dim">Official rule, verbatim in spirit: start at Wave I, track 1; finish each wave before the next; never mid-catalog shuffle. <a class="pg ext" href="https://www.monroeinstitute.org/products/gateway-experience-wave-iii-freedom" target="_blank" rel="noopener">Institute ↗</a></p>
+
+  <h3 class="sec">12.2 — Universal session protocol (every sitting)</h3>
+  <ol class="steps">
+    <li>Stereo headphones on a plain player — <b>no Dolby or noise-reduction</b> (it corrupts the Hemi-Sync mastering).</li>
+    <li>Dark, undisturbed room for ~45 minutes. Phone off.</li>
+    <li>≥1 hour after eating; bathroom first; loosen clothing, remove glasses/contacts.</li>
+    <li>No alcohol, drugs, excess caffeine. <b>Never while driving.</b> Not with epilepsy; doctor's permission if on psychotropic medication (manual's own cautions).</li>
+    <li>Posture: lying down, or sitting with head supported — experiment, pick one.</li>
+    <li>Run the induction: <b>Energy Conversion Box → resonant hum → Gateway Affirmation → REBAL</b> (Protocols P-01–P-05).</li>
+    <li><b>Hear every track to the end</b> — closing frequencies return you to C1. If you must stop, skip forward and play the return section.</li>
+    <li>Journal 2–3 lines immediately (the Workbook's Game Plan grid).</li>
+  </ol>
+  <p class="small">Handling intruding imagery: acknowledge, don't engage, let it pass — engaging dream-thoughts is how sessions tip into ordinary sleep. <a class="pg ext" href="https://www.reddit.com/r/gatewaytapes/wiki/start/" target="_blank" rel="noopener">community guide ↗</a></p>
+
+  <h3 class="sec">12.3 — Purpose → protocol → duration</h3>
+
+  <div class="protocol">
+    <div class="ph"><span class="pnum">G-01</span><span class="pname">Stress Reset &amp; Calm</span><span class="plvl">Wave I · daily</span></div>
+    <div class="pb"><p><b>Use:</b> Intro to Focus 10 / Release &amp; Recharge. Universal protocol, then let the tape carry you — passive, no technique agenda. <b>30–37 min, daily or ≥5×/week</b> for the first two weeks; this builds the F10 reflex everything else stands on. Evidence honesty: relaxation is the well-supported outcome; treat "entrainment" as contested (Ch 10).</p></div>
+  </div>
+
+  <div class="protocol">
+    <div class="ph"><span class="pnum">G-02</span><span class="pname">Sleep Onset</span><span class="plvl">Wave I · nightly</span></div>
+    <div class="pb"><p><b>Use:</b> "Exploration, Sleep" at bedtime, in bed — no journaling after. Offline substitute: the lab's <b>Delta Sleep 2 Hz</b> cartridge or pink-noise bed at minimal volume. <b>30–37 min</b>, as needed. (Music/masking for sleep: Cochrane-grade B; the delta beat itself: C.)</p></div>
+  </div>
+
+  <div class="protocol">
+    <div class="ph"><span class="pnum">G-03</span><span class="pname">Self-Healing Visualization (LBM/EBM)</span><span class="plvl">Wave II · 3×/wk</span></div>
+    <div class="pb"><p><b>Use:</b> Wave II's Color Breathing + Living Body Map tracks, running the full Workbook protocol (P-07/P-08): white silhouette → scan for dim areas → green to balance → purple to charge → system colors → full-body white charge. <b>30–37 min, 3×/week.</b> <span class="dim">Adjunct practice only — it does not diagnose or treat disease; see Ch 09/10.</span></p></div>
+  </div>
+
+  <div class="protocol">
+    <div class="ph"><span class="pnum">G-04</span><span class="pname">Problem Solving &amp; Creativity</span><span class="plvl">Wave II · 2–3×/wk</span></div>
+    <div class="pb"><p><b>Use:</b> Problem Solving track + Workbook P-12. Frame ONE specific question in C1 → rise to F12 → hold question + desire → release concentration → receive whatever arrives. <b>30 min, 2–3×/week.</b> Later: Wave IV "Five Messages" for free-flow reception.</p></div>
+  </div>
+
+  <div class="protocol">
+    <div class="ph"><span class="pnum">G-05</span><span class="pname">Patterning (Goal-Setting)</span><span class="plvl">Wave IV · 2×/wk</span></div>
+    <div class="pb"><p><b>Use:</b> "One Year Patterning" — report §30B's method: at F12, build the desired outcome in detail, charge it with desire, briefly <em>become</em> the pattern, release with confidence, then leave it alone. <b>30 min, 2×/week.</b> The report's own caution applies: be careful what you pattern for.</p></div>
+  </div>
+
+  <div class="protocol">
+    <div class="ph"><span class="pnum">G-06</span><span class="pname">Remote Viewing Practice</span><span class="plvl">Wave III · 2×/wk</span></div>
+    <div class="pb"><p><b>Use:</b> Wave III "Remote Viewing" + the EBT method (P-10): charge the bar, stretch it to the target, let the far end's energy flow back; record impressions immediately. <b>35 min, 2×/week</b> — use blind, verifiable targets (a friend's sealed photo) and score yourself; §33's distortion warning means unverified sessions teach nothing.</p></div>
+  </div>
+
+  <div class="protocol">
+    <div class="ph"><span class="pnum">G-07</span><span class="pname">OBE Exploration</span><span class="plvl">Wave III → VI · 1×/wk</span></div>
+    <div class="pb"><p><b>Prerequisite:</b> ≥6–8 weeks of F10/12 fluency. <b>Use:</b> "First Stage Separation" on a <b>weekend morning</b>, applying the report's REM-timing trick (§32): set an alarm ~5.5–6 h after sleep onset, run the track on waking when REM pressure is high; inside REBAL, try the five exit drills (roll out, pole, back away, gas, float). <b>45–60 min, Saturdays only.</b> No guarantees is the Institute's own position — approach as phenomenology, not proof.</p></div>
+  </div>
+
+  <div class="protocol">
+    <div class="ph"><span class="pnum">G-08</span><span class="pname">Time Exploration — F15 / F21</span><span class="plvl">Wave V/VI · 1–2×/wk</span></div>
+    <div class="pb"><p><b>Advanced only</b> (month 3+): Intro to Focus 15 with the wheel-of-time imagery; later Free Flow Journey in F21. Return slowly through every level. <b>30–40 min, 1–2×/week.</b> The report concedes &lt;5% reach F15 in a single week — months is the honest timescale.</p></div>
+  </div>
+
+  <h3 class="sec">12.4 — The weekly timetable</h3>
+  <p><b>The 8-week ramp first:</b> Weeks 1–2 = Wave I only, one track daily in order, always to completion (goal: reach F10 by countdown <em>without</em> the tape). Weeks 3–4 = Wave II (add F12, EBT, Color Breathing; start the journal grid). Weeks 5–6 = Wave III (Remote Viewing, Five Questions; first separation attempts on weekend mornings). Weeks 7–8 = Wave IV (Patterning, Free Flow 12). Then consolidate a month — Waves V–VIII run one wave per month, minimum.</p>
+
+  <table class="map">
+    <tr><th style="width:5em">Day</th><th>Steady-state session (post-ramp)</th><th style="width:7em">Length</th></tr>
+    <tr><td><b>Mon</b></td><td>F10 foundation — favorite Wave I track, full induction</td><td>30–37 min</td></tr>
+    <tr><td><b>Tue</b></td><td>Problem solving at F12 — one framed question (G-04)</td><td>30 min</td></tr>
+    <tr><td><b>Wed</b></td><td>Rest day — or bedtime "Exploration, Sleep" if needed</td><td>30 min</td></tr>
+    <tr><td><b>Thu</b></td><td>LBM/EBM visualization — full Workbook sequence (G-03)</td><td>30–37 min</td></tr>
+    <tr><td><b>Fri</b></td><td>Free Flow 10 or 12 — unguided reception, journal after</td><td>33–45 min</td></tr>
+    <tr><td><b>Sat</b></td><td>Morning REM-timed OBE session (G-07) — the week's deep dive</td><td>45–60 min</td></tr>
+    <tr><td><b>Sun</b></td><td>Rest. Journal review: what states actually happened? Plan next week.</td><td>15 min</td></tr>
+  </table>
+
+  <div class="note"><span class="nh">The discipline that makes it work</span>
+  Same time daily; one wave at a time; every track to its end; journal everything; verify anything factual (RV targets) against reality. §37 of the report says it plainly: progress comes from "repetitive practice… using each new insight as a means of penetrating farther during the next practice session." The tapes are the gym — the timetable is the training plan.</div>
+</section>
+
+</div>
+</main>
+
+
+<script>
+// scrollspy for the index
+const links=[...document.querySelectorAll('nav.index a')];
+const secs=links.map(a=>document.querySelector(a.getAttribute('href')));
+const spy=new IntersectionObserver(es=>{
+  es.forEach(e=>{ if(e.isIntersecting){
+    links.forEach(l=>l.classList.remove('active'));
+    const i=secs.indexOf(e.target); if(i>=0) links[i].classList.add('active');
+  }});
+},{rootMargin:'-20% 0px -70% 0px'});
+secs.forEach(s=>s&&spy.observe(s));
+// gentle reveal
+const io=new IntersectionObserver(es=>es.forEach(e=>{
+  if(e.isIntersecting){e.target.style.opacity=1;e.target.style.transform='none';io.unobserve(e.target)}
+}),{threshold:.08});
+document.querySelectorAll('.protocol,.exhibit,.filecard,.book,.tl').forEach(el=>{
+  el.style.opacity=0;el.style.transform='translateY(14px)';
+  el.style.transition='opacity .55s ease,transform .55s ease';io.observe(el);
+});
+</script>
+
+<script>
+/* ---------- UI chrome: progress, back-to-top, quick nav ---------- */
+const prog=document.getElementById('progress'),toTop=document.getElementById('toTop');
+addEventListener('scroll',()=>{
+  const h=document.documentElement,sc=h.scrollTop/(h.scrollHeight-h.clientHeight);
+  prog.style.width=(sc*100)+'%';
+  toTop.classList.toggle('show',h.scrollTop>800);
+},{passive:true});
+toTop.onclick=()=>scrollTo({top:0,behavior:'smooth'});
+const qn=document.getElementById('quickNav');
+document.getElementById('quickNavBtn').onclick=()=>qn.classList.add('open');
+document.getElementById('qnClose').onclick=()=>qn.classList.remove('open');
+qn.addEventListener('click',e=>{if(e.target===qn||e.target.closest('a'))qn.classList.remove('open')});
+
+/* ---------- THE FREQUENCY LAB ---------- */
+const PRESETS=[
+ {id:'gateway-theta-4hz',name:'Gateway Theta · 4 Hz',sub:'200 / 204 Hz sine pair',type:'binaural',fL:200,fR:204,grade:'C',file:'files/audio/gateway-theta-4hz.mp3',
+  note:'The Gateway-style theta beat. Entrainment evidence mixed (5 of 14 EEG studies positive, Ingendoh 2023); the relaxation is the reliable part.'},
+ {id:'alpha-focus-10hz',name:'Alpha Focus · 10 Hz',sub:'200 / 210 Hz sine pair',type:'binaural',fL:200,fR:210,grade:'B−',file:'files/audio/alpha-focus-10hz.mp3',
+  note:'Best-studied beat: 10 Hz ≥10 min eased acute procedural pain in several RCTs (BMC 2024), albeit with high bias risk.'},
+ {id:'theta-deep-6hz',name:'Deep Theta · 6 Hz',sub:'180 / 186 Hz sine pair',type:'binaural',fL:180,fR:186,grade:'C',file:'files/audio/theta-deep-6hz.mp3',
+  note:'Theta meditation target. Two small chronic-pain RCTs positive, one negative — plausible, unproven.'},
+ {id:'delta-sleep-2hz',name:'Delta Sleep · 2 Hz',sub:'100 / 102 Hz sine pair',type:'binaural',fL:100,fR:102,grade:'C',file:'files/audio/delta-sleep-2hz.mp3',
+  note:'Delta-band beat for sleep onset; lab delta entrainment has some support, clinical outcomes thin. Minimal volume.'},
+ {id:'gamma-40hz-clicks',name:'GENUS-style · 40 Hz clicks',sub:'1 kHz pulses @ 40 Hz',type:'clicks',rate:40,cf:1000,grade:'B',file:'files/audio/gamma-40hz-clicks.mp3',
+  note:'The stimulus class of the MIT/Cognito Alzheimer\'s protocol (1 hr/day). Phase III done 2025, results pending. Experimental — not a treatment.'},
+ {id:'schumann-783-beat',name:'Schumann Octave · 7.83 Hz',sub:'200 / 207.83 Hz sine pair',type:'binaural',fL:200,fR:207.83,grade:'A/D',file:'files/audio/schumann-783-beat.mp3',
+  note:'A arithmetic (real 7.83 Hz geophysics) / D meaning (no planetary coupling by headphone). The report\'s §8 claim, graded.'},
+ {id:'pink-noise-bed',name:'Pink Noise · masking bed',sub:'broadband, softened',type:'noise',grade:'B',file:'files/audio/pink-noise-bed.mp3',
+  note:'The workhorse: masking improves subjective sleep (Cochrane 2022). Note: beats embedded in noise never entrained in the 2023 review.'}
+];
+const $=id=>document.getElementById(id);
+let AC=null,nodes=null,playing=false,preset=PRESETS[0],t0=0,timerInt=null;
+
+/* build preset list + table + downloads */
+const list=$('presetList');
+PRESETS.forEach((p,i)=>{
+  const d=document.createElement('div');d.className='preset'+(i?'':' on');d.dataset.id=p.id;
+  d.innerHTML=`<div class="pn">${p.name}</div><div class="pc">${p.sub}</div><span class="pb grade ${p.grade.startsWith('A')?'g-a':p.grade.startsWith('B')?'g-b':p.grade.startsWith('C')?'g-c':'g-d'}">${p.grade}</span>`;
+  d.onclick=()=>{selectPreset(p.id)};list.appendChild(d);
+  $('dlRow').innerHTML+=` <a class="dl" href="${p.file}" download>${p.id}</a>`;
+  const tr=document.createElement('tr');
+  tr.innerHTML=`<td><b>${p.name}</b></td><td>${p.sub}</td><td><span class="grade ${p.grade.startsWith('A')?'g-a':p.grade.startsWith('B')?'g-b':p.grade.startsWith('C')?'g-c':'g-d'}">${p.grade}</span></td><td>${p.note}</td><td><a class="pg local" href="${p.file}" download>mp3</a></td>`;
+  $('presetTable').appendChild(tr);
+});
+function selectPreset(id){
+  preset=PRESETS.find(p=>p.id===id);
+  document.querySelectorAll('.preset').forEach(el=>el.classList.toggle('on',el.dataset.id===id));
+  if(preset.type==='binaural'){$('beatSlider').value=preset.fR-preset.fL;$('beatVal').textContent=(preset.fR-preset.fL).toFixed(1)+' Hz';}
+  if(preset.type==='clicks'){$('beatSlider').value=preset.rate;$('beatVal').textContent=preset.rate+' Hz';}
+  updateReadouts();
+  if(playing){stopAudio();startAudio();}
+}
+function updateReadouts(){
+  const beat=parseFloat($('beatSlider').value);
+  if(preset.type==='noise'){$('roL').innerHTML='—';$('roR').innerHTML='—';$('roB').innerHTML='broadband';}
+  else if(preset.type==='clicks'){$('roL').innerHTML=preset.cf+'<small> Hz pulse</small>';$('roR').innerHTML='mono';$('roB').innerHTML=beat.toFixed(1)+'<small> Hz</small>';}
+  else{$('roL').innerHTML=preset.fL.toFixed(1)+'<small> Hz</small>';$('roR').innerHTML=(preset.fL+beat).toFixed(1)+'<small> Hz</small>';$('roB').innerHTML=beat.toFixed(1)+'<small> Hz</small>';}
+}
+$('beatSlider').oninput=()=>{$('beatVal').textContent=parseFloat($('beatSlider').value).toFixed(1)+' Hz';updateReadouts();
+  if(playing&&nodes){if(nodes.kind==='binaural'){nodes.oscR.frequency.setTargetAtTime(preset.fL+parseFloat($('beatSlider').value),AC.currentTime,.05);}
+  if(nodes.kind==='clicks'){nodes.rate=parseFloat($('beatSlider').value);}}};
+$('volSlider').oninput=()=>{$('volVal').textContent=$('volSlider').value+'%';if(nodes)nodes.gain.gain.setTargetAtTime($('volSlider').value/100*.5,AC.currentTime,.05);};
+
+function makeNoiseBuffer(){
+  const len=AC.sampleRate*4,buf=AC.createBuffer(2,len,AC.sampleRate);
+  for(let c=0;c<2;c++){const d=buf.getChannelData(c);let b0=0,b1=0,b2=0;
+    for(let i=0;i<len;i++){const w=Math.random()*2-1;b0=.997*b0+.029*w;b1=.985*b1+.032*w;b2=.95*b2+.048*w;d[i]=(b0+b1+b2+w*.05)*.22;}}
+  return buf;
+}
+function startAudio(){
+  if(!AC)AC=new (window.AudioContext||window.webkitAudioContext)();
+  AC.resume();
+  const gain=AC.createGain();gain.gain.value=0;
+  const analyser=AC.createAnalyser();analyser.fftSize=2048;
+  gain.connect(analyser);analyser.connect(AC.destination);
+  nodes={gain,analyser,kind:preset.type,rate:preset.rate||0};
+  const target=$('volSlider').value/100*.5;
+  if(preset.type==='binaural'){
+    const oL=AC.createOscillator(),oR=AC.createOscillator(),pL=AC.createStereoPanner(),pR=AC.createStereoPanner();
+    oL.frequency.value=preset.fL;oR.frequency.value=preset.fL+parseFloat($('beatSlider').value);
+    pL.pan.value=-1;pR.pan.value=1;
+    oL.connect(pL).connect(gain);oR.connect(pR).connect(gain);
+    oL.start();oR.start();nodes.oscL=oL;nodes.oscR=oR;
+  }else if(preset.type==='clicks'){
+    const osc=AC.createOscillator();osc.frequency.value=preset.cf;
+    const cg=AC.createGain();cg.gain.value=0;osc.connect(cg).connect(gain);osc.start();nodes.osc=osc;
+    nodes.clickGain=cg;nodes.rate=parseFloat($('beatSlider').value);nodes.nextT=AC.currentTime+.1;
+    nodes.clickTimer=setInterval(()=>{
+      const per=1/nodes.rate;
+      while(nodes.nextT<AC.currentTime+.25){
+        const t=nodes.nextT,g=nodes.clickGain.gain;
+        g.setValueAtTime(0,t);g.linearRampToValueAtTime(1,t+.002);g.exponentialRampToValueAtTime(.001,t+.006);
+        nodes.nextT+=per;}
+    },90);
+  }else{
+    const src=AC.createBufferSource();src.buffer=makeNoiseBuffer();src.loop=true;src.connect(gain);src.start();nodes.src=src;
+  }
+  gain.gain.setTargetAtTime(target,AC.currentTime,.3);
+  playing=true;t0=Date.now();
+  timerInt=setInterval(()=>{const s=Math.floor((Date.now()-t0)/1000);$('roT').textContent=String(Math.floor(s/60)).padStart(2,'0')+':'+String(s%60).padStart(2,'0');},500);
+  $('playBtn').textContent='STOP';$('playBtn').classList.add('live');
+  drawScope();
+}
+function stopAudio(){
+  if(!nodes)return;
+  nodes.gain.gain.setTargetAtTime(0,AC.currentTime,.15);
+  const dead=nodes;
+  setTimeout(()=>{['oscL','oscR','src','osc'].forEach(k=>{try{dead[k]&&dead[k].stop()}catch(e){}});if(dead.clickTimer)clearInterval(dead.clickTimer);},400);
+  nodes=null;playing=false;clearInterval(timerInt);
+  $('playBtn').textContent='PLAY';$('playBtn').classList.remove('live');
+}
+$('playBtn').onclick=()=>playing?stopAudio():startAudio();
+
+/* oscilloscope */
+const cv=$('scope'),cx=cv.getContext('2d');
+function drawScope(){
+  if(!playing||!nodes){cx.clearRect(0,0,cv.width,cv.height);return;}
+  requestAnimationFrame(drawScope);
+  cv.width=cv.clientWidth;cv.height=cv.clientHeight;
+  const data=new Uint8Array(nodes.analyser.fftSize);
+  nodes.analyser.getByteTimeDomainData(data);
+  cx.strokeStyle='#db3356';cx.lineWidth=1.6;cx.beginPath();
+  const step=cv.width/data.length;
+  for(let i=0;i<data.length;i++){const y=cv.height/2+((data[i]-128)/128)*cv.height*.48;i?cx.lineTo(i*step,y):cx.moveTo(0,y);}
+  cx.stroke();
+}
+updateReadouts();
+/* idle scope baseline */
+(function idle(){cv.width=cv.clientWidth;cv.height=cv.clientHeight;cx.strokeStyle='rgba(176,198,179,.4)';cx.setLineDash([4,5]);cx.lineWidth=1;cx.beginPath();cx.moveTo(0,cv.height/2);cx.lineTo(cv.width,cv.height/2);cx.stroke();cx.setLineDash([]);})();
+</script>
+</body>
+</html>
