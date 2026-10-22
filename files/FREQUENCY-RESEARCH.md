@@ -1,0 +1,1 @@
+See archive/FREQUENCY-RESEARCH.md — identical content. (This file is the copy bundled with the website's files/ folder; the canonical text lives in archive/.)
