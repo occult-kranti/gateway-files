@@ -1,0 +1,65 @@
+[
+  {
+    "id": "gateway-theta-4hz",
+    "name": "Gateway Theta · 4 Hz binaural",
+    "carriers": "200 / 204 Hz",
+    "beat": "4 Hz",
+    "grade": "C",
+    "note": "The Gateway-style state: beat in the theta band. Entrainment evidence is mixed (Ingendoh 2023: 5 of 14 EEG studies positive, 8 negative); relaxation is the reliable part. Headphones required.",
+    "file": "files/audio/gateway-theta-4hz.mp3"
+  },
+  {
+    "id": "alpha-focus-10hz",
+    "name": "Alpha Focus · 10 Hz binaural",
+    "carriers": "200 / 210 Hz",
+    "beat": "10 Hz",
+    "grade": "B−",
+    "note": "The best-studied beat: alpha 10 Hz ≥10 min reduced acute procedural pain in several RCTs (BMC Complement Med 2024 review), though most trials carry high risk of bias.",
+    "file": "files/audio/alpha-focus-10hz.mp3"
+  },
+  {
+    "id": "theta-deep-6hz",
+    "name": "Deep Theta · 6 Hz binaural",
+    "carriers": "180 / 186 Hz",
+    "beat": "6 Hz",
+    "grade": "C",
+    "note": "Theta-band meditation target. Two small chronic-pain RCTs positive, one negative — honest status: plausible, unproven.",
+    "file": "files/audio/theta-deep-6hz.mp3"
+  },
+  {
+    "id": "delta-sleep-2hz",
+    "name": "Delta Sleep · 2 Hz binaural",
+    "carriers": "100 / 102 Hz",
+    "beat": "2 Hz",
+    "grade": "C",
+    "note": "Delta-band beat for sleep onset. Lab entrainment at delta has some support (Karino 2006); clinical sleep outcomes rest on thin trials. Keep volume minimal.",
+    "file": "files/audio/delta-sleep-2hz.mp3"
+  },
+  {
+    "id": "gamma-40hz-clicks",
+    "name": "GENUS-style · 40 Hz click train",
+    "carriers": "1 kHz pulses",
+    "beat": "40 Hz rate",
+    "grade": "B",
+    "note": "The actual auditory stimulus class used in MIT/Cognito gamma-entrainment Alzheimer's studies (1 hr/day; phase III trial N≈530 completed 2025, results pending). Not a cure — an experimental protocol under FDA breakthrough-status review.",
+    "file": "files/audio/gamma-40hz-clicks.mp3"
+  },
+  {
+    "id": "schumann-783-beat",
+    "name": "Schumann Octave · 7.83 Hz beat",
+    "carriers": "200 / 207.83 Hz",
+    "beat": "7.83 Hz",
+    "grade": "A/D",
+    "note": "Dual grade: the 7.83 Hz figure is exact geophysics (Earth–ionosphere cavity, grade A arithmetic); the claim that hearing it as a beat couples your body to the planet is symbolic (grade D meaning). The report's own 7–7.5 Hz claim lives here too.",
+    "file": "files/audio/schumann-783-beat.mp3"
+  },
+  {
+    "id": "pink-noise-bed",
+    "name": "Pink Noise · sleep-masking bed",
+    "carriers": "broadband",
+    "beat": "—",
+    "grade": "B",
+    "note": "The unglamorous workhorse: masking noise improves subjective sleep (Cochrane 2022 music/sleep review; pink-noise memory studies in older adults). Note: the 2023 review found beats EMBEDDED in pink noise never entrained — keep beds quiet.",
+    "file": "files/audio/pink-noise-bed.mp3"
+  }
+]
