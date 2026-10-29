@@ -1,0 +1,1 @@
+See archive/STARGATE-RESEARCH.md — identical content (the canonical text lives in archive/; this note is the copy bundled with the website's files/ folder).
