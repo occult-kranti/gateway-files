@@ -61,5 +61,32 @@
     "grade": "B",
     "note": "The unglamorous workhorse: masking noise improves subjective sleep (Cochrane 2022 music/sleep review; pink-noise memory studies in older adults). Note: the 2023 review found beats EMBEDDED in pink noise never entrained — keep beds quiet.",
     "file": "files/audio/pink-noise-bed.mp3"
+  },
+  {
+    "id": "crv-watch-45hz",
+    "name": "CRV Watch · 4.5 Hz binaural",
+    "carriers": "180 / 184.5 Hz",
+    "beat": "4.5 Hz",
+    "grade": "C",
+    "note": "Long-form session bed for structured CRV-style practice. Chosen for endurance, not for any documented effect — the Ft. Meade protocol used no audio at all; structure and blind targets are what matter.",
+    "file": "files/audio/crv-watch-45hz.mp3"
+  },
+  {
+    "id": "alpha-ready-8hz",
+    "name": "Alpha Readiness · 8 Hz binaural",
+    "carriers": "200 / 208 Hz",
+    "beat": "8 Hz",
+    "grade": "C",
+    "note": "Low-alpha pre-session settling. A calmer entry state for problem solving and ideogram drills; evidence for entrainment itself remains contested (Ingendoh 2023).",
+    "file": "files/audio/alpha-ready-8hz.mp3"
+  },
+  {
+    "id": "brown-noise-bed",
+    "name": "Brown Noise · deep masking bed",
+    "carriers": "broadband, low-weighted",
+    "beat": "—",
+    "grade": "B",
+    "note": "Deeper than pink noise. Pure masking for noisy rooms during long sessions; contains no beat, by design (the 2023 review found noise-embedded beats never entrained anyway).",
+    "file": "files/audio/brown-noise-bed.mp3"
   }
 ]
