@@ -1,0 +1,539 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The STARGATE Dossier — CRV &amp; the U.S. Psychic-Intelligence Program</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&family=Courier+Prime:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+<style>
+:root{
+  --paper:#b0c6b3;
+  --paper-hi:#c3d4c5;
+  --paper-lo:#9fb6a2;
+  --ink:#111511;
+  --ink-soft:#2c332c;
+  --crimson:#db3356;
+  --line:rgba(17,21,17,.55);
+  --line-soft:rgba(17,21,17,.22);
+  --sidebar-w:30.1%;
+  --mono:'Courier Prime',ui-monospace,'Courier New',monospace;
+  --disp:'Archivo',-apple-system,'Helvetica Neue',sans-serif;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  background:var(--paper);
+  color:var(--ink);
+  font-family:var(--mono);
+  font-size:17px;
+  line-height:1.55;
+  -webkit-font-smoothing:antialiased;
+}
+::selection{background:var(--crimson);color:var(--paper-hi)}
+::-webkit-scrollbar{width:6px;height:6px}
+::-webkit-scrollbar-track{background:transparent}
+::-webkit-scrollbar-thumb{background:rgba(17,21,17,.35);border-radius:10px}
+a{color:inherit}
+
+/* ============ SIDEBAR ============ */
+.sidebar{
+  position:fixed;left:0;top:0;bottom:0;width:var(--sidebar-w);
+  border-right:2px solid var(--ink);
+  padding:2.2rem 2rem 2rem 2.4rem;
+  display:flex;flex-direction:column;
+  background:
+    repeating-linear-gradient(0deg,transparent 0 46px,rgba(17,21,17,.05) 46px 47px),
+    var(--paper);
+  z-index:10;overflow-y:auto;
+}
+.binder-holes{position:absolute;left:.7rem;top:0;bottom:0;width:10px;display:flex;flex-direction:column;justify-content:space-evenly}
+.binder-holes i{width:10px;height:10px;border-radius:50%;background:var(--ink);display:block}
+.doc-no{font-size:.72rem;letter-spacing:.08em;opacity:.85}
+.doc-no b{display:block;font-size:.78rem}
+.cover-rule{height:2px;background:var(--ink);margin:.9rem 0}
+.cover-kicker{font-family:var(--disp);font-weight:800;font-size:.68rem;letter-spacing:.32em;text-transform:uppercase}
+h1.cover-title{
+  font-family:var(--disp);font-weight:900;font-stretch:75%;
+  font-size:clamp(2.2rem,3.4vw,3.3rem);line-height:.92;letter-spacing:-.02em;
+  text-transform:uppercase;margin:.6rem 0 .2rem;
+}
+.cover-sub{font-size:.8rem;font-style:italic;opacity:.9;max-width:34ch}
+.stamp{
+  display:inline-block;font-family:var(--disp);font-weight:900;text-transform:uppercase;
+  color:var(--crimson);border:3px solid var(--crimson);border-radius:4px;
+  padding:.18em .5em;font-size:.95rem;letter-spacing:.18em;
+  transform:rotate(-6deg);margin:1.1rem 0 .4rem;
+  mask-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='40'%3E%3Cfilter id='n'%3E%3CfeTurbulence baseFrequency='.9' numOctaves='2'/%3E%3CfeColorMatrix values='0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 .9 0'/%3E%3C/filter%3E%3Crect width='120' height='40' filter='url(%23n)'/%3E%3C/svg%3E");
+  mask-size:120px 40px;
+}
+.cover-meta{margin-top:.8rem;font-size:.72rem;line-height:1.9}
+.cover-meta .k{display:inline-block;min-width:7.2em;font-family:var(--disp);font-weight:700;font-size:.62rem;letter-spacing:.14em;text-transform:uppercase;opacity:.75}
+nav.index{margin-top:1.6rem;border-top:2px solid var(--ink)}
+nav.index .idx-h{font-family:var(--disp);font-weight:800;font-size:.62rem;letter-spacing:.3em;text-transform:uppercase;padding:.7rem 0 .3rem;opacity:.7}
+nav.index a{
+  display:flex;gap:.7em;align-items:baseline;text-decoration:none;
+  padding:.42rem 0 .42rem .1rem;border-bottom:1px solid var(--line-soft);
+  font-size:.82rem;transition:padding-left .25s ease;
+}
+nav.index a .n{font-family:var(--disp);font-weight:800;font-size:.66rem;letter-spacing:.05em}
+nav.index a .arr{opacity:0;transform:translateX(-6px);transition:all .25s ease;margin-left:auto;font-family:var(--disp)}
+nav.index a:hover{padding-left:.9rem}
+nav.index a:hover .arr{opacity:1;transform:translateX(0)}
+nav.index a.active{background:rgba(17,21,17,.08)}
+.side-foot{margin-top:auto;padding-top:1.4rem;font-size:.66rem;opacity:.75;line-height:1.7}
+
+/* ============ MAIN ============ */
+.main{
+  margin-left:var(--sidebar-w);
+  background:
+    linear-gradient(rgba(17,21,17,.06) 1px,transparent 1px) 0 0/100% 196px,
+    linear-gradient(90deg,rgba(17,21,17,.05) 1px,transparent 1px) 0 0/196px 100%,
+    var(--paper);
+  min-height:100vh;
+}
+.sheet{max-width:980px;padding:4.2rem 3.2rem 5rem 3.4rem}
+.chapter{margin-bottom:6.5rem;scroll-margin-top:2rem}
+.ch-head{display:flex;align-items:baseline;gap:1rem;border-bottom:4px solid var(--ink);padding-bottom:.55rem;margin-bottom:2rem}
+.ch-num{font-family:var(--disp);font-weight:900;font-stretch:72%;font-size:clamp(2.4rem,4vw,3.6rem);line-height:.85;color:var(--crimson)}
+.ch-title{font-family:var(--disp);font-weight:900;font-stretch:78%;font-size:clamp(1.6rem,2.6vw,2.4rem);text-transform:uppercase;letter-spacing:-.01em;line-height:.95}
+.ch-tag{margin-left:auto;font-size:.66rem;letter-spacing:.2em;text-transform:uppercase;opacity:.7;text-align:right}
+h3.sec{
+  font-family:var(--disp);font-weight:800;text-transform:uppercase;letter-spacing:.04em;
+  font-size:1.02rem;margin:2.6rem 0 .9rem;display:flex;align-items:center;gap:.6em;
+}
+h3.sec::before{content:"";width:1.6em;height:2px;background:var(--ink);flex:none}
+p{margin-bottom:1.05rem;max-width:72ch}
+p.lede{font-size:1.12rem;line-height:1.65}
+.small{font-size:.78rem}
+.dim{opacity:.72}
+strong{font-weight:700}
+em{font-style:italic}
+
+/* quotes from the record */
+blockquote.doc{
+  border:2px solid var(--ink);background:var(--paper-hi);
+  padding:1.15rem 1.3rem;margin:1.4rem 0;position:relative;
+  font-size:.92rem;box-shadow:5px 5px 0 rgba(17,21,17,.25);
+}
+blockquote.doc::before{
+  content:"FROM THE RECORD";position:absolute;top:-.62em;left:.9em;
+  background:var(--paper);padding:0 .55em;font-family:var(--disp);font-weight:800;
+  font-size:.58rem;letter-spacing:.28em;
+}
+blockquote.doc p{margin-bottom:.6rem}
+blockquote.doc p:last-child{margin-bottom:0}
+.cite{display:block;margin-top:.5rem;font-size:.68rem;letter-spacing:.06em;opacity:.75}
+
+/* page reference chips */
+.pg{
+  display:inline-flex;align-items:center;gap:.35em;text-decoration:none;
+  border:1.5px solid var(--ink);border-radius:3px;padding:.02em .45em;
+  font-size:.68rem;font-family:var(--disp);font-weight:700;letter-spacing:.04em;
+  white-space:nowrap;transition:all .18s ease;vertical-align:baseline;
+}
+.pg:hover{background:var(--ink);color:var(--paper)}
+.pg.ext{border-style:dashed}
+.pg.local::before{content:"▼";font-size:.55rem;color:var(--crimson)}
+
+/* callout — analyst note */
+.note{
+  border-left:4px solid var(--crimson);background:rgba(219,51,86,.08);
+  padding:.85rem 1.1rem;margin:1.3rem 0;font-size:.82rem;max-width:74ch;
+}
+.note .nh{font-family:var(--disp);font-weight:800;font-size:.6rem;letter-spacing:.26em;text-transform:uppercase;color:var(--crimson);display:block;margin-bottom:.3rem}
+
+/* exhibits */
+.exhibit{border:2px solid var(--ink);background:var(--paper-hi);margin:1.8rem 0;box-shadow:6px 6px 0 rgba(17,21,17,.22)}
+.exhibit svg{display:block;width:100%;height:auto}
+.exhibit .cap{
+  border-top:2px solid var(--ink);padding:.55rem .9rem;
+  font-size:.72rem;display:flex;gap:1em;align-items:baseline;flex-wrap:wrap;
+}
+.exhibit .cap .xh{font-family:var(--disp);font-weight:900;letter-spacing:.18em;font-size:.66rem;text-transform:uppercase}
+.exhibit .cap .src{margin-left:auto;opacity:.75}
+
+/* redaction */
+.redact{background:var(--ink);color:var(--ink);border-radius:1px;cursor:default;transition:all .25s}
+.redact:hover{color:var(--paper-hi)}
+
+/* timeline */
+.timeline{border-left:3px solid var(--ink);margin:1.6rem 0 1.6rem .4rem;padding-left:1.6rem}
+.tl{position:relative;margin-bottom:1.25rem;max-width:70ch}
+.tl::before{content:"";position:absolute;left:calc(-1.6rem - 7px);top:.35em;width:11px;height:11px;background:var(--paper);border:3px solid var(--ink);border-radius:50%}
+.tl.hot::before{background:var(--crimson);border-color:var(--crimson)}
+.tl .d{font-family:var(--disp);font-weight:900;font-size:.8rem;letter-spacing:.06em}
+.tl p{margin:.15rem 0 0;font-size:.85rem}
+
+/* tables */
+table.map{width:100%;border-collapse:collapse;font-size:.76rem;margin:1.2rem 0}
+table.map th{font-family:var(--disp);font-weight:800;text-transform:uppercase;letter-spacing:.12em;font-size:.6rem;text-align:left;border-bottom:2px solid var(--ink);padding:.35rem .5rem}
+table.map td{border-bottom:1px solid var(--line-soft);padding:.38rem .5rem;vertical-align:top}
+table.map tr:hover td{background:rgba(17,21,17,.05)}
+
+/* protocol cards */
+.protocol{border:2px solid var(--ink);background:var(--paper-hi);margin:1.5rem 0;box-shadow:5px 5px 0 rgba(17,21,17,.22)}
+.protocol .ph{display:flex;align-items:baseline;gap:.8em;border-bottom:2px solid var(--ink);padding:.6rem 1rem;flex-wrap:wrap}
+.protocol .pnum{font-family:var(--disp);font-weight:900;font-stretch:70%;font-size:1.5rem;color:var(--crimson);line-height:1}
+.protocol .pname{font-family:var(--disp);font-weight:900;text-transform:uppercase;font-size:1rem;letter-spacing:.02em}
+.protocol .plvl{margin-left:auto;font-size:.62rem;letter-spacing:.18em;text-transform:uppercase;font-family:var(--disp);font-weight:700;border:1.5px solid var(--ink);padding:.15em .5em;border-radius:2px}
+.protocol .pb{padding:1rem 1.1rem;font-size:.86rem}
+.protocol .pb p{max-width:none;margin-bottom:.7rem}
+.steps{counter-reset:st;margin:.6rem 0}
+.steps li{list-style:none;counter-increment:st;position:relative;padding-left:2.5em;margin-bottom:.55rem}
+.steps li::before{
+  content:counter(st,decimal-leading-zero);position:absolute;left:0;top:.05em;
+  font-family:var(--disp);font-weight:900;color:var(--crimson);font-size:.95rem;
+}
+.protocol .refs{border-top:1px dashed var(--line);padding:.5rem 1rem;font-size:.7rem;display:flex;gap:.6em;flex-wrap:wrap;align-items:center}
+
+/* freq table chips */
+.freqs{display:flex;flex-wrap:wrap;gap:.6rem;margin:1rem 0}
+.freq{border:1.5px solid var(--ink);border-radius:3px;padding:.4rem .7rem;font-size:.74rem;background:var(--paper-hi)}
+.freq b{font-family:var(--disp);font-weight:900;font-size:.95rem;display:block}
+
+/* dark interlude for page 25 */
+.dark{
+  background:var(--ink);color:var(--paper);border:2px solid var(--ink);
+  padding:2.2rem 2.4rem;margin:2rem 0;position:relative;
+}
+.dark .stamp{margin-top:0}
+.dark blockquote.doc{background:transparent;color:var(--paper);border-color:var(--paper);box-shadow:5px 5px 0 rgba(176,198,179,.25)}
+.dark blockquote.doc::before{background:var(--ink);color:var(--paper)}
+.dark .cite{opacity:.7}
+.restored{border-left:4px solid var(--crimson);padding-left:1.1rem;margin:1.2rem 0;font-size:.9rem}
+.restored p{max-width:none}
+
+/* file cards */
+.filecard{border:2px solid var(--ink);background:var(--paper-hi);margin:1.2rem 0;display:flex;flex-wrap:wrap}
+.filecard .fn{padding:.9rem 1.1rem;flex:1 1 55%}
+.filecard .fn .t{font-family:var(--disp);font-weight:900;font-size:.95rem;text-transform:uppercase}
+.filecard .fn .d{font-size:.78rem;margin-top:.3rem}
+.filecard .fa{border-left:2px solid var(--ink);display:flex;flex-direction:column;flex:0 0 240px}
+.filecard .fa a{flex:1;display:flex;align-items:center;justify-content:space-between;padding:.55rem 1rem;text-decoration:none;font-family:var(--disp);font-weight:800;font-size:.68rem;letter-spacing:.14em;text-transform:uppercase;border-bottom:1px solid var(--line-soft);transition:all .18s}
+.filecard .fa a:last-child{border-bottom:none}
+.filecard .fa a:hover{background:var(--ink);color:var(--paper)}
+
+.bookgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(270px,1fr));gap:1.1rem;margin:1.4rem 0}
+.book{border:2px solid var(--ink);background:var(--paper-hi);padding:1rem 1.1rem;font-size:.8rem;box-shadow:4px 4px 0 rgba(17,21,17,.2)}
+.book .bt{font-family:var(--disp);font-weight:900;font-size:.92rem;text-transform:uppercase;line-height:1.15}
+.book .ba{font-style:italic;margin:.2rem 0 .5rem}
+.book .tag{display:inline-block;border:1.5px solid var(--crimson);color:var(--crimson);font-family:var(--disp);font-weight:800;font-size:.56rem;letter-spacing:.16em;text-transform:uppercase;padding:.15em .5em;border-radius:2px;margin-bottom:.5rem}
+
+footer.colophon{border-top:4px solid var(--ink);padding-top:1.4rem;font-size:.72rem;opacity:.85;max-width:72ch}
+
+/* progress bar + floating controls */
+#progress{position:fixed;top:0;left:0;height:4px;background:var(--crimson);width:0;z-index:60;transition:width .1s linear}
+#toTop{position:fixed;right:1.4rem;bottom:1.4rem;width:46px;height:46px;border:2px solid var(--ink);background:var(--paper-hi);font-family:var(--disp);font-weight:900;font-size:1.1rem;cursor:pointer;z-index:55;opacity:0;pointer-events:none;transition:opacity .3s,transform .3s;transform:translateY(8px);box-shadow:3px 3px 0 rgba(17,21,17,.3)}
+#toTop.show{opacity:1;pointer-events:auto;transform:none}
+#toTop:hover{background:var(--ink);color:var(--paper)}
+#quickNavBtn{position:fixed;right:1.4rem;bottom:5rem;border:2px solid var(--ink);background:var(--ink);color:var(--paper);font-family:var(--disp);font-weight:800;font-size:.62rem;letter-spacing:.22em;padding:.75rem 1rem;cursor:pointer;z-index:55;box-shadow:3px 3px 0 rgba(17,21,17,.3)}
+#quickNavBtn:hover{background:var(--crimson);border-color:var(--crimson)}
+#quickNav{position:fixed;inset:0;background:rgba(17,21,17,.92);z-index:70;display:none;align-items:center;justify-content:center}
+#quickNav.open{display:flex}
+#quickNav .qn-inner{background:var(--paper);border:3px solid var(--ink);padding:2.2rem 2.6rem;max-width:440px;width:90%;max-height:82vh;overflow-y:auto;box-shadow:8px 8px 0 rgba(219,51,86,.5)}
+#quickNav .qn-inner h4{font-family:var(--disp);font-weight:900;text-transform:uppercase;letter-spacing:.2em;font-size:.8rem;border-bottom:3px solid var(--ink);padding-bottom:.5rem;margin-bottom:.8rem}
+#quickNav a{display:flex;gap:.8em;align-items:baseline;padding:.5rem 0;border-bottom:1px solid var(--line-soft);text-decoration:none;font-size:.9rem}
+#quickNav a .n{font-family:var(--disp);font-weight:900;color:var(--crimson);font-size:.75rem}
+#quickNav a:hover{background:rgba(17,21,17,.06)}
+#qnClose{margin-top:1rem;width:100%;border:2px solid var(--ink);background:none;font-family:var(--disp);font-weight:800;font-size:.66rem;letter-spacing:.24em;padding:.6rem;cursor:pointer}
+#qnClose:hover{background:var(--ink);color:var(--paper)}
+
+/* grade badges */
+.grade{display:inline-block;font-family:var(--disp);font-weight:900;font-size:.62rem;letter-spacing:.1em;border:2px solid;padding:.12em .5em;border-radius:2px;vertical-align:middle}
+.g-a{color:#1c6b3c;border-color:#1c6b3c}
+.g-b{color:#7a6410;border-color:#7a6410}
+.g-c{color:#a34d12;border-color:#a34d12}
+.g-d{color:var(--crimson);border-color:var(--crimson)}
+
+/* ============ FREQUENCY LAB ============ */
+.lab{background:var(--ink);color:var(--paper);border:3px solid var(--ink);margin:2rem 0;box-shadow:8px 8px 0 rgba(17,21,17,.35)}
+.lab .lab-head{display:flex;align-items:center;gap:1em;padding:.8rem 1.2rem;border-bottom:2px solid var(--paper);flex-wrap:wrap}
+.lab .lab-head .lt{font-family:var(--disp);font-weight:900;text-transform:uppercase;letter-spacing:.18em;font-size:.8rem}
+.lab .lab-head .hp{margin-left:auto;font-size:.62rem;letter-spacing:.14em;border:1.5px solid var(--crimson);color:var(--crimson);padding:.2em .6em;font-family:var(--disp);font-weight:800}
+.lab .lab-grid{display:grid;grid-template-columns:230px 1fr;min-height:380px}
+.lab .presets{border-right:2px solid var(--paper);display:flex;flex-direction:column}
+.lab .preset{padding:.7rem 1rem;border-bottom:1px solid rgba(176,198,179,.25);cursor:pointer;transition:background .15s;position:relative}
+.lab .preset:hover{background:rgba(176,198,179,.1)}
+.lab .preset.on{background:rgba(219,51,86,.16);border-left:4px solid var(--crimson)}
+.lab .preset .pn{font-family:var(--disp);font-weight:800;font-size:.78rem}
+.lab .preset .pc{font-size:.62rem;opacity:.65;margin-top:.1rem}
+.lab .preset .pb{position:absolute;right:.7rem;top:.7rem}
+.lab .deck{padding:1.2rem 1.4rem;display:flex;flex-direction:column;gap:1rem}
+.lab .readouts{display:flex;gap:1.4rem;flex-wrap:wrap}
+.lab .ro .rl{font-size:.58rem;letter-spacing:.22em;font-family:var(--disp);font-weight:800;opacity:.6}
+.lab .ro .rv{font-family:var(--disp);font-weight:900;font-size:1.5rem;line-height:1.1;font-stretch:75%}
+.lab .ro .rv small{font-size:.7rem;font-weight:700;opacity:.6}
+.lab .ro.beat .rv{color:var(--crimson)}
+#scope{width:100%;height:110px;background:rgba(176,198,179,.07);border:1.5px solid rgba(176,198,179,.35)}
+.lab .controls{display:flex;gap:1.6rem;flex-wrap:wrap;align-items:flex-end}
+.lab .ctl{flex:1;min-width:150px}
+.lab .ctl label{display:block;font-size:.58rem;letter-spacing:.22em;font-family:var(--disp);font-weight:800;opacity:.6;margin-bottom:.35rem}
+.lab .ctl .cv{font-size:.72rem;opacity:.85}
+.lab input[type=range]{width:100%;-webkit-appearance:none;height:4px;background:rgba(176,198,179,.4);outline:none}
+.lab input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:16px;height:16px;background:var(--crimson);border:2px solid var(--paper);border-radius:50%;cursor:pointer}
+.lab input[type=range]::-moz-range-thumb{width:14px;height:14px;background:var(--crimson);border:2px solid var(--paper);border-radius:50%;cursor:pointer}
+#playBtn{align-self:flex-end;border:2.5px solid var(--paper);background:transparent;color:var(--paper);font-family:var(--disp);font-weight:900;font-size:.8rem;letter-spacing:.26em;padding:.85rem 2.2rem;cursor:pointer;transition:all .18s}
+#playBtn:hover{background:var(--crimson);border-color:var(--crimson)}
+#playBtn.live{background:var(--crimson);border-color:var(--crimson);animation:pulse 1.6s ease-in-out infinite}
+@keyframes pulse{50%{box-shadow:0 0 0 9px rgba(219,51,86,.14)}}
+.lab .lab-foot{border-top:1px solid rgba(176,198,179,.25);padding:.65rem 1.2rem;font-size:.62rem;opacity:.75;display:flex;gap:1.5em;flex-wrap:wrap}
+.lab .dl{color:var(--paper);font-size:.62rem;letter-spacing:.1em;text-decoration:none;border-bottom:1px dashed var(--crimson)}
+.lab .dl:hover{color:var(--crimson)}
+@media (max-width:760px){.lab .lab-grid{grid-template-columns:1fr}.lab .presets{border-right:none;border-bottom:2px solid var(--paper)}}
+
+/* KG diagram */
+.kg-note{font-size:.68rem;opacity:.75;margin-top:.4rem}
+
+@media (max-width:900px){
+  .sidebar{position:static;width:100%;border-right:none;border-bottom:4px solid var(--ink);padding-bottom:1.2rem}
+  .main{margin-left:0}
+  .sheet{padding:2.4rem 1.2rem}
+  .filecard .fa{border-left:none;border-top:2px solid var(--ink);flex:1 1 100%}
+}
+
+</style>
+</head>
+<body>
+
+<aside class="sidebar">
+  <div class="binder-holes"><i></i><i></i><i></i><i></i></div>
+  <div class="doc-no">DOCUMENT NO. (FOIA) / ESDN (CREST)<b>CIA-RDP96-00789R002800180001-2</b></div>
+  <div class="cover-rule"></div>
+  <div class="cover-kicker">Controlled Remote Viewing · Field Guide</div>
+  <h1 class="cover-title">The<br>STARGATE<br>Dossier</h1>
+  <p class="cover-sub">23 years, ~$20M, ~23 viewers — the U.S. government's psychic-intelligence program, from SRI to the 1995 evaluation.</p>
+  <div><span class="stamp">Approved for release · CREST</span></div>
+  <div class="cover-meta">
+    <div><span class="k">Subject</span> STAR GATE &amp; Coordinate Remote Viewing</div>
+    <div><span class="k">Scope</span> 1972–1995</div>
+    <div><span class="k">Key manual</span> McNear, CRV Stages I–VI (1985)</div>
+    <div><span class="k">Evaluation</span> AIR, 29 September 1995</div>
+    <div><span class="k">Companion</span> The Gateway Files (1983)</div>
+  </div>
+  <nav class="index">
+    <div class="idx-h">Index of Sections</div>
+    <a href="#s1"><span class="n">S1</span> The Program at a Glance <span class="arr">→</span></a>
+    <a href="#s2"><span class="n">S2</span> Origins: Cold War &amp; SRI <span class="arr">→</span></a>
+    <a href="#s3"><span class="n">S3</span> The Fort Meade Unit <span class="arr">→</span></a>
+    <a href="#s4"><span class="n">S4</span> The Method: CRV Stages I–VI <span class="arr">→</span></a>
+    <a href="#s5"><span class="n">S5</span> The Sessions That Checked Out <span class="arr">→</span></a>
+    <a href="#s6"><span class="n">S6</span> The People <span class="arr">→</span></a>
+    <a href="#s7"><span class="n">S7</span> The 1995 Evaluation <span class="arr">→</span></a>
+    <a href="#s8"><span class="n">S8</span> The Documents <span class="arr">→</span></a>
+    <a href="#s9"><span class="n">S9</span> Practice &amp; Presets <span class="arr">→</span></a>
+    <a href="index.html"><span class="n">↩</span> Back to The Gateway Files <span class="arr">→</span></a>
+  </nav>
+  <div class="side-foot">
+    This dossier quotes and paraphrases declassified U.S. government documents.
+    It explains what the record claims — it does not certify the claims.
+  </div>
+</aside>
+
+<div id="progress"></div>
+<button id="toTop" title="Back to top">↑</button>
+
+<!-- ================= MAIN ================= -->
+<main class="main">
+<div class="sheet">
+
+<section class="chapter" id="s1">
+  <div class="ch-head"><span class="ch-num">S1</span><span class="ch-title">The Program at a Glance</span><span class="ch-tag">1972–1995 · the<br>psychic-intelligence era</span></div>
+  <p class="lede">For twenty-three years, the United States government paid scientists and soldiers to do the impossible: describe secret sites on the far side of the world using nothing but coordinates and consciousness. The effort went by seven codenames, spent roughly <b>$20 million</b>, employed about <b>40 people including ~23 remote viewers</b>, and ended with an outside review whose two authors disagreed on almost everything except one point — it had never produced actionable intelligence.</p>
+  <div class="freqs">
+    <div class="freq"><b>23 yrs</b>1972 SRI → 1995 closure</div>
+    <div class="freq"><b>~$20M</b>total program cost ($19.993M)</div>
+    <div class="freq"><b>~23</b>remote viewers over the years</div>
+    <div class="freq"><b>7</b>codenames</div>
+    <div class="freq"><b>~89,000</b>pages declassified</div>
+    <div class="freq"><b>17/19</b>tasking agencies that returned for more</div>
+  </div>
+
+  <div class="exhibit">
+    <svg viewBox="0 0 760 420" role="img" aria-label="Codename lineage ladder from Scanate to Star Gate">
+      <g font-family="Courier Prime" font-size="12" fill="#111511">
+        <line x1="70" y1="30" x2="70" y2="390" stroke="#111511" stroke-width="2.5"/>
+        <rect x="100" y="22" width="560" height="40" fill="none" stroke="#111511" stroke-width="2"/><text x="112" y="47">1972–76 · SCANATE — SRI (Targ &amp; Puthoff; coordinate RV by 1973)</text>
+        <rect x="100" y="70" width="560" height="40" fill="none" stroke="#111511" stroke-width="2"/><text x="112" y="95">1976–77 · GONDOLA WISH — Army ACSI (Dale Graff)</text>
+        <rect x="100" y="118" width="560" height="40" fill="none" stroke="#111511" stroke-width="2"/><text x="112" y="143">1978–83 · GRILL FLAME — INSCOM Det G, Ft. Meade</text>
+        <rect x="100" y="166" width="560" height="40" fill="none" stroke="#111511" stroke-width="2"/><text x="112" y="191">1983–85 · CENTER LANE — SRI integrated; NRC review unfavorable (1984)</text>
+        <rect x="100" y="214" width="560" height="40" fill="none" stroke="#111511" stroke-width="2"/><text x="112" y="239">1985–91 · SUN STREAK — DIA DT-S (transfer MOA Sept 1984)</text>
+        <rect x="100" y="262" width="560" height="40" fill="none" stroke="#db3356" stroke-width="3"/><text x="112" y="287" fill="#db3356">1991–95 · STAR GATE — SAIC → DIA → CIA (LIMDIS)</text>
+        <rect x="100" y="310" width="560" height="40" fill="none" stroke="#111511" stroke-width="2" stroke-dasharray="5 4"/><text x="112" y="335">1995 · AIR EVALUATION — Utts vs Hyman; closure ordered June 30</text>
+        <rect x="100" y="358" width="560" height="40" fill="none" stroke="#111511" stroke-width="2" stroke-dasharray="5 4"/><text x="112" y="383">1995–2003 · DECLASSIFICATION — CREST / FOIA Reading Room</text>
+      </g>
+    </svg>
+    <div class="cap"><span class="xh">Exhibit S-A — The codename ladder</span><span>one continuous program, seven names</span><span class="src">SOURCES: FAS · MÖRCK · NSA ARCHIVE</span></div>
+  </div>
+  <p>The sidebar links take you through the whole arc: origins, the Ft. Meade unit, the CRV method stage by stage, the sessions that actually checked out, the people, the 1995 kill shot, and the document map. The companion <a href="index.html">Gateway Files</a> site covers the 1983 Army assessment that ran alongside it.</p>
+</section>
+
+<section class="chapter" id="s2">
+  <div class="ch-head"><span class="ch-num">S2</span><span class="ch-title">Origins: Cold War &amp; SRI</span><span class="ch-tag">1972–1977<br>the lab years</span></div>
+  <p class="lede">The program began not as a military unit but as a physics experiment — and not because Americans believed in psychics, but because they feared the Soviets might have them.</p>
+  <p>Declassified program histories record that U.S. intelligence tracked an extensive Soviet parapsychology effort: <b>twenty or more research centers</b> with an estimated annual budget around <b>$21 million</b>. In 1972, laser physicists <b>Harold Puthoff and Russell Targ</b> began exploratory work at Stanford Research Institute in Menlo Park on both informational psi (remote viewing, precognition) and causal psi (psychokinesis). Their early results — and the Soviet reports — drew CIA funding.</p>
+  <p>The methodological leap came in 1973: instead of sending a "beacon" person to the target, viewers were given only <b>geographic coordinates</b>. Ingo Swann and Pat Price named it <b>Scanate</b> — scanning by coordinate. It was outrageous on its face, which is exactly why the sponsors took it seriously: coordinates eliminated the obvious sensory channels. Within a year, that protocol would be aimed at the Soviet Union's most secret weapons laboratory.</p>
+  <div class="note"><span class="nh">Why the coordinates mattered</span>
+  Every later CRV session inherits the Scanate design: a target reduced to numbers the viewer cannot reason from. Whatever you conclude about psi, the experimental hygiene — blind targets, no cueing, structure instead of narrative — was invented here, not at Fort Meade.</div>
+</section>
+
+<section class="chapter" id="s3">
+  <div class="ch-head"><span class="ch-num">S3</span><span class="ch-title">The Fort Meade Unit</span><span class="ch-tag">1978–1991<br>from detachment to directorate</span></div>
+  <p class="lede">Army intelligence first formalized the effort in 1976–77 as <b>Gondola Wish</b>, an evaluation of adversary applications under Dale Graff, then as an operational detachment: <b>Grill Flame</b>, INSCOM Detachment G, in buildings 2560 and 2561 at Fort Meade — later remembered as "an old, leaky wooden barracks."</p>
+  <div class="timeline">
+    <div class="tl"><span class="d">Sept 1979</span><p>Grill Flame's first operational mission locates an aircraft crash site within about fifteen miles — enough to push the unit from training to operational status.</p></div>
+    <div class="tl"><span class="d">5 Mar 1980</span><p>Undersecretary William Perry terminates R&amp;D funding for psychoenergetics; the decision is reversed in 1983.</p></div>
+    <div class="tl"><span class="d">1983</span><p>SRI research folds into the unit as <b>INSCOM Center Lane</b>. The same summer, LTC McDonnell writes the Gateway assessment (companion site).</p></div>
+    <div class="tl"><span class="d">1984</span><p>The National Research Council delivers an unfavorable evaluation for the Army Research Institute; Jack Anderson reports the program publicly; a September MOA prepares the move to DIA.</p></div>
+    <div class="tl"><span class="d">1985–86</span><p>Army funding ends; the unit becomes <b>Sun Streak</b> under DIA's Scientific and Technical Intelligence Directorate (DT-S), formally transferring in January 1986.</p></div>
+    <div class="tl"><span class="d">1991</span><p>Contract work passes from SRI to <b>SAIC</b> and the whole enterprise is rechristened <b>STAR GATE</b>, downgraded from a Special Access Program to limited dissemination (LIMDIS). Edwin May's group ends up producing most of the late data.</p></div>
+  </div>
+</section>
+
+<section class="chapter" id="s4">
+  <div class="ch-head"><span class="ch-num">S4</span><span class="ch-title">The Method: CRV Stages I–VI</span><span class="ch-tag">McNear manual<br>Feb 1985</span></div>
+  <p class="lede">The 1985 working paper by project officer Tom McNear — <em>Coordinate Remote Viewing Stages I–VI and Beyond</em> — is the program's technical core. It teaches a discipline: coordinates in, ideograms out, and a running war against the brain's urge to invent the answer.</p>
+  <table class="map">
+    <tr><th style="width:7em">Stage</th><th>Name</th><th>What happens on paper</th></tr>
+    <tr><td><b>I</b></td><td>Major Gestalt</td><td>The <b>ideogram</b>: an instant kinesthetic squiggle — A (feeling/motion, e.g. "fluid/wavy") and B (automatic analytic response, e.g. "water"). Visual images get labeled AOL immediately.</td></tr>
+    <tr><td><b>II</b></td><td>Sensory Contact</td><td>Non-visual signal: sounds, smells, tastes, textures, temperatures, energies. Still no pictures allowed.</td></tr>
+    <tr><td><b>III</b></td><td>Dimension, Motion, Mobility</td><td>Aperture widens: dimensionals (tall, thin, 350 ft), the <b>aesthetic impact</b> ("WOW — this place makes me feel…"), dotted autonomic <b>trackers</b>, sketches.</td></tr>
+    <tr><td><b>IV</b></td><td>General Qualitative Aspects</td><td>The operational threshold. A hand-written matrix — <b>S-2 · D · AI · EI · T · I · AOL · A/S</b> — covering activities, objects, and the <em>emotions of people at the site</em>.</td></tr>
+    <tr><td><b>V</b></td><td>Specific Analytical Aspects</td><td><b>Interrogating the signal line</b>: extracting specifics without fabricating. Also the repair stage — looking <em>through</em> an AOL to find the real data that caused it.</td></tr>
+    <tr><td><b>VI</b></td><td>3-D Contact &amp; Modeling</td><td>Physical models of the site.</td></tr>
+  </table>
+
+  <div class="exhibit">
+    <svg viewBox="0 0 760 240" role="img" aria-label="CRV signal model: stimulus to ideogram, with analytical overlay branching off">
+      <g font-family="Courier Prime" font-size="12" fill="#111511">
+        <rect x="20" y="90" width="130" height="50" fill="none" stroke="#111511" stroke-width="2"/><text x="32" y="120">COORDINATES</text>
+        <path d="M150 115 L 205 115" stroke="#111511" stroke-width="2" marker-end="url(#sga)"/>
+        <rect x="210" y="90" width="160" height="50" fill="none" stroke="#111511" stroke-width="2"/><text x="222" y="112">SIGNAL LINE</text><text x="222" y="130">(threshold of awareness)</text>
+        <path d="M370 115 L 425 115" stroke="#111511" stroke-width="2" marker-end="url(#sga)"/>
+        <rect x="430" y="90" width="150" height="50" fill="none" stroke="#111511" stroke-width="2"/><text x="442" y="120">IDEOGRAM → S1–S6</text>
+        <path d="M290 140 C 290 190, 330 195, 360 195" stroke="#db3356" stroke-width="2" fill="none" marker-end="url(#sgb)"/>
+        <rect x="365" y="170" width="210" height="46" fill="none" stroke="#db3356" stroke-width="2"/><text x="377" y="190" fill="#db3356">AOL — "Hawaii!"</text><text x="377" y="207" fill="#db3356">(declared, set aside)</text>
+        <rect x="610" y="90" width="130" height="50" fill="none" stroke="#111511" stroke-width="2"/><text x="622" y="112">SUMMARY</text><text x="622" y="130">+ monitor feedback</text>
+        <path d="M580 115 L 610 115" stroke="#111511" stroke-width="2" marker-end="url(#sga)"/>
+        <text x="30" y="45" font-family="Archivo" font-weight="900" font-size="14">THE RULE: ignore content, control structure. AOL is named, never followed.</text>
+      </g>
+      <defs><marker id="sga" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8 z" fill="#111511"/></marker><marker id="sgb" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8 z" fill="#db3356"/></marker></defs>
+    </svg>
+    <div class="cap"><span class="xh">Exhibit S-B — The CRV signal model</span><span>after McNear 1985, fig. 2</span><span class="src">SOURCE: <a href="https://archive.org/details/cia-readingroom-document-cia-rdp96-00788r001000400001-7" target="_blank" rel="noopener">MANUAL ↗</a></span></div>
+  </div>
+
+  <p>Session control is equally codified: the monitor supplies only date/time, coordinates, and a narrow feedback vocabulary — <b>Site</b> (done), <b>C</b> (correct), <b>PC</b> (probably correct), <b>N</b> (near), <b>CFB</b> (can't feedback) — and never gives negative feedback mid-session. A written summary closes every operational session. McNear's warning stands as the whole philosophy in one line: <em>"One cannot expect to learn RV simply by reading this document. CRV must be learned by doing."</em></p>
+</section>
+
+<section class="chapter" id="s5">
+  <div class="ch-head"><span class="ch-num">S5</span><span class="ch-title">The Sessions That Checked Out</span><span class="ch-tag">and the one<br>everyone argues about</span></div>
+  <table class="map">
+    <tr><th style="width:10em">Session</th><th>What the viewer produced</th><th style="width:12em">Verification</th></tr>
+    <tr><td><b>Pat Price · Semipalatinsk, July 1974</b></td><td>Given only coordinates and "R&amp;D test facility": gantry cranes, rail lines, helipads, a great sphere — later reported at ~58 ft diameter. The CIA's own evaluation: several large structural elements correctly described, "noise along with the signal."</td><td><b>Verified-in-part by the sponsor</b> (SRI final report)</td></tr>
+    <tr><td><b>Joe McMoneagle · Typhoon, Sept 1979</b></td><td>An impossibly large submarine being built inside a shed ~100 m from water at Severodvinsk — and a launch about four months out. The NSC doubted it because no other source knew of it.</td><td><b>Satellite photos, Jan 1980</b>: Typhoon moving through a freshly-blasted channel; 20 tubes, flat deck</td></tr>
+    <tr><td><b>Grill Flame, Sept 1979</b></td><td>The unit's first operational mission: an aircraft crash site.</td><td>Located within ~15 miles (program record)</td></tr>
+    <tr><td><b>Rosemary Smith, 1976</b></td><td>A lost Soviet spy plane, by an administrative assistant Graff recruited.</td><td>Program record</td></tr>
+    <tr><td><b>Brig. Gen. Dozier, Dec 1981</b></td><td>Grill Flame tasked to locate the kidnapped general in Italy.</td><td><b>Contested.</b> Rescued after 42 days by Italy's NOCS with ISA's Operation Winter Harvest — <em>do not credit RV with the rescue</em></td></tr>
+  </table>
+  <div class="note"><span class="nh">Analyst's note</span>
+  Price and McMoneagle are the program's best evidence because they were verified against ground truth at the time — but they are two sessions out of thousands. The honest way to hold them: remarkable, documented, and not a basis for a collection capability.</div>
+</section>
+
+<section class="chapter" id="s6">
+  <div class="ch-head"><span class="ch-num">S6</span><span class="ch-title">The People</span><span class="ch-tag">physicists, viewers,<br>patrons, evaluators</span></div>
+  <table class="map">
+    <tr><th style="width:13em">Name</th><th>Role in the record</th></tr>
+    <tr><td><b>Hal Puthoff &amp; Russell Targ</b></td><td>SRI physicists; designed the protocols and the lab evidence base (1972 onward).</td></tr>
+    <tr><td><b>Ingo Swann</b></td><td>Artist-viewer; co-created CRV with Puthoff over a decade of development.</td></tr>
+    <tr><td><b>Pat Price</b></td><td>Retired police commissioner; Semipalatinsk 1974 and the Palo Alto pool drawing.</td></tr>
+    <tr><td><b>Joseph McMoneagle</b></td><td>"Viewer 001"; Typhoon 1979; later the method's most prolific memoirist.</td></tr>
+    <tr><td><b>Dale Graff</b></td><td>Gondola Wish and early Ft. Meade direction; recruited Rosemary Smith.</td></tr>
+    <tr><td><b>Skip Atwater</b></td><td>Operations officer to 1987; later president of the Monroe Institute.</td></tr>
+    <tr><td><b>Maj. Gen. Albert Stubblebine</b></td><td>INSCOM's patron general — the organizational reason the unit existed.</td></tr>
+    <tr><td><b>Tom McNear</b></td><td>Project officer; wrote the February 1985 CRV training manual.</td></tr>
+    <tr><td><b>Edwin May</b></td><td>SAIC-era lead; his group produced most of the late-program data.</td></tr>
+    <tr><td><b>Buchanan · Smith · Morehouse · Riley</b></td><td>Later viewers and trainers; carried CRV into the post-1995 civilian world.</td></tr>
+    <tr><td><b>Jessica Utts &amp; Ray Hyman</b></td><td>The 1995 evaluators: statistician who found the statistics significant, skeptic who found them insufficient.</td></tr>
+  </table>
+</section>
+
+<section class="chapter" id="s7">
+  <div class="ch-head"><span class="ch-num">S7</span><span class="ch-title">The 1995 Evaluation</span><span class="ch-tag">Utts vs Hyman<br>and the kill shot</span></div>
+  <p class="lede">In June 1995 the CIA's Office of Research and Development contracted the American Institutes for Research to evaluate the program. Two outside experts read the evidence and wrote, effectively, two different reports.</p>
+  <blockquote class="doc">
+    <p><b>Utts:</b> "Using the standards applied to any other area of science, it is concluded that psychic functioning has been well established. The statistical results of the studies examined are far beyond what is expected by chance." — and yet the effects are too small and inconsistent for intelligence gathering.</p>
+    <p><b>Hyman:</b> "The case for psychic functioning is better than it ever has been… But the evidence is still too weak and too inconsistent to be used as evidence for psi." The overwhelming mass of session data is "vague, general, and way off target."</p>
+    <span class="cite">AIR, <em>An Evaluation of Remote Viewing</em>, 29 Sept 1995 (GWU NSAEBB438/doc_57)</span>
+  </blockquote>
+  <p><b>What they agreed on, and what decided the issue:</b> no demonstrated operational utility. AIR's operational conclusion is the sentence that ended the program: <b>no remote-viewing report ever provided actionable information for any intelligence operation.</b></p>
+  <p><b>The chronology worth knowing:</b> the CIA ordered the closure on <b>30 June 1995</b> — three months <em>before</em> the report was published on 29 September. A 2023 AFIO thesis calls it a "rush to prejudgement" and notes AIR reviewed about ten experiments, not the thousands of operational sessions. The archive editors add their own counterweight: <b>17 of the 19 agencies</b> that tasked viewers kept coming back. Both things are true: the review was narrow, and the operational record was still not good enough.</p>
+</section>
+
+<section class="chapter" id="s8">
+  <div class="ch-head"><span class="ch-num">S8</span><span class="ch-title">The Documents</span><span class="ch-tag">primary sources<br>with links</span></div>
+  <table class="map">
+    <tr><th style="width:16em">Document</th><th>Identifier &amp; where to read it</th></tr>
+    <tr><td><b>CRV training manual</b> (McNear, Feb 1985)</td><td>CIA-RDP96-00788R001000400001-7 · <a class="pg ext" href="https://archive.org/details/cia-readingroom-document-cia-rdp96-00788r001000400001-7" target="_blank" rel="noopener">archive.org ↗</a></td></tr>
+    <tr><td><b>Epochs of CRV R&amp;D and Training</b></td><td>CIA-RDP96-00787R000300140001-5 · <a class="pg ext" href="https://www.cia.gov/readingroom/document/cia-rdp96-00787r000300140001-5" target="_blank" rel="noopener">CIA ↗</a></td></tr>
+    <tr><td><b>SUN STREAK briefing slides</b> (transfer history)</td><td>CIA-RDP96-00789R002100240001-2 · <a class="pg ext" href="https://nsarchive2.gwu.edu/NSAEBB/NSAEBB534-DIA-Declassified-Sourcebook/documents/DIA-21.pdf" target="_blank" rel="noopener">GWU ↗</a></td></tr>
+    <tr><td><b>STAR GATE Project: An Overview</b> (1993)</td><td>CIA-RDP96-00789R002800180001-2 · <a class="pg ext" href="https://www.cia.gov/readingroom/docs/CIA-RDP96-00789R002800180001-2.pdf" target="_blank" rel="noopener">CIA PDF ↗</a></td></tr>
+    <tr><td><b>AIR evaluation</b> (29 Sept 1995)</td><td><a class="pg ext" href="https://nsarchive2.gwu.edu/NSAEBB/NSAEBB438/docs/doc_57.pdf" target="_blank" rel="noopener">GWU PDF ↗</a></td></tr>
+    <tr><td><b>The whole collection</b> (~89,000 pages)</td><td><a class="pg ext" href="https://www.cia.gov/readingroom/collection/stargate" target="_blank" rel="noopener">CIA Reading Room ↗</a> · <a class="pg ext" href="https://huggingface.co/datasets/GotThatData/STARGATE" target="_blank" rel="noopener">HF mirror ↗</a></td></tr>
+    <tr><td><b>Program documentary history</b> (Mörck, ed.)</td><td><a class="pg ext" href="https://www.academia.edu/95286807/The_Star_Gate_Program_Over_the_Years_1972_1995_A_Synopsis" target="_blank" rel="noopener">synopsis ↗</a></td></tr>
+    <tr><td><b>Closure-chronology critique</b> (AFIO thesis, 2023)</td><td><a class="pg ext" href="https://www.governmentattic.org/57docs/ThesisAnomalousHumanCognition2023.pdf" target="_blank" rel="noopener">PDF ↗</a></td></tr>
+  </table>
+  <div class="filecard">
+    <div class="fn"><div class="t">STARGATE-RESEARCH.md — this page's full dossier</div>
+      <div class="d">Lineage, CRV stages, people, landmark sessions with verification status, the 1995 evaluation, and the complete document map. Markdown.</div></div>
+    <div class="fa"><a href="files/STARGATE-RESEARCH.md" download>Download <span>↓</span></a><a href="https://github.com/occult-kranti/gateway-files" target="_blank" rel="noopener">On GitHub <span>↗</span></a></div>
+  </div>
+</section>
+
+<section class="chapter" id="s9">
+  <div class="ch-head"><span class="ch-num">S9</span><span class="ch-title">Practice &amp; Presets</span><span class="ch-tag">try the structure,<br>not the mythology</span></div>
+  <p class="lede">The Ft. Meade protocol used <b>no audio at all</b> — CRV is paper, blind targets, and discipline. If you want to train it, that is where the evidence points; sound is only an optional settling bed, and the declassified record assigns it no role.</p>
+  <div class="protocol">
+    <div class="ph"><span class="pnum">RV-01</span><span class="pname">A CRV-style home session (45–60 min)</span><span class="plvl">with a partner</span></div>
+    <div class="pb">
+      <ol class="steps">
+        <li><b>Target officer (partner):</b> seal a photo or location name in an envelope; label it only with arbitrary coordinates or a code number. You never see it.</li>
+        <li>Settle for 5 minutes (optional bed below), pen and blank paper ready, no screens.</li>
+        <li><b>Stage I:</b> read the code; let the first squiggle happen. Write A (feeling/motion) and B (automatic response). Any picture that arrives gets labeled <b>AOL</b> and set aside.</li>
+        <li><b>Stage II:</b> list non-visual sensations in columns — sound, smell, texture, temperature, energy.</li>
+        <li><b>Stage III:</b> dimensionals only (tall/wide/distance). If an aesthetic impact hits, take the AI break, name the feeling, then continue.</li>
+        <li><b>Stage IV:</b> write the matrix S-2 · D · AI · EI · T · I · AOL · A/S and interrogate each column. Do not analyze as you go.</li>
+        <li>Summarize in plain language. Only then open the envelope. Score hits, misses, and unverifiables <em>separately</em> — unverifiables are not hits.</li>
+        <li>Log 20 sessions before judging yourself. The misses teach more than the hits; that is what "structure" means.</li>
+      </ol>
+    </div>
+    <div class="refs"><span>SOURCES:</span><a class="pg ext" href="https://archive.org/details/cia-readingroom-document-cia-rdp96-00788r001000400001-7" target="_blank" rel="noopener">McNear manual ↗</a><a class="pg ext" href="index.html#ch5" target="_blank" rel="noopener">Gateway Ch 05 ↗</a></div>
+  </div>
+
+  <h3 class="sec">New audio presets (added to the lab &amp; archive)</h3>
+  <table class="map">
+    <tr><th style="width:12em">Preset</th><th style="width:9em">Construction</th><th style="width:4em">Grade</th><th>Purpose</th><th style="width:5em">Loop</th></tr>
+    <tr><td><b>CRV Watch · 4.5 Hz</b></td><td>180 / 184.5 Hz</td><td><span class="grade g-c">C</span></td><td>Long-form settling bed for structured sessions. No documented RV effect — endurance only.</td><td><a class="pg local" href="files/audio/crv-watch-45hz.mp3" download>mp3</a></td></tr>
+    <tr><td><b>Alpha Readiness · 8 Hz</b></td><td>200 / 208 Hz</td><td><span class="grade g-c">C</span></td><td>Low-alpha pre-session settling for problem solving and ideogram drills.</td><td><a class="pg local" href="files/audio/alpha-ready-8hz.mp3" download>mp3</a></td></tr>
+    <tr><td><b>Brown Noise · deep bed</b></td><td>low-weighted noise</td><td><span class="grade g-b">B</span></td><td>Pure masking for noisy rooms. No beat by design — noise-embedded beats never entrained in the 2023 review anyway.</td><td><a class="pg local" href="files/audio/brown-noise-bed.mp3" download>mp3</a></td></tr>
+  </table>
+  <p class="small">Play them live in the <a href="index.html#ch11">Frequency Lab</a> (now 10 presets), or download for a personal player. Headphones on, volume low, envelope sealed.</p>
+
+  <div class="note"><span class="nh">Analyst's note</span>
+  The 1995 review is the honest ceiling on all of this: a real program, real documents, some remarkable verified sessions — and no actionable intelligence. Practice CRV as a discipline of perception and record-keeping, not as a promise of psychic powers.</div>
+</section>
+
+</div>
+</main>
+
+<script>
+const links=[...document.querySelectorAll('nav.index a')];
+const secs=links.map(a=>a.getAttribute('href').startsWith('#')?document.querySelector(a.getAttribute('href')):null);
+const spy=new IntersectionObserver(es=>{es.forEach(e=>{if(e.isIntersecting){links.forEach(l=>l.classList.remove('active'));const i=secs.indexOf(e.target);if(i>=0)links[i].classList.add('active');}});},{rootMargin:'-20% 0px -70% 0px'});
+secs.forEach(s=>s&&spy.observe(s));
+const prog=document.getElementById('progress'),toTop=document.getElementById('toTop');
+addEventListener('scroll',()=>{const h=document.documentElement,sc=h.scrollTop/(h.scrollHeight-h.clientHeight);prog.style.width=(sc*100)+'%';toTop.classList.toggle('show',h.scrollTop>800);},{passive:true});
+toTop.onclick=()=>scrollTo({top:0,behavior:'smooth'});
+</script>
+</body>
+</html>
